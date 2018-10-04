@@ -5,12 +5,12 @@
    console.log('テスト3');
    console.log(event);
    
-   var record = event.record
+   var record = event.record;
       
    var postingdate = record['掲載切替日'].value;
    
    record['掲載完了日'].value = postingdate;
-      
+   
    });
    
 
@@ -26,5 +26,3 @@
      
    });
 })();
-
-
