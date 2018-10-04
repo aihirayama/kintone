@@ -1,19 +1,31 @@
 (function() {
    "use strict";
+   // レコード詳細画面が表示された時のイベント
    kintone.events.on('app.record.detail.show',function(event){
           
    console.log('テスト3');
    console.log(event);
    
-   var record = event.record;
-      
-   var postingdate = record['掲載切替日'].value;
    
-   record['掲載完了日'].value = postingdate;
    
    });
    
+(function() {
+    "use strict";
+     
+    // レコードが保存それた時のイベント
+    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
 
+    var record = event.record;
+      
+    var postingdate = record['掲載切替日'].value;
+   
+   　record['掲載完了日'].value = postingdate;
+       
+     return event;
+       
+    });
+})();
    
       
     kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
