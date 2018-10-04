@@ -1,8 +1,1 @@
-(function() {
-    "use strict";
-    kintone.events.on('app.record.detail.show',function(event){
-
-console.log(no)
-      
-    }); 
-})();
+console.log('tes');
