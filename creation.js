@@ -10,6 +10,8 @@
    var postingdate = record['掲載切替日'].value;
    
    record['掲載完了日'].value = postingdate;
+      
+   });
    
 
    
