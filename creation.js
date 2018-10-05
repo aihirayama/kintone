@@ -76,9 +76,9 @@
     
     }
     
-    record.施設作成件数 = newFacilities;
-    record.施設変更件数 = updateFacilities;
-    record.削除件数 = deleteFacilities;
+    record.施設作成件数.value = newFacilities;
+    record.施設変更件数.value = updateFacilities;
+    record.削除件数.value = deleteFacilities;
 
        
      return event;
