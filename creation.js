@@ -8,7 +8,13 @@
       
    document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
 
-   
+   var faxno = event.record.申込書FAXID.value;
+   var tmpA = document.createElement('a');
+   tmpA.href = 'https://operators.job-medley.com/received_faxes/?utf8=&idxcnt=' +  faxno;
+   tmpA.innerHTML = '申込書FAX';
+   tmpA.target = '_blank';
+
+   kintone.app.record.getFieldElement('申込書FAXID').appendChild(tmpA);
    
    
    });
