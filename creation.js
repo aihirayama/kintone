@@ -50,7 +50,7 @@
     var tableRecords = record.施設情報テーブル.value;
 
     for (var i = 0; i < tableRecords.length; i++) {   
-    	if( tableRecords[i].value.依頼ステータス_施設.value === '新規作成') {
+    	if( tableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || tableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
       	newFacilities += 1;
     	}     
       if( tableRecords[i].value.依頼ステータス_施設.value === '変更') {
