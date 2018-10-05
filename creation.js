@@ -42,6 +42,45 @@
     var postingdate = record.掲載切替日.value;
     record.掲載完了日.value = postingdate;
        
+       
+    //施設追加のステータスを数える。
+
+    /*
+    施設作成件数→新規作成
+    施設変更件数→既存修正
+    施設削除→応募受付終了処理・求人削除
+    */
+    //施設作成
+    var newFacilities = 0;
+    //施設変更
+    var updateFacilities = 0;
+    //施設削除
+    var deleteFacilities = 0;
+    
+    var tableRecords = record.施設情報テーブル.value;
+    
+    //集計した依頼ステータスの振り分け
+    for (var i = 0; i < tableRecords.length; i++) {
+    
+    	if( tableRecords[i].value.依頼ステータス_施設.value === '新規作成') {
+      		newFacilities += 1;
+    	}
+      
+      if( tableRecords[i].value.依頼ステータス_施設.value === '既存修正') {
+      		updateFacilities += 1;
+    	}
+      
+      if( tableRecords[i].value.依頼ステータス_施設.value === '応募受付終了処理・求人削除') {
+      		deleteFacilities += 1;
+    	}
+    
+    }
+    
+    record.施設作成件数 = newFacilities;
+    record.施設変更件数 = updateFacilities;
+    record.削除件数 = deleteFacilities;
+
+       
      return event;
        
     });
