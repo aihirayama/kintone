@@ -66,11 +66,11 @@
       		newFacilities += 1;
     	}
       
-      if( tableRecords[i].value.依頼ステータス_施設.value === '既存修正') {
+      if( tableRecords[i].value.依頼ステータス_施設.value === '変更') {
       		updateFacilities += 1;
     	}
       
-      if( tableRecords[i].value.依頼ステータス_施設.value === '応募受付終了処理・求人削除') {
+      if( tableRecords[i].value.依頼ステータス_施設.value === '施設削除') {
       		deleteFacilities += 1;
     	}
     
