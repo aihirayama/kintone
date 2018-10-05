@@ -31,30 +31,7 @@
            clienttmpA.target = '_blank';
            kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
        }
-     
-　 //施設IDのリンク作成
-   var facilitiesId = event.record.施設ID.value;
-   if (facilitiesId === "") {
-       return;
-       } else {
-           var facilitiestmpA = document.createElement('a');
-           facilitiestmpA.href = 'https://operators.job-medley.com/facilities?customerId=' +  clientId;
-           facilitiestmpA.innerHTML = ' ⇗';
-           facilitiestmpA.target = '_blank';
-           kintone.app.record.getFieldElement('施設ID').appendChild(facilitiestmpA);
-       }
 
-　 //求人IDのリンク作成
-   var joId = event.record.求人ID.value;
-   if (joId === "") {
-       return;
-       } else {
-           var jotmpA = document.createElement('a');
-           jotmpA.href = 'https://operators.job-medley.com/job_offer/' +  clientId + '/confirmation/';
-           jotmpA.innerHTML = ' ⇗';
-           jotmpA.target = '_blank';
-           kintone.app.record.getFieldElement('求人ID').appendChild(joId);
-       }
       
    });
 
