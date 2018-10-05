@@ -44,15 +44,10 @@
        
        
     //施設追加のステータスを数える。
-
-    /*
-    施設作成件数→新規作成
-    施設変更件数→既存修正
-    施設削除→応募受付終了処理・求人削除
-    */
+       
     //施設作成
     var newFacilities = 0;
-    //施設変更
+    //変更
     var updateFacilities = 0;
     //施設削除
     var deleteFacilities = 0;
