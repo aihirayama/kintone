@@ -16,7 +16,7 @@
 (function() {
     "use strict";
      
-    // レコードが保存それた時のイベント
+    // レコードが保存された時のイベント
     kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
 
     var record = event.record;
