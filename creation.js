@@ -48,8 +48,7 @@
     var updateFacilities = 0;//変更
     var deleteFacilities = 0;//施設削除
     var tableRecords = record.施設情報テーブル.value;
-    
-    //集計した依頼ステータスの振り分け
+
     for (var i = 0; i < tableRecords.length; i++) {   
     	if( tableRecords[i].value.依頼ステータス_施設.value === '新規作成') {
       	newFacilities += 1;
