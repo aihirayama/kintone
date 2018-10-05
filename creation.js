@@ -12,28 +12,31 @@
    
    
    });
-   
-(function() {
-    "use strict";
-     
+
     // レコードが保存された時のイベント
     kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
 
     var record = event.record;
-      
-    var postingdate = record['掲載切替日'].value;
-   
-   　record['掲載完了日'].value = postingdate;
+    var postingdate = record.掲載切替日.value;
+    record.掲載完了日.value = postingdate;
+    
+    var faxno = event.record.申込書FAXID.value;
+    var tmpA = document.createElement('a');
+    tmpA.href = 'https://operators.job-medley.com/received_faxes/?utf8=&idxcnt=' +  faxno;
+    tmpA.innerHTML = '申込書FAX';
+    tmpA.target = '_blank';
+    faxno = tmpA;
+
+    
        
      return event;
        
     });
-})();
-   
+
       
     kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
     // 「掲載完了日」フィールドの入力を制限
-        event.record['掲載完了日'].disabled = true;
+        event.record.掲載完了日.disabled = true;
 
     return event;
      
