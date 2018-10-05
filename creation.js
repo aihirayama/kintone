@@ -5,6 +5,9 @@
           
    console.log('テスト3');
    console.log(event);
+      
+   document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
+
    
    
    
