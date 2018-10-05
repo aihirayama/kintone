@@ -43,28 +43,30 @@
     record.掲載完了日.value = postingdate;
        
        
-    //施設追加のステータスを数える。
-       
-   
+    //施設追加のステータスを数える。    
+    var newFacilities = 0;//施設作成
+    var updateFacilities = 0;//変更
+    var deleteFacilities = 0;//施設削除
     var tableRecords = record.施設情報テーブル.value;
     
-    for (var i = 0; i < tableRecords.length; i++) {
-    
+    //集計した依頼ステータスの振り分け
+    for (var i = 0; i < tableRecords.length; i++) {   
     	if( tableRecords[i].value.依頼ステータス_施設.value === '新規作成') {
-      		record.施設作成件数.value += 1;
-    	}
-      
+      	newFacilities += 1;
+    	}     
       if( tableRecords[i].value.依頼ステータス_施設.value === '変更') {
-      		record.施設変更件数.value += 1;
+      	updateFacilities += 1;
     	}
-      
       if( tableRecords[i].value.依頼ステータス_施設.value === '施設削除') {
-      		record.削除件数.value += 1;
+      	deleteFacilities += 1;
     	}
-    
     }
-      
-     return event;
+   
+    record.施設作成件数.value = newFacilities;
+    record.施設変更件数.value = updateFacilities;
+    record.削除件数.value = deleteFacilities;
+       
+    return event;
        
     });
 
