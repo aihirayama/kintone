@@ -8,6 +8,15 @@
       
    document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
       
+   var faxno = event.record.申込書FAXID.value;
+   var tmpA = document.createElement('a');
+   tmpA.href = 'https://operators.job-medley.com/received_faxes/?utf8=&idxcnt=' +  faxno;
+   tmpA.innerHTML = '🔗';
+   tmpA.target = '_blank';
+
+   kintone.app.record.getFieldElement('申込書FAXID').appendChild(tmpA);
+
+      
    });
 
     // レコードが保存された時のイベント
@@ -17,15 +26,6 @@
     var postingdate = record.掲載切替日.value;
     record.掲載完了日.value = postingdate;
     
-   var faxno = event.record.申込書FAXID.value;
-   var tmpA = document.createElement('a');
-   tmpA.href = 'https://operators.job-medley.com/received_faxes/?utf8=&idxcnt=' +  faxno;
-   tmpA.innerHTML = 'faxno';
-   tmpA.target = '_blank';
-   
-   faxno = tmpA;
-
-   //kintone.app.record.getFieldElement('申込書FAXID').appendChild(tmpA);
 
     
        
