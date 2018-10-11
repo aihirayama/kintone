@@ -15,7 +15,7 @@
        } else {
            var tmpA = document.createElement('a');
            tmpA.href = 'https://operators.job-medley.com/received_faxes/?utf8=&idxcnt=' +  faxNo;
-           tmpA.innerHTML = ' 🔗';
+           tmpA.innerHTML = ' 🐰';
            tmpA.style.fontSize = '3px';
            tmpA.target = '_blank';
            kintone.app.record.getFieldElement('申込書FAXID').appendChild(tmpA);
@@ -28,7 +28,7 @@
        } else {
            var clienttmpA = document.createElement('a');
            clienttmpA.href = 'https://operators.job-medley.com/facilities?customerId=' +  clientId;
-           clienttmpA.innerHTML = ' 🔗';
+           clienttmpA.innerHTML = ' 🐰';
            clienttmpA.style.fontSize = '3px';
            clienttmpA.target = '_blank';
            kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
