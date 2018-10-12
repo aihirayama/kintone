@@ -74,7 +74,7 @@
       var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
       var industryCounter = [0,0,0,0,0,0,0,0,0];
       var tes ="'" + "industry[i]'" + '_登録のみ'
-      var industryCode = tableRecords[i].value.tes;
+      var industryCode = tableRecords[i].value.tes.value;
 
 
       //リセット
@@ -90,9 +90,7 @@
                       industryCounter[j] += 1;
                   }
               }
-       //   if(record.施設形態.value === Industry[i]) {
-
-
+       
           } 
 
       }
