@@ -74,7 +74,7 @@
       var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
       var industryCounter = [0,0,0,0,0,0,0,0,0];
       var facilitytableRecords = event.施設情報テーブル.value;
-      var IndustryCode = industry[i] + '_登録のみ';
+      var industryCode = industry[i] + '_登録のみ';
 
 
       //リセット
@@ -86,7 +86,7 @@
       for( var i = 0; i < facilitytableRecords.length; i++) { //レコード全権確認
           if(record.依頼ステータス_施設.value === '新規作成(掲載なし)') {
               for( var j = 0; j < industry.length; j++) {
-                  if(IndustryCode === industry[j]) {
+                  if(industryCode === industry[j]) {
                       industryCounter[j] += 1;
                   }
               }
