@@ -94,7 +94,7 @@
        
       //フィールドに表示
       for (var i = 0; i < faciltableRecords.length; i++) {
-         record.industry[i] + '_登録のみ' = industryCounter[i];
+         record.industry[i] + '_登録のみ'.value = industryCounter[i];
       }
 //-------------------------テスト--------------------------------
        
