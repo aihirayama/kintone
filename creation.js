@@ -70,7 +70,7 @@
      //----------------テスト------------------------------
      //Industry[0病院,1診療所,2歯科,3代替,4介護福祉,5薬局,6訪問看護,7保育,8その他]
 
-      //最初の配列を作る。
+      //カウント用
       var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
       var industryCounter = [0,0,0,0,0,0,0,0,0];
 
@@ -86,12 +86,15 @@
               for( var j = 0; j < industry.length; j++) {
                   if(faciltableRecords[j].value.施設形態.value === industry[j]) {
                       industryCounter[j] += 1;
-                     
                   }
               }
-       
           } 
-
+      }
+      console.log(industryCounter);
+       
+      //フィールドに表示
+      for (var i = 0; i < faciltableRecords.length; i++) {
+         record.industry[i] + '_登録のみ' = industryCounter[i];
       }
 //-------------------------テスト--------------------------------
        
