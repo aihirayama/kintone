@@ -33,7 +33,6 @@
            clienttmpA.target = '_blank';
            kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
        }
-
       
    });
 
@@ -66,6 +65,38 @@
     record.施設作成件数.value = newFacilities;
     record.施設変更件数.value = updateFacilities;
     record.削除件数.value = deleteFacilities;
+       
+       
+     //----------------テスト------------------------------
+     //Industry[0病院,1診療所,2歯科,3代替,4介護福祉,5薬局,6訪問看護,7保育,8その他]
+
+      //最初の配列を作る。
+      var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
+      var industryCounter = [0,0,0,0,0,0,0,0,0];
+      var facilityTableRecords = event.施設情報テーブル.value;
+      var IndustryCode = Industry[i] + '_登録のみ';
+
+
+      //リセット
+      //IndustryCounter = [0,0,0,0,0,0,0,0,0];
+
+      //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
+
+      //登録のみ
+      for( var i = 0; i < facilityTableRecords.length; i++) { //レコード全権確認
+          if(record.依頼ステータス_施設.value === '新規作成(掲載なし)') {
+              for( var j = 0; j < industry.length; j++) {
+                  if(IndustryCode === industry[j]) {
+                      industryCounter[j] += 1;
+                  }
+              }
+       //   if(record.施設形態.value === Industry[i]) {
+
+
+          } 
+
+      }
+//-------------------------テスト--------------------------------
        
     return event;
        
