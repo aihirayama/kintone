@@ -48,16 +48,16 @@
     var newFacilities = 0;//施設作成
     var updateFacilities = 0;//変更
     var deleteFacilities = 0;//施設削除
-    var tableRecords = record.施設情報テーブル.value;
+    var faciltableRecords = record.施設情報テーブル.value;
 
-    for (var i = 0; i < tableRecords.length; i++) {   
-    	if( tableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || tableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
+    for (var i = 0; i < faciltableRecords.length; i++) {   
+    	if( faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
       	newFacilities += 1;
     	}     
-      if( tableRecords[i].value.依頼ステータス_施設.value === '変更') {
+      if( faciltableRecords[i].value.依頼ステータス_施設.value === '変更') {
       	updateFacilities += 1;
     	}
-      if( tableRecords[i].value.依頼ステータス_施設.value === '施設削除') {
+      if( faciltableRecords[i].value.依頼ステータス_施設.value === '施設削除') {
       	deleteFacilities += 1;
     	}
     }
@@ -73,8 +73,6 @@
       //最初の配列を作る。
       var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
       var industryCounter = [0,0,0,0,0,0,0,0,0];
-      var tes =　industry[i] + '_登録のみ'
-      var industryCode = tableRecords[i].value.tes.value;
 
 
       //リセット
@@ -83,11 +81,12 @@
       //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
 
       //登録のみ
-      for( var i = 0; i < tableRecords.length; i++) { //レコード全権確認
-          if(tableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
+      for( var i = 0; i < faciltableRecords.length; i++) { //レコード全権確認
+          if(faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
               for( var j = 0; j < industry.length; j++) {
-                  if(industryCode === industry[j]) {
+                  if(faciltableRecords[j].value.industry[j] + '_登録のみ'.value === industry[j]) {
                       industryCounter[j] += 1;
+                     
                   }
               }
        
