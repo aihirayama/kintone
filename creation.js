@@ -73,7 +73,7 @@
       //最初の配列を作る。
       var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
       var industryCounter = [0,0,0,0,0,0,0,0,0];
-      var facilitytableRecords = event.施設情報テーブル.value;
+      var facilitytableRecords = record.施設情報テーブル.value;
       var industryCode = industry[i] + '_登録のみ';
 
 
