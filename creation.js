@@ -84,7 +84,7 @@
       for( var i = 0; i < faciltableRecords.length; i++) { //レコード全権確認
           if(faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
               for( var j = 0; j < industry.length; j++) {
-                  if(faciltableRecords[j].value.industry[j] + '_登録のみ'.value === industry[j]) {
+                  if(faciltableRecords[j].value.施設形態.value === industry[j]) {
                       industryCounter[j] += 1;
                      
                   }
