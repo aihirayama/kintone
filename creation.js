@@ -73,7 +73,6 @@
       //最初の配列を作る。
       var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
       var industryCounter = [0,0,0,0,0,0,0,0,0];
-      var facilitytableRecords = record.施設情報テーブル.value;
       var industryCode = industry[i] + '_登録のみ';
 
 
@@ -83,8 +82,8 @@
       //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
 
       //登録のみ
-      for( var i = 0; i < facilitytableRecords.length; i++) { //レコード全権確認
-          if(record.依頼ステータス_施設.value === '新規作成(掲載なし)') {
+      for( var i = 0; i < tableRecords.length; i++) { //レコード全権確認
+          if(tableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
               for( var j = 0; j < industry.length; j++) {
                   if(industryCode === industry[j]) {
                       industryCounter[j] += 1;
