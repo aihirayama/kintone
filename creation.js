@@ -97,7 +97,7 @@
          //record.field.value = industryCounter[i];
          record.病院_登録のみ.value = industryCounter[i];
       }
-       console.log('フィールド名'.industry[i] + '_登録のみ')
+       console.log('フィールド名'.industry[0] + '_登録のみ')
 //-------------------------テスト--------------------------------
        
     return event;
