@@ -3,7 +3,6 @@
    // レコード詳細画面が表示された時のイベント
    kintone.events.on('app.record.detail.show',function(event){
           
-   console.log('テスト3');
    console.log(event);
       
    document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
@@ -81,15 +80,13 @@
       //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
 
       //登録のみ
-      for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ
-         console.log('i' + i)
-          if(faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {//依頼ステータスの判定
-              for( var j = 0; j < industry.length; j++) {
-                  //if(faciltableRecords[j].value.施設形態.value === industry[j]) {
-                      //industryCounter[j] += 1;
-                 console.log('j' + j);
+      for( var j = 0; j < faciltableRecords.length; j++) { //レコードを1件ずつ確認するためのループ
+          if(faciltableRecords[j].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {//依頼ステータスの判定
+              for( var k = 0; k < industry.length; k++) {
+                  if(faciltableRecords[k].value.施設形態.value === industry[j]) {
+                      industryCounter[k] += 1;
                  
-                  //}
+                  }
               }
           } 
       }
