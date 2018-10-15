@@ -118,8 +118,8 @@
             for( var j = 0; j < industryCounter.length; j++){
              if(faciltableRecords[i].value.依頼ステータス_施設.value === status[j]) {//依頼ステータスの判定
                for( var k = 0; k < industry.length; k++) {
-                 if(faciltableRecords[i].value.施設形態.value === industry[j][k]) {
-                   industryCounter[k] += 1;                 
+                 if(faciltableRecords[i].value.施設形態.value === industry[k]) {
+                   industryCounter[j][k] += 1;                 
                  }
                }
              }
