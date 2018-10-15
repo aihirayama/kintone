@@ -8,12 +8,12 @@
    document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
    
    //fax受信画面のリンク作成   
-   var faxNo = event.record.申込書FAXID.value;
-   if (faxNo === "") {
+   var faxnumber = event.record.申込書FAXID.value;
+   if (faxnumber === "") {
        return;
        } else {
            var tmpA = document.createElement('a');
-           tmpA.href = 'https://operators.job-medley.com/received_faxes/?utf8=&idxcnt=' +  faxNo;
+           tmpA.href = 'https://operators.job-medley.com/received_faxes/?utf8=&idxcnt=' +  faxnumber;
            tmpA.innerHTML = ' 🐰';
            tmpA.style.fontSize = '3px';
            tmpA.target = '_blank';
