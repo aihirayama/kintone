@@ -93,11 +93,8 @@
        
       //フィールドに表示
       for (var i = 0; i < industryCounter.length; i++) {
-            //var field = industry[i] + '_登録のみ';
             record[industry[i] + '_登録のみ'].value = industryCounter[i];
-           // record.病院_登録のみ.value = industryCounter[i];
       }
-       //console.log('フィールド名:' + industry[0] + '_登録のみ')
 //-------------------------テスト--------------------------------
        
     return event;
