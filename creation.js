@@ -82,12 +82,13 @@
 
       //登録のみ
       for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ
+         console.log('i' + i)
           if(faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {//依頼ステータスの判定
               for( var j = 0; j < industry.length; j++) {
                   //if(faciltableRecords[j].value.施設形態.value === industry[j]) {
                       //industryCounter[j] += 1;
-                 console.log('施設形態：'+ faciltableRecords[j].value.施設形態.value);
-                 console.log('industry：'+ industry[j]);
+                 console.log('j' + j);
+                 
                   //}
               }
           } 
