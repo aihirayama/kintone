@@ -71,8 +71,8 @@
      //Industry[0病院,1診療所,2歯科,3代替,4介護福祉,5薬局,6訪問看護,7保育,8その他]
 
       //カウント用
-      var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
-      var industryCounter = [0,0,0,0,0,0,0,0,0];
+      var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//業界ごとの配列
+      var industryCounter = [0,0,0,0,0,0,0,0,0];//カウントするための箱
 
 
       //リセット
@@ -81,11 +81,13 @@
       //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
 
       //登録のみ
-      for( var i = 0; i < faciltableRecords.length; i++) { //レコード全権確認
-          if(faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
+      for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ
+          if(faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {//依頼ステータスの判定
               for( var j = 0; j < industry.length; j++) {
-                  if(faciltableRecords[j].value.施設形態.value === industry[j]) {
-                      industryCounter[j] += 1;
+                  //if(faciltableRecords[j].value.施設形態.value === industry[j]) {
+                      //industryCounter[j] += 1;
+                 console.log('施設形態：'+ faciltableRecords[j].value.施設形態.value);
+                 console.log('industry：'+ industry[j]);
                   }
               }
           } 
