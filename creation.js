@@ -88,7 +88,7 @@
                       //industryCounter[j] += 1;
                  console.log('施設形態：'+ faciltableRecords[j].value.施設形態.value);
                  console.log('industry：'+ industry[j]);
-                  }
+                  //}
               }
           } 
       }
