@@ -115,9 +115,9 @@
 
          //登録のみ
          for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ]
-            console.log('ok1');
             for( var j = 0; j < status.length; j++){
-               console.log('ok2');
+               console.log('ステータス：',faciltableRecords[i].value.依頼ステータス_施設.value);
+               console.log('status[j]：',status[j]);
              if(faciltableRecords[i].value.依頼ステータス_施設.value === status[j]) {//依頼ステータスの判定
                 console.log('good1');
                for( var k = 0; k < industry.length; k++) {
