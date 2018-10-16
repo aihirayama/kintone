@@ -115,7 +115,7 @@
 
          //登録のみ
          for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ
-            for( var j = 0; j < industryCounter.length; j++){
+            for( var j = 0; j < status.length; j++){
              if(faciltableRecords[i].value.依頼ステータス_施設.value === status[j]) {//依頼ステータスの判定
                for( var k = 0; k < industry.length; k++) {
                  if(faciltableRecords[i].value.施設形態.value === industry[k]) {
