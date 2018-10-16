@@ -114,12 +114,18 @@
          //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
 
          //登録のみ
-         for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ
+         for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ]
+            console.log('ok1');
             for( var j = 0; j < status.length; j++){
+               console.log('ok2');
              if(faciltableRecords[i].value.依頼ステータス_施設.value === status[j]) {//依頼ステータスの判定
+                console.log('good1');
                for( var k = 0; k < industry.length; k++) {
+                  console.log('ok3');
                  if(faciltableRecords[i].value.施設形態.value === industry[k]) {
-                   industryCounter[j][k] += 1;                 
+                    console.log('good2');
+                   industryCounter[j][k] += 1;
+                    console.log('good3');
                  }
                }
              }
