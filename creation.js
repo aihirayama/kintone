@@ -127,11 +127,11 @@
          }
          */
           function counter (tableName,orderStatus,facilityStyle){
-              for( var i = 0; i < record["'"+ tableName +"'"].value.length; i++) { 
+              for( var i = 0; i < record[tableName].value.length; i++) { 
                 for( var j = 0; j < order_status.length; j++){
-                  if(record["'"+ tableName +"'"].value[i].value["'"+ orderStatus +"'"].value === order_status[j]) {
+                  if(record[tableName].value[i].value[orderStatus].value === order_status[j]) {
                     for( var k = 0; k < industry.length; k++) {
-                      if(record["'"+ tableName +"'"].value[i].value["'"+ facilityStyle +"'"].value === industry[k]) {
+                      if(record[tableName].value[i].value[facilityStyle].value === industry[k]) {
                          industry_counter[j][k] += 1;
                       }
                     }
@@ -142,7 +142,7 @@
            
        
        //施設情報テーブル 
-       counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
+       counter("'施設情報テーブル'","'依頼ステータス_施設'","'施設形態_施設'");
        
        //求人情報テーブル
        //counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
