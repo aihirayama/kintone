@@ -9,6 +9,7 @@
    
    //fax受信画面のリンク作成   
    var faxnumber = event.record.申込書FAXID.value;
+   console.log('ok1');
    if (faxnumber === "") {
        return;
        } else {
@@ -18,10 +19,12 @@
            //tmpA.style.fontSize = '3px';
            tmpA.target = '_blank';
            kintone.app.record.getFieldElement('申込書FAXID').appendChild(tmpA);
+           console.log('ok2');
        }
     
     //顧客IDのリンク作成
    var clientId = event.record.顧客ID.value;
+   console.log('ok3');
    if (clientId === "") {
        return;
        } else {
@@ -31,6 +34,7 @@
            //clienttmpA.style.fontSize = '3px';
            clienttmpA.target = '_blank';
            kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
+           console.log('ok4');
        }
       
    });
@@ -127,7 +131,7 @@
          }
          */
           function counter (tableRecords,tableRecordsvalue,industryfieldcode){
-              for( var i = 0; i < record.[tableRecords].value.length; i++) { 
+              for( var i = 0; i < record[tableRecords].value.length; i++) { 
                 for( var j = 0; j < order_status.length; j++){
                   if(faciltableRecords[i].value[tableRecordsvalue].value === order_status[j]) {
                     for( var k = 0; k < industry.length; k++) {
@@ -141,11 +145,10 @@
            }
        
        //施設情報テーブル 
-       counter('施設情報テーブル','依頼ステータス_施設','施設形態')
+       counter('施設情報テーブル','依頼ステータス_施設','施設形態');
        
        //求人情報テーブル
-       var faciltableRecords = record.求人情報テーブル.value;
-       counter('求人情報テーブル','施設情報テーブル','施設形態_求人')
+       counter('求人情報テーブル','施設情報テーブル','施設形態_求人');
        
        
        
