@@ -104,14 +104,14 @@
                         [0,0,0,0,0,0,0,0,0],//掲載のみ→求人の依頼ステータス「新規作成(施設登録なし)」
                         [0,0,0,0,0,0,0,0,0]//登録・掲載→施設の依頼ステータス「新規作成(掲載あり)」
                         ];
-         var order_status = ['新規作成(掲載なし)','新規作成(掲載あり)','新規作成(施設登録なし)'];
+         var order_status = ['新規作成(掲載なし)','新規作成(施設登録なし)','新規作成(掲載あり)'];
          var jobOfferRecords = record.求人情報テーブル.value;
 
          //リセット
          //IndustryCounter = [0,0,0,0,0,0,0,0,0];
 
          //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
-
+/*
          //施設レコードの確認
          for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ]
             for( var j = 0; j < order_status.length; j++){
@@ -125,11 +125,31 @@
              }
            }
          }
-       //↓↓↓つくり途中               
-        //求人レコードの確認
-       for( var l = 0; l < jobOfferRecords.length; l++){
-         if(jobOfferRecords[l].value['依頼ステータス_求人'].value === order_status[j]) {
-         }
+         */
+          function counter (tableRecords,tableRecordsvalue,industryfieldcode){
+              for( var i = 0; i < record.[tableRecords].value.length; i++) { 
+                for( var j = 0; j < order_status.length; j++){
+                  if(faciltableRecords[i].value[tableRecordsvalue].value === order_status[j]) {
+                    for( var k = 0; k < industry.length; k++) {
+                      if(faciltableRecords[i].value[industryfieldcode].value === industry[k]) {
+                         industry_counter[j][k] += 1;
+                      }
+                    }
+                  }
+                }
+              }
+           }
+       
+       //施設情報テーブル 
+       counter('施設情報テーブル','依頼ステータス_施設','施設形態')
+       
+       //求人情報テーブル
+       var faciltableRecords = record.求人情報テーブル.value;
+       counter('求人情報テーブル','施設情報テーブル','施設形態_求人')
+       
+       
+       
+  
 
        console.log(industry_counter);
  
