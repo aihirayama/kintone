@@ -9,7 +9,6 @@
    
    //fax受信画面のリンク作成   
    var faxnumber = event.record.申込書FAXID.value;
-   console.log('ok1');
    if (faxnumber === "") {
        return;
        } else {
@@ -19,12 +18,10 @@
            //tmpA.style.fontSize = '3px';
            tmpA.target = '_blank';
            kintone.app.record.getFieldElement('申込書FAXID').appendChild(tmpA);
-           console.log('ok2');
        }
     
     //顧客IDのリンク作成
    var clientId = event.record.顧客ID.value;
-   console.log('ok3');
    if (clientId === "") {
        return;
        } else {
@@ -34,7 +31,6 @@
            //clienttmpA.style.fontSize = '3px';
            clienttmpA.target = '_blank';
            kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
-           console.log('ok4');
        }
       
    });
@@ -150,10 +146,7 @@
        //求人情報テーブル
        counter('求人情報テーブル','施設情報テーブル','施設形態_求人');
        
-       
-       
-  
-
+      
        console.log(industry_counter);
  
 //------------------------配列テスト------------      
