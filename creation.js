@@ -130,9 +130,9 @@
               for( var i = 0; i < record[tableName].value.length; i++) { 
                  console.log('ok');
                 for( var j = 0; j < order_status.length; j++){
-                  if(faciltableRecords[i].value[orderStatus].value === order_status[j]) {
+                  if(record[tableName].value[i].value[orderStatus].value === order_status[j]) {
                     for( var k = 0; k < industry.length; k++) {
-                      if(faciltableRecords[i].value[facilityStyle].value === industry[k]) {
+                      if(record[tableName].value[i].value[facilityStyle].value === industry[k]) {
                          industry_counter[j][k] += 1;
                       }
                     }
