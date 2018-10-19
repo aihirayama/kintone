@@ -99,33 +99,16 @@
  //------------------------配列テスト------------
 
          var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
-         var industry_counter =[//カウント用※Industry[0病院,1診療所,2歯科,3代替,4介護福祉,5薬局,6訪問看護,7保育,8その他]
-                               [0,0,0,0,0,0,0,0,0], //登録のみ→施設の依頼ステータス「新規作成(掲載なし)」
-                        [0,0,0,0,0,0,0,0,0],//掲載のみ→求人の依頼ステータス「追加掲載(施設登録なし)」
-                        [0,0,0,0,0,0,0,0,0]//登録・掲載→施設の依頼ステータス「新規作成(掲載あり)」
-                        ];
+       　//カウント用※Industry[0病院,1診療所,2歯科,3代替,4介護福祉,5薬局,6訪問看護,7保育,8その他]
+         var industry_counter =[   
+                                 [0,0,0,0,0,0,0,0,0], //登録のみ→施設の依頼ステータス「新規作成(掲載なし)」
+                                 [0,0,0,0,0,0,0,0,0],//掲載のみ→求人の依頼ステータス「追加掲載(施設登録なし)」
+                                 [0,0,0,0,0,0,0,0,0]//登録・掲載→施設の依頼ステータス「新規作成(掲載あり)」
+                               ];
          var order_status = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
          var jobOfferRecords = record.求人情報テーブル.value;
 
-         //リセット
-         //IndustryCounter = [0,0,0,0,0,0,0,0,0];
-
-         //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
-/*
-         //施設レコードの確認
-         for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ]
-            for( var j = 0; j < order_status.length; j++){
-             if(faciltableRecords[i].value.依頼ステータス_施設.value === order_status[j]) {//依頼ステータスの判定
-               for( var k = 0; k < industry.length; k++) {
-                 if(faciltableRecords[i].value.施設形態.value === industry[k]) {
-                   industry_counter[j][k] += 1;
-                    }
-                 }
-               }
-             }
-           }
-         }
-         */
+         //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
           function counter (tableName,orderStatus,facilityStyle){
               for( var i = 0; i < event.record[tableName].value.length; i++) { 
                 for( var j = 0; j < order_status.length; j++){
@@ -139,25 +122,22 @@
                 }
               }
            }
-           
-       
-       //施設情報テーブル 
+                 
+       //施設情報テーブルを集計
        counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
        
-       function test (a){
-       console.log('test',event.record[a].value);
-       }
-       
-       test('原稿ステータス');
-       
-       //求人情報テーブル
+       //求人情報テーブルを集計
        counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
-       
       
+      //フィールドへ反映 
+      for (var i = 0; i < order_status.length; i++) {
+         for(var j = 0; j < industry_counter.lenght; j++) {
+            record[industry[i] + '_登録のみ'].value = industry_counter[i][j];
+         }        
+      }
+
        console.log(industry_counter);
  
-//------------------------配列テスト------------      
-       
 //-------------------------(仮)--------------------------------
        
     return event;
