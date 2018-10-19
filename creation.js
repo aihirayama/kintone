@@ -145,10 +145,10 @@
        //counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
        
        function test (a){
-       console.log('test',record.a.value;)
+       console.log('test',record.a.value);
        }
        
-       test('原稿ステータス')
+       test('原稿ステータス');
        
        //求人情報テーブル
        //counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
