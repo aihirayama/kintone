@@ -76,7 +76,6 @@
                                  [0,0,0,0,0,0,0,0,0]//登録・掲載→施設の依頼ステータス「新規作成(掲載あり)」
                                ];
          var order_status = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
-         var jobOfferRecords = record.求人情報テーブル.value;
 
          //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
           function counter (tableName,orderStatus,facilityStyle){
@@ -103,7 +102,8 @@
       var trailing_character = ['_登録のみ','_掲載のみ','病院_登録・掲載'];
       for (var i = 0; i < trailing_character.length; i++) {
          for (var j = 0; j < industry.length; j++) {
-            record[industry[j],trailing_character[i]].value = industry_counter[i][j];
+            console.log(industry[j],trailing_character[i]);
+            event.record[industry[j],trailing_character[i]].value = industry_counter[i][j];
          }        
       }
 
