@@ -65,39 +65,9 @@
     record.施設変更件数.value = updateFacilities;
     record.削除件数.value = deleteFacilities;
        
- //-------------------------(仮)--------------------------------      
+
      //業態ごとの登録数を数える
      
-/*
-      //カウント用
-      var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
-      var industryCounter = [0,0,0,0,0,0,0,0,0];//カウント用Industry[0病院,1診療所,2歯科,3代替,4介護福祉,5薬局,6訪問看護,7保育,8その他]
-
-
-      //リセット
-      //IndustryCounter = [0,0,0,0,0,0,0,0,0];
-
-      //テーブルレコードをループさせる→ステータスif→業態チェックのifをループ→格納のループ
-
-      //登録のみ
-      for( var i = 0; i < faciltableRecords.length; i++) { //レコードを1件ずつ確認するためのループ
-          if(faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {//依頼ステータスの判定
-              for( var j = 0; j < industry.length; j++) {
-                  if(faciltableRecords[i].value.施設形態.value === industry[j]) {
-                      industryCounter[j] += 1;                 
-                  }
-              }
-          } 
-      }
-      console.log(industryCounter);
-       
-      //フィールドに表示
-      for (var i = 0; i < industry_counter.length; i++) {
-            record[industry[i] + '_登録のみ'].value = industry_counter[i];
-      }
-  */   
- //------------------------配列テスト------------
-
          var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
        　//カウント用※Industry[0病院,1診療所,2歯科,3代替,4介護福祉,5薬局,6訪問看護,7保育,8その他]
          var industry_counter =[   
@@ -130,15 +100,15 @@
        counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
       
       //フィールドへ反映 
-      for (var i = 0; i < order_status.length; i++) {
+      var trailing_character = ['_登録のみ','_掲載のみ','病院_登録・掲載'];
+      for (var i = 0; i < trailing_character.length; i++) {
          for(var j = 0; j < industry_counter.lenght; j++) {
-            record[industry[i] + '_登録のみ'].value = industry_counter[i][j];
+            record[industry[j] + trailing_character[i]].value = industry_counter[i][j];
          }        
       }
 
        console.log(industry_counter);
- 
-//-------------------------(仮)--------------------------------
+
        
     return event;
        
