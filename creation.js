@@ -145,7 +145,7 @@
        //counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
        
        function test (a){
-       console.log('test',event.record.a.value);
+       console.log('test',event.record[a].value);
        }
        
        test('原稿ステータス');
