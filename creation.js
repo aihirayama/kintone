@@ -106,8 +106,8 @@
          console.log('ok2');
          for(var j = 0; j < industry.lenght; j++) {
             console.log('ok3');
-            record[industry[j] + trailing_character[i]].value = industry_counter[i][j];
-            console.log('ok4');
+            //record[industry[j] + trailing_character[i]].value = industry_counter[i][j];
+            //console.log('ok4');
          }        
       }
 
