@@ -101,10 +101,8 @@
       
       //フィールドへ反映 
       var trailing_character = ['_登録のみ','_掲載のみ','病院_登録・掲載'];
-      console.log('ok1');
       for (var i = 0; i < trailing_character.length; i++) {
-         console.log('ok2');
-         for(var j = 0; j < industry.lenght; j++) {
+         for (var j = 0; j < industry.length; j++) {
             console.log('ok3');
             //record[industry[j] + trailing_character[i]].value = industry_counter[i][j];
             //console.log('ok4');
