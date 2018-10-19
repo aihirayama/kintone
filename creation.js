@@ -99,7 +99,7 @@
        counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
       
       //フィールドへ反映 
-      var trailing_character = ['_登録のみ','_掲載のみ','病院_登録・掲載'];
+      var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];
       for (var i = 0; i < trailing_character.length; i++) {
          for (var j = 0; j < industry.length; j++) {
             console.log(industry[j] + trailing_character[i]);
