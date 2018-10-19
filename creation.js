@@ -112,8 +112,11 @@
 
     //レコード編集画面が表示された時のイベント&レコード追加画面が表示された時のイベント------------------------------------- 
     kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
-    // 「掲載完了日」フィールドの入力を制限
+    // 「掲載完了日」「施設作成件数」「施設変更件数」「削除件数」フィールドの入力を制限
     event.record.掲載完了日.disabled = true;
+    event.record.施設作成件数.disabled = true;
+    event.record.施設変更件数.disabled = true;
+    event.record.削除件数.disabled = true;
     
     //「業態_登録のみ」「業態_掲載のみ」「業態_登録・掲載」フィールドの入力を制限
     var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
