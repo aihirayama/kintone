@@ -102,8 +102,8 @@
       var trailing_character = ['_登録のみ','_掲載のみ','病院_登録・掲載'];
       for (var i = 0; i < trailing_character.length; i++) {
          for (var j = 0; j < industry.length; j++) {
-            console.log(industry[j],trailing_character[i]);
-            event.record[industry[j],trailing_character[i]].value = industry_counter[i][j];
+            console.log(industry[j] + trailing_character[i]);
+            event.record[industry[j] + trailing_character[i]].value = industry_counter[i][j];
          }        
       }
 
