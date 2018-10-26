@@ -80,7 +80,7 @@
    for (var i = 0; i < industryStatsName.length; i++) {
       industryStatsCounter.push([]);
       for (var j = 0; j < industry.length; j++) {
-         industryStatsCounter[i].push(j);
+         industryStatsCounter[i].push(0);
       }	
     }
 
