@@ -68,8 +68,7 @@
     record.施設変更件数.value = updateFacilities;
     record.削除件数.value = deleteFacilities;
        
-    for (var i = 0; i < )
-       
+      
 
     //業態ごとの登録数を数える
    var industryStatsName = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
