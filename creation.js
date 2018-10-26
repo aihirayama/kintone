@@ -47,17 +47,19 @@
     var newFacilities = 0;//施設作成
     var updateFacilities = 0;//変更
     var deleteFacilities = 0;//施設削除
-    var facility_counter = [0,0,0];
+    
+    var facilityStatsCounter = [0,0,0];
+    var facilityStatsName = ['施設作成件数','施設作成件数','削除件数']
 
     for (var i = 0; i < record.施設情報テーブル.value.length; i++) {   
     	if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
-      	newFacilities += 1;
+      	facilityStatsCounter[0] += 1;
     	}     
       if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '変更') {
-      	updateFacilities += 1;
+      	facilityStatsCounter[1] += 1;
     	}
       if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '施設削除') {
-      	deleteFacilities += 1;
+      	facilityStatsCounter[2] += 1;
     	}
     }
 
@@ -66,24 +68,31 @@
     record.施設変更件数.value = updateFacilities;
     record.削除件数.value = deleteFacilities;
        
+    for (var i = 0; i < )
+       
 
-     //業態ごとの登録数を数える
+    //業態ごとの登録数を数える
+   var industryStatsName = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
+   //↑新規作成(掲載なし)=_登録のみ 追加掲載(施設登録なし)=_掲載のみ 新規作成(掲載あり)=_登録・掲載
    var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
-   var industry_counter =[   
-                           [0,0,0,0,0,0,0,0,0], //登録のみ→施設の依頼ステータス「新規作成(掲載なし)」//kintoneの並び順と同じ
-                           [0,0,0,0,0,0,0,0,0],//掲載のみ→求人の依頼ステータス「追加掲載(施設登録なし)」
-                           [0,0,0,0,0,0,0,0,0]//登録・掲載→施設の依頼ステータス「新規作成(掲載あり)」
-                         ];
-   var order_status = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];//industry_counterの並び順と同じ
+   var industryStatsCounter =[];
+ 
+   //各ステータスの業態別作成数をカウントするための配列
+   for (var i = 0; i < industryStatsName.length; i++) {
+      industryStatsCounter.push([]);
+      for (var j = 0; j < industry.length; j++) {
+         industryStatsCounter[i].push(j);
+      }	
+    }
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
-       function posting_counter (tableName,orderStatus,facilityStyle){
+       function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0; i < event.record[tableName].value.length; i++) { 
-             for( var j = 0; j < order_status.length; j++){
-               if(event.record[tableName].value[i].value[orderStatus].value === order_status[j]) {
+             for( var j = 0; j < industryStatsName.length; j++){
+               if(event.record[tableName].value[i].value[industryStatsName].value === industryStatsName[j]) {
                  for( var k = 0; k < industry.length; k++) {
                    if(event.record[tableName].value[i].value[facilityStyle].value === industry[k]) {
-                      industry_counter[j][k] += 1;
+                      industryStatsCounter[j][k] += 1;
                    }
                  }
                }
@@ -98,16 +107,16 @@
    posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
    //フィールドへ反映 
-      var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industry_counterの並び順と同じ
+      var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
       for (var i = 0; i < trailing_character.length; i++) {
          for (var j = 0; j < industry.length; j++) {
-            event.record[industry[j] + trailing_character[i]].value = industry_counter[i][j];
+            event.record[industry[j] + trailing_character[i]].value = industryStatsCounter[i][j];
          }        
       }
        
     
 
-   console.log(industry_counter);   
+   console.log(industryStatsCounter);   
    return event;
        
    });
