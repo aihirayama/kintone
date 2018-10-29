@@ -84,6 +84,7 @@
          industryStatsCounter[i].push(0);
       }	
     }
+      console.log('industryStatsName.length:',industryStatsName.length);
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
        function posting_counter (tableName,industryStatsName,facilityStyle){
@@ -91,6 +92,7 @@
               console.log('ok1')
              for( var j = 0; j < industryStatsName.length; j++){
                 console.log('ok2')
+                console.log('industryStatsName[j]:',industryStatsName[j]);
                if(event.record[tableName].value[i].value[industryStatsName].value === industryStatsName[j]) {
                   console.log('ok3')
                  for( var k = 0; k < industry.length; k++) {
