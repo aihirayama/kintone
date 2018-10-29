@@ -50,6 +50,7 @@
     for(var i = 0; facilityStatsNameList.length; i++) {
        facilityStatsCounter.push(0);
     }
+       console.log('facilityStatsCounter',facilityStatsCounter);
 
     for(var i = 0; i < record.施設情報テーブル.value.length; i++) {   
     	if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
@@ -66,7 +67,7 @@
    for(var i = 0; i < facilityStatsNameList.length; i++) {
       record[facilityStatsNameList[i]].value = facilityStatsCounter[i];
    }
-   console.log('facilityStatsCounter',facilityStatsCounter);
+   
     /*
     record.施設作成件数.value = facilityStatsCounter[0];
     record.施設変更件数.value = facilityStatsCounter[1];
