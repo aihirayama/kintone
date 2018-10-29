@@ -72,7 +72,7 @@
       
 
     //業態ごとの登録数を数える
-   var industryStatsName = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
+   var industryStatsNameList = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
    //↑新規作成(掲載なし)=_登録のみ 追加掲載(施設登録なし)=_掲載のみ 新規作成(掲載あり)=_登録・掲載
    var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
    var industryStatsCounter =[];
@@ -90,10 +90,10 @@
        function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0; i < event.record[tableName].value.length; i++) {
               console.log('ok1')
-             for( var j = 0; j < industryStatsName.length; j++){
+             for( var j = 0; j < industryStatsNameList.length; j++){
                 console.log('ok2')
                 console.log('industryStatsName[j]:',industryStatsName[j]);
-               if(event.record[tableName].value[i].value[industryStatsName].value === industryStatsName[j]) {
+               if(event.record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                   console.log('ok3')
                  for( var k = 0; k < industry.length; k++) {
                     console.log('ok4')
