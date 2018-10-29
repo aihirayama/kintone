@@ -1,6 +1,6 @@
 (function() {
    "use strict";
-   console.log('すぐに行く行く～');
+ 　//キサマニサムタイ
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
           
@@ -45,30 +45,31 @@
        
        
     //施設追加のステータスを数える。    
-    var newFacilities = 0;//施設作成
-    var updateFacilities = 0;//変更
-    var deleteFacilities = 0;//施設削除
     
+    var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数']
     var facilityStatsCounter = [0,0,0];
-    var facilityStatsName = ['施設作成件数','施設作成件数','削除件数']
 
     for (var i = 0; i < record.施設情報テーブル.value.length; i++) {   
     	if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
-      	facilityStatsCounter[0] += 1;
+      	facilityStatsCounter[0] += 1;//施設作成件数
     	}     
       if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '変更') {
-      	facilityStatsCounter[1] += 1;
+      	facilityStatsCounter[1] += 1;//施設作成件数
     	}
       if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '施設削除') {
-      	facilityStatsCounter[2] += 1;
+      	facilityStatsCounter[2] += 1;//削除件数
     	}
     }
 
-
+   for (var i = 0; i < facilityStatsNameList.length; i++) {
+      record.[facilityStatsNameList[i]].value = facilityStatsCounter[i];
+         }
+   }
+    /*
     record.施設作成件数.value = facilityStatsCounter[0];
     record.施設変更件数.value = facilityStatsCounter[1];
     record.削除件数.value = facilityStatsCounter[2];
-       
+     */  
       
 
     //業態ごとの登録数を数える
@@ -89,16 +90,10 @@
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
        function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0; i < event.record[tableName].value.length; i++) {
-              console.log('ok1')
              for( var j = 0; j < industryStatsNameList.length; j++){
-                console.log('ok2')
-                console.log('industryStatsName[j]:',industryStatsName[j]);
                if(event.record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
-                  console.log('ok3')
                  for( var k = 0; k < industryList.length; k++) {
-                    console.log('ok4')
                    if(event.record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
-                      console.log('ok5')
                       industryStatsCounter[j][k] += 1;
                    }
                  }
@@ -119,11 +114,8 @@
          for (var j = 0; j < industryList.length; j++) {
             event.record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
          }        
-      }
-       
+      }       
     
-
-   console.log(industryStatsCounter);   
    return event;
        
    });
