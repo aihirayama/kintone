@@ -47,7 +47,7 @@
     
     var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数']
     var facilityStatsCounter = [];
-    for(var i = 0; facilityStatsNameList.length; i++) {
+    for(var i = 0; i < facilityStatsNameList.length; i++) {
        facilityStatsCounter.push(0);
     }
        console.log('facilityStatsCounter',facilityStatsCounter);
