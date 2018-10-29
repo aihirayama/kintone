@@ -1,5 +1,5 @@
 (function() {
-   
+   //さまときキサマーーーー！！！
    "use strict";
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
@@ -86,6 +86,7 @@
     }
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
+       /*
        function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0; i < event.record[tableName].value.length; i++) { 
              for( var j = 0; j < industryStatsName.length; j++){
@@ -99,12 +100,23 @@
              }
            }
         }
-                 
+      */
+       for( var i = 0; i < event.record['施設情報テーブル'].value.length; i++) { 
+             for( var j = 0; j < '依頼ステータス_施設'.length; j++){
+               if(event.record['施設情報テーブル'].value[i].value['依頼ステータス_施設'].value === '依頼ステータス_施設'[j]) {
+                 for( var k = 0; k < industry.length; k++) {
+                   if(event.record['施設情報テーブル'].value[i].value['施設形態_施設'].value === industry[k]) {
+                      industryStatsCounter[j][k] += 1;
+                   }
+                 }
+               }
+             }
+           }         
    //施設情報テーブルを集計
-   posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
+   //posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
 
    //求人情報テーブルを集計
-   posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
+   //posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
    //フィールドへ反映 
       var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
