@@ -1,4 +1,5 @@
 (function() {
+   
    "use strict";
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
@@ -52,7 +53,7 @@
     var facilityStatsName = ['施設作成件数','施設作成件数','削除件数']
 
     for (var i = 0; i < record.施設情報テーブル.value.length; i++) {   
-    	if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || faciltableRecords[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
+    	if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
       	facilityStatsCounter[0] += 1;
     	}     
       if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '変更') {
@@ -64,9 +65,9 @@
     }
 
 
-    record.施設作成件数.value = newFacilities;
-    record.施設変更件数.value = updateFacilities;
-    record.削除件数.value = deleteFacilities;
+    record.施設作成件数.value = facilityStatsCounter[0];
+    record.施設変更件数.value = facilityStatsCounter[1];
+    record.削除件数.value = facilityStatsCounter[2];
        
       
 
