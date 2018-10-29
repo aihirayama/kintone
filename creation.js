@@ -62,9 +62,9 @@
     }
 
    for (var i = 0; i < facilityStatsNameList.length; i++) {
-      record.[facilityStatsNameList[i]].value = facilityStatsCounter[i];
-         }
+      record[facilityStatsNameList[i]].value = facilityStatsCounter[i];
    }
+   console.log('facilityStatsCounter',facilityStatsCounter);
     /*
     record.施設作成件数.value = facilityStatsCounter[0];
     record.施設変更件数.value = facilityStatsCounter[1];
