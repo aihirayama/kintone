@@ -1,6 +1,6 @@
 (function() {
    "use strict";
-   console.log('サマトキサマダアアアア');
+   console.log('すぐに行く行く～');
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
           
@@ -74,17 +74,17 @@
     //業態ごとの登録数を数える
    var industryStatsNameList = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
    //↑新規作成(掲載なし)=_登録のみ 追加掲載(施設登録なし)=_掲載のみ 新規作成(掲載あり)=_登録・掲載
-   var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
+   var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
    var industryStatsCounter =[];
  
    //各ステータスの業態別作成数をカウントするための配列
-   for (var i = 0; i < industryStatsName.length; i++) {
+   for (var i = 0; i < industryStatsNameList.length; i++) {
       industryStatsCounter.push([]);
-      for (var j = 0; j < industry.length; j++) {
+      for (var j = 0; j < industryList.length; j++) {
          industryStatsCounter[i].push(0);
       }	
     }
-      console.log('industryStatsName.length:',industryStatsName.length);
+      console.log('industryStatsNameList.length:',industryStatsNameList.length);
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
        function posting_counter (tableName,industryStatsName,facilityStyle){
@@ -95,9 +95,9 @@
                 console.log('industryStatsName[j]:',industryStatsName[j]);
                if(event.record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                   console.log('ok3')
-                 for( var k = 0; k < industry.length; k++) {
+                 for( var k = 0; k < industryList.length; k++) {
                     console.log('ok4')
-                   if(event.record[tableName].value[i].value[facilityStyle].value === industry[k]) {
+                   if(event.record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
                       console.log('ok5')
                       industryStatsCounter[j][k] += 1;
                    }
@@ -116,8 +116,8 @@
    //フィールドへ反映 
       var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
       for (var i = 0; i < trailing_character.length; i++) {
-         for (var j = 0; j < industry.length; j++) {
-            event.record[industry[j] + trailing_character[i]].value = industryStatsCounter[i][j];
+         for (var j = 0; j < industryList.length; j++) {
+            event.record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
          }        
       }
        
