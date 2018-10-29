@@ -46,9 +46,12 @@
     //施設追加のステータスを数える。    
     
     var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数']
-    var facilityStatsCounter = [0,0,0];
+    var facilityStatsCounter = [];
+    for(var i = 0; facilityStatsNameList.length; i++) {
+       facilityStatsCounter.push(0);
+    }
 
-    for (var i = 0; i < record.施設情報テーブル.value.length; i++) {   
+    for(var i = 0; i < record.施設情報テーブル.value.length; i++) {   
     	if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
       	facilityStatsCounter[0] += 1;//施設作成件数
     	}     
@@ -60,7 +63,7 @@
     	}
     }
 
-   for (var i = 0; i < facilityStatsNameList.length; i++) {
+   for(var i = 0; i < facilityStatsNameList.length; i++) {
       record[facilityStatsNameList[i]].value = facilityStatsCounter[i];
    }
    console.log('facilityStatsCounter',facilityStatsCounter);
