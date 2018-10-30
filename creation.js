@@ -40,16 +40,17 @@
        record.掲載完了日.value = postingdate;
        
        //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付に帰る。
+       var today = new Date();
        if(!record['顧客起因不備'].value) {
           if(record['顧客起因不備'].value === '解除済') {
-            record['顧客起因待機解除日'].value = new Date();
+            record['顧客起因待機解除日'].value = today;
           }
        }
        
        //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付に帰る。
        if(!record['社内起因不備'].value) {
           if(record['社内起因不備'].value === '解除済') {
-            record['社内起因待機解除日'].value = new Date();
+            record['社内起因待機解除日'].value = today;
           }
        }       
 
