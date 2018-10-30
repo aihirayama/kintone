@@ -38,6 +38,20 @@
        var record = event.record;
        var postingdate = record.掲載切替日.value;
        record.掲載完了日.value = postingdate;
+       
+       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付に帰る。
+       if(!record['顧客起因不備'].value) {
+          if(record['顧客起因不備'].value === '解除済') {
+            record['顧客起因待機解除日'].value = new Date();
+          }
+       }
+       
+       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付に帰る。
+       if(!record['社内起因不備'].value) {
+          if(record['社内起因不備'].value === '解除済') {
+            record['社内起因待機解除日'].value = new Date();
+          }
+       }       
 
        //施設追加のステータスを数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
