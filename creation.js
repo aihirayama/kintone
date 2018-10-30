@@ -42,18 +42,18 @@
        //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
        var today = new Date();
       
-       if(!record['顧客起因待機解除日'].value) {
+       if(!record.社内起因待機解除日.value) {
           console.log('ok1');
-          if(record['顧客起因不備'].value === '解除済') {
+          if(record.顧客起因不備.value === '解除済') {
              console.log('ok2')
-            record['顧客起因待機解除日'].value = today;
+            record.顧客起因待機解除日.value = today;
           }
        }
        
        //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
-       if(!record['社内起因待機解除日'].value) {
-          if(record['社内起因不備'].value === '解除済') {
-            record['社内起因待機解除日'].value = today;
+       if(!record.社内起因待機解除日.value) {
+          if(record.社内起因不備.value === '解除済') {
+            record.社内起因待機解除日.value = today;
           }
        }       
 
