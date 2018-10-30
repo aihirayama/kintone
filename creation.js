@@ -57,7 +57,7 @@
        }
 
        //予定/履歴メモに何か入力されたとき、対応予定日と対応日になにも入力されていなければ対応日に今日の日付を入力。
-       if(record.履歴メモ.value) {
+       if(!record.社内起因待機解除日.value) {
           if(!record.対応予定日.value && !record.対応日.value) {
             record.対応日.value = date;
           }
