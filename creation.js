@@ -40,7 +40,7 @@
        record.掲載完了日.value = postingdate;
        
        //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
-       var today = new Date();
+       var today = new Date(startDate.getTime());
        
        console.log('record.社内起因待機解除日.value:',record.社内起因待機解除日.value);
        console.log('record.社内起因待機解除日.value:',record.社内起因待機解除日.value);
