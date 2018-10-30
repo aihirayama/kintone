@@ -7,7 +7,7 @@
 
       //fax受信画面のリンク作成   
       var faxnumber = event.record.申込書FAXID.value;
-      if (faxnumber === "") {
+      if (!faxnumber) {
           return;
           } else {
               var tmpA = document.createElement('a');
@@ -20,7 +20,7 @@
 
        //顧客管理画面のリンク作成
       var clientId = event.record.顧客ID.value;
-      if (clientId === "") {
+      if (!clientId) {
           return;
           } else {
               var clienttmpA = document.createElement('a');
@@ -42,7 +42,8 @@
        //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
        var dt = new Date();
        var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
-
+       console.log('record.顧客起因待機解除日.value:',record.顧客起因待機解除日.value);
+/*
        if(record.顧客起因待機解除日.value === "") {
           if(record.顧客起因不備.value === '解除済') {
             record.顧客起因待機解除日.value = date;
@@ -62,7 +63,7 @@
             record.対応日.value = date;
           }
        }
-
+*/
 
        //施設追加のステータスを数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
