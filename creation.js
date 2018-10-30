@@ -44,6 +44,8 @@
        
        console.log('record.社内起因待機解除日.value:',record.社内起因待機解除日.value);
        console.log('record.社内起因待機解除日.value:',record.社内起因待機解除日.value);
+       record.顧客起因待機解除日.value = today;
+       record.社内起因待機解除日.value = today;
        
       /*
        if(!record.社内起因待機解除日.value) {
