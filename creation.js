@@ -43,10 +43,7 @@
        var dt = new Date();
        var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
        
-       console.log('record.社内起因待機解除日.value:',record.社内起因待機解除日.value);
-       console.log('record.社内起因待機解除日.value:',record.社内起因待機解除日.value);
-
-       if(!record.社内起因待機解除日.value) {
+       if(!record.顧客起因待機解除日.value) {
           if(record.顧客起因不備.value === '解除済') {
             record.顧客起因待機解除日.value = date;
           }
