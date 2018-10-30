@@ -41,7 +41,7 @@
        
        //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
        var today = new Date();
-       console.log('record['顧客起因不備'].value:',record['顧客起因不備'].value);
+       console.log("record['顧客起因不備'].value:",record['顧客起因不備'].value);
        
        if(!record['顧客起因不備'].value) {
           console.log('ok1');
