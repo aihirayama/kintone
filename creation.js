@@ -45,10 +45,7 @@
        
        console.log('record.社内起因待機解除日.value:',record.社内起因待機解除日.value);
        console.log('record.社内起因待機解除日.value:',record.社内起因待機解除日.value);
-       record.顧客起因待機解除日.value = date;
-       record.社内起因待機解除日.value = date;
-       
-      /*
+
        if(!record.社内起因待機解除日.value) {
           console.log('ok1');
           if(record.顧客起因不備.value === '解除済') {
@@ -63,7 +60,7 @@
             record.社内起因待機解除日.value = today;
           }
        }       
-*/
+
        //施設追加のステータスを数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
        var facilityStatsCounter = [];//それぞれのステータス数をカウント
