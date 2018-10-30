@@ -42,8 +42,7 @@
        //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
        var dt = new Date();
        var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
-       console.log('record.顧客起因待機解除日.value:',record.顧客起因待機解除日.value);
-/*
+ 
        if(record.顧客起因待機解除日.value === "") {
           if(record.顧客起因不備.value === '解除済') {
             record.顧客起因待機解除日.value = date;
@@ -63,7 +62,6 @@
             record.対応日.value = date;
           }
        }
-*/
 
        //施設追加のステータスを数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
