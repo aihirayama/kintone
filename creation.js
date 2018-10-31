@@ -48,7 +48,6 @@
             record.顧客起因待機解除日.value = date;
           }
        }
-  
        //社内起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
        if(!record.社内起因待機解除日.value) {
           if(record.社内起因不備.value === '解除済') {
@@ -56,17 +55,16 @@
           }
        }
        
-       console.log('record.履歴メモ.value:',record.履歴メモ.value)
-       console.log('record.対応予定日.value:',record.対応予定日.value)
-       console.log('record.対応日.value:',record.対応日.value)
-/*
        //予定/履歴メモに何か入力されたとき、対応予定日と対応日になにも入力されていなければ対応日に今日の日付を入力。
-       if(record.履歴メモ.value) {
-          if(!record.対応予定日.value && !record.対応日.value) {
-            record.対応日.value = date;
+       var hearingTtable = record.ヒアリング履歴テーブル.value 
+       for (i = 0; i < hearingTtable.length; i++) {
+          if(hearingTtable[i].履歴メモ.value) {
+             if(!hearingTtable[i].対応予定日.value && !hearingTtable[i].対応日.value) {
+               record.対応日.value = date;
+             }
           }
        }
-*/       
+       
        //施設追加のステータスを数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
        var facilityStatsCounter = [];//それぞれのステータス数をカウント
