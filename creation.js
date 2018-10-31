@@ -31,31 +31,10 @@
               kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
             }
    });
+/*   
+   //レコード保存される時のイベント-------------------------------------------------------------------------------
 
-    // レコードが保存された時のイベント-------------------------------------------------------------------------- 
-    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
-
-       var record = event.record;
-       var postingdate = record.掲載切替日.value;
-       record.掲載完了日.value = postingdate;
-       
-       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
-       var dt = new Date();
-       var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
- 
-       if(!record.顧客起因待機解除日.value) {
-          if(record.顧客起因不備.value === '解除済') {
-            record.顧客起因待機解除日.value = date;
-          }
-       }
-       //社内起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
-       if(!record.社内起因待機解除日.value) {
-          if(record.社内起因不備.value === '解除済') {
-            record.社内起因待機解除日.value = date;
-          }
-       }
-       
-       //予定/履歴メモに何か入力されたとき、対応予定日と対応日になにも入力されていなければ対応日に今日の日付を入力。
+      //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。※作成中
        var hearingTtable = record.ヒアリング履歴テーブル.value 
        for (i = 0; i < hearingTtable.length; i++) {
           if(hearingTtable[i].value.履歴メモ.value) {
@@ -64,8 +43,35 @@
              }
           }
        }
+
+*/
+   // レコードが保存された時のイベント-------------------------------------------------------------------------- 
+   kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
+       var record = event.record;
+       var postingdate = record.掲載切替日.value;
+       record.掲載完了日.value = postingdate;
+
+       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
+       var dt = new Date();
+       var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
+
+       if(!record.顧客起因待機解除日.value) {
+          if(record.顧客起因不備.value === '解除済') {
+            record.顧客起因待機解除日.value = date;
+          }
+       }
        
-       //施設追加のステータスを数える。    
+   kintone.events.on(['app.record.create.submit','app.record.edit.submit'], function (event) {
+      //社内起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
+       if(!record.社内起因待機解除日.value) {
+          if(record.社内起因不備.value === '解除済') {
+            record.社内起因待機解除日.value = date;
+          }
+       }
+
+   });
+
+     //施設のステータスを数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
        var facilityStatsCounter = [];//それぞれのステータス数をカウント
        for(var i = 0; i < facilityStatsNameList.length; i++) {
@@ -87,7 +93,7 @@
        }
 
 
-       //業態ごとの登録数を数える
+    //業態ごとの登録数を数える
       var industryStatsNameList = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
       //↑新規作成(掲載なし)=_登録のみ 追加掲載(施設登録なし)=_掲載のみ 新規作成(掲載あり)=_登録・掲載
       var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
@@ -123,15 +129,15 @@
       posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
       //フィールドへ反映 
-           var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
-           for (var i = 0; i < trailing_character.length; i++) {
-               for (var j = 0; j < industryList.length; j++) {
-                  event.record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
-               }        
-           }       
+     var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
+     for (var i = 0; i < trailing_character.length; i++) {
+         for (var j = 0; j < industryList.length; j++) {
+            event.record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
+         }        
+     }       
 
      return event;
-       
+
    });
 
     //レコード編集画面が表示された時のイベント&レコード追加画面が表示された時のイベント------------------------------------- 
@@ -141,19 +147,18 @@
     event.record.施設作成件数.disabled = true;
     event.record.施設変更件数.disabled = true;
     event.record.削除件数.disabled = true;
-    
+
     //「業態_登録のみ」「業態_掲載のみ」「業態_登録・掲載」フィールドの入力を制限
     var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
     var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];
-       
+
     for (var i = 0; i < trailing_character.length; i++) {
       for (var j = 0; j < industry.length; j++) {
          event.record[industry[j] + trailing_character[i]].disabled = true;
        }         
     }
-    
-  
+
     return event;
-    
+
    });
-})();
+   })();
