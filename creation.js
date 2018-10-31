@@ -58,9 +58,9 @@
        //予定/履歴メモに何か入力されたとき、対応予定日と対応日になにも入力されていなければ対応日に今日の日付を入力。
        var hearingTtable = record.ヒアリング履歴テーブル.value 
        for (i = 0; i < hearingTtable.length; i++) {
-          if(hearingTtable[i].履歴メモ.value) {
-             if(!hearingTtable[i].対応予定日.value && !hearingTtable[i].対応日.value) {
-               record.対応日.value = date;
+          if(hearingTtable[i].value.履歴メモ.value) {
+             if(!hearingTtable[i].value.対応予定日.value && !hearingTtable[i].value.対応日.value) {
+               hearingTtable[i].value.対応日.value = date;
              }
           }
        }
