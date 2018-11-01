@@ -76,7 +76,7 @@
           console.log('ok1');
           if(hearingTtable[i].value.履歴メモ.value) {
              console.log('ok2');
-             if(!hearingTtable[i].value.タスク担当者.value) {
+             if(!hearingTtable[i].value.タスク担当者.value[0]) {
                 console.log('ok3');
                 event.error = "[ヒアリング予定/履歴]にタスク担当者が入っていません。入れてよおおおおおお（#^ω^）";
              } 
