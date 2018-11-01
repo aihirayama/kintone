@@ -32,11 +32,12 @@
             }
    });
      
-   //テスト　レコード更新時？
+   //テスト　レコード更新時？-----------------------------------------------------------------------------------
    //原稿ありなし選択で「原稿なし」が選択されたら求人情報テーブルを非表示にする。
-   kintone.events.on('app.record.edit.change.原稿ありなし選択', function(event) {
+   kintone.events.on(['app.record.edit.change.原稿ありなし選択','app.record.create.change.原稿ありなし選択'], function(event) {
       if(event.record.原稿ありなし選択.value === '原稿なし') {
-         kintone.app.record.setFieldShown('求人情報テーブル', false);
+         console.log('harrow');
+         //kintone.app.record.setFieldShown('求人情報テーブル', false);
          }
    });
   
