@@ -1,6 +1,6 @@
 (function() {
    "use strict";
-   console.log('春夏秋冬とりくあとりー')
+   console.log('てすと～')
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
       console.log(event);
@@ -35,15 +35,7 @@
   
    //レコード保存される時のイベント-------------------------------------------------------------------------------
 
-      //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。※作成中
-       var hearingTtable = record.ヒアリング履歴テーブル.value 
-       for (i = 0; i < hearingTtable.length; i++) {
-          if(hearingTtable[i].value.履歴メモ.value) {
-             if(!hearingTtable[i].value.対応予定日.value && !hearingTtable[i].value.対応日.value) {
-                event.error = "対応予定日or対応日の日付が入っていません。";
-             }
-          }
-       }
+     
 
    // レコードが保存された時のイベント--------------------------------------------------------------------------
    
@@ -62,7 +54,6 @@
           }
        }
        
-   kintone.events.on(['app.record.create.submit','app.record.edit.submit'], function (event) {
       //社内起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
        if(!record.社内起因待機解除日.value) {
           if(record.社内起因不備.value === '解除済') {
@@ -71,6 +62,16 @@
        }
 
    });
+   
+    //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。※作成中
+       var hearingTtable = record.ヒアリング履歴テーブル.value 
+       for (i = 0; i < hearingTtable.length; i++) {
+          if(hearingTtable[i].value.履歴メモ.value) {
+             if(!hearingTtable[i].value.対応予定日.value && !hearingTtable[i].value.対応日.value) {
+                event.error = "対応予定日or対応日の日付が入っていません。";
+             }
+          }
+       }
 
      //施設のステータスを数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
