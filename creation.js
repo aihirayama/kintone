@@ -1,5 +1,6 @@
 (function() {
    "use strict";
+   console.log('春夏秋冬とりくあとりー')
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
       console.log(event);
@@ -31,7 +32,7 @@
               kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
             }
    });
-/*   
+  
    //レコード保存される時のイベント-------------------------------------------------------------------------------
 
       //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。※作成中
@@ -39,13 +40,13 @@
        for (i = 0; i < hearingTtable.length; i++) {
           if(hearingTtable[i].value.履歴メモ.value) {
              if(!hearingTtable[i].value.対応予定日.value && !hearingTtable[i].value.対応日.value) {
-               hearingTtable[i].value.対応日.value = date;
+                event.error = "対応予定日or対応日の日付が入っていません。";
              }
           }
        }
 
-*/
-   // レコードが保存された時のイベント-------------------------------------------------------------------------- 
+   // レコードが保存された時のイベント--------------------------------------------------------------------------
+   
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
        var record = event.record;
        var postingdate = record.掲載切替日.value;
