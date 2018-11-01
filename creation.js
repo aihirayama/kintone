@@ -37,7 +37,6 @@
    kintone.events.on(['app.record.edit.change.原稿ありなし選択','app.record.create.change.原稿ありなし選択'], function(event) {
       if(event.record.原稿ありなし選択.value === '原稿なし') {
          console.log('harrow');
-         //kintone.app.record.setFieldShown('求人情報テーブル', false);
          }
    });
   
@@ -170,7 +169,9 @@
          event.record[industry[j] + trailing_character[i]].disabled = true;
        }         
     }
-    
+       
+   kintone.app.record.setFieldShown('求人情報テーブル', false);
+
     return event;
 
    });
