@@ -62,13 +62,14 @@
        }
 
    
-    //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。※作成中
+    //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。タスク担当者が入力されてなければエラー※作成中
        var hearingTtable = record.ヒアリング履歴テーブル.value 
        for (i = 0; i < hearingTtable.length; i++) {
           if(hearingTtable[i].value.履歴メモ.value) {
              if(!hearingTtable[i].value.対応予定日.value && !hearingTtable[i].value.対応日.value) {
                 event.error = "[ヒアリング予定/履歴]に対応予定日or対応日が入っていません。入れてよおおおおおお（#^ω^）";
-             }
+             if(!hearingTtable[i].value.タスク担当者.value) {
+                event.error = "[ヒアリング予定/履歴]にタスク担当者が入っていません。入れてよおおおおおお（#^ω^）";             }
           }
        }
 
