@@ -32,6 +32,11 @@
             }
    });
      
+   //テスト　レコード更新時？
+   //app.record.edit.change.<原稿ありなし>
+  
+   
+   
 
    // レコードが保存された時のイベント--------------------------------------------------------------------------
    
@@ -159,6 +164,10 @@
          event.record[industry[j] + trailing_character[i]].disabled = true;
        }         
     }
+    
+    
+    kintone.app.record.setFieldShown('原稿ありなし選択', false);
+
 
     return event;
 
