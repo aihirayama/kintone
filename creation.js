@@ -38,7 +38,7 @@
       if(event.record.原稿ありなし.value === '原稿なし') {
          kintone.app.record.setFieldShown('求人情報テーブル', false);
          }
-   }
+   });
   
    
    
