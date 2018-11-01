@@ -30,6 +30,13 @@
               clienttmpA.target = '_blank';
               kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
             }
+      
+           //原稿ありなし選択で原稿なしが選択されたら求人情報テーブルを非表示にする。
+      if(event.record.原稿ありなし選択.value === '原稿なし') {
+       kintone.app.record.setFieldShown('求人情報テーブル', false);  
+      }
+          
+
    });
      
    //テスト　レコード更新時？-----------------------------------------------------------------------------------
@@ -170,11 +177,6 @@
          event.record[industry[j] + trailing_character[i]].disabled = true;
        }         
     }
-     //原稿ありなし選択で原稿なしが選択されたら求人情報テーブルを非表示にする。
-      if(event.record.原稿ありなし選択.value === '原稿なし') {
-       kintone.app.record.setFieldShown('求人情報テーブル', false);  
-      }
-          
 
 
     return event;
