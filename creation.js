@@ -1,6 +1,6 @@
 (function() {
    "use strict";
-   console.log('ストレス因子の倍々ゲーム')
+   console.log('ストレス因子の倍々ゲームに～')
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
       console.log(event);
@@ -68,10 +68,9 @@
           if(hearingTtable[i].value.履歴メモ.value) {
              if(!hearingTtable[i].value.対応予定日.value && !hearingTtable[i].value.対応日.value) {
                 event.error = "[ヒアリング予定/履歴]に対応予定日or対応日が入っていません。";
+             } 
              if(!hearingTtable[i].value.タスク担当者.value[0]) {
                 event.error = "[ヒアリング予定/履歴]にタスク担当者が入っていません。";
-             } 
-
              } 
           }
        }
