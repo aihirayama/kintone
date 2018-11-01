@@ -67,10 +67,10 @@
        for (i = 0; i < hearingTtable.length; i++) {
           if(hearingTtable[i].value.履歴メモ.value) {
              if(!hearingTtable[i].value.対応予定日.value && !hearingTtable[i].value.対応日.value) {
-                event.error = "[ヒアリング予定/履歴]に対応予定日or対応日が入っていません。";
+                event.error = "[ヒアリング予定/履歴]に対応予定日or対応日を入力してください。";
              } 
              if(!hearingTtable[i].value.タスク担当者.value[0]) {
-                event.error = "[ヒアリング予定/履歴]にタスク担当者が入っていません。";
+                event.error = "[ヒアリング予定/履歴]にタスク担当者を入力してください。";
              } 
           }
        }
