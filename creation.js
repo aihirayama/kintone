@@ -31,24 +31,28 @@
               kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
             }
       
-
-          
+      //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
+  　if(record.原稿ありなし選択.value === '原稿なし') {
+       kintone.app.record.setFieldShown('求人情報テーブル', false);  
+      　} else {
+         kintone.app.record.setFieldShown('求人情報テーブル', false);        
+      　　}
+      
 
    });
      
    //テスト　レコード更新時？-----------------------------------------------------------------------------------
-   //原稿ありなし選択で「原稿なし」が選択されたら求人情報テーブルを非表示にする。
  kintone.events.on(['app.record.edit.change.原稿ありなし選択','app.record.create.change.原稿ありなし選択'], function(event) {
      　var record = event.record; 
-
+   //原稿ありなし選択で「原稿なし」が選択されたら求人情報テーブルを非表示にする。
       if(record.原稿ありなし選択.value === '原稿なし') {
        kintone.app.record.setFieldShown('求人情報テーブル', false);  
-      }
+      　} else {
+         kintone.app.record.setFieldShown('求人情報テーブル', false);        
+      　　}
 });
   
-   
-   
-
+ 
    // レコードが保存された時のイベント--------------------------------------------------------------------------
    
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
@@ -175,21 +179,20 @@
          event.record[industry[j] + trailing_character[i]].disabled = true;
        }         
     }
-
+       
+    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
+  　if(record.原稿ありなし選択.value === '原稿なし') {
+       kintone.app.record.setFieldShown('求人情報テーブル', false);  
+      　} else {
+         kintone.app.record.setFieldShown('求人情報テーブル', false);        
+      　　}
+      
 
     return event;
 
    });
    
-   //レコード一覧画面が表示された時のイベント&レコード追加画面が表示された時のイベント------------------------------------- 
-   kintone.events.on('app.record.detail.show', function (event) {
- 　var record = event.record; 
-      
-    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
-  　if(record.原稿ありなし選択.value === '原稿なし') {
-       kintone.app.record.setFieldShown('求人情報テーブル', false);  
-      }　
-    });
+
    
    
    })();
