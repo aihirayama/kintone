@@ -45,9 +45,9 @@
       'app.record.edit.change.原稿ありなし選択',
       'app.record.create.change.原稿ありなし選択'
    ]
-   
    kintone.events.on(events, function(event) {
-         kintone.app.record.setFieldShown('求人情報テーブル', event.record.原稿ありなし選択.value.indexOF('原稿あり') >= 0);  
+       var record = event.record
+       kintone.app.record.setFieldShown('求人情報テーブル', record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
 });
   
  
