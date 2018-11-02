@@ -45,10 +45,20 @@
       'app.record.edit.change.原稿ありなし選択',
       'app.record.create.change.原稿ありなし選択'
    ]
+   
    kintone.events.on(events, function(event) {
-       var record = event.record
-       kintone.app.record.setFieldShown('求人情報テーブル', record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
-});
+      var items = [
+         '求人情報テーブル',
+         '求人作成件数',
+         '求人変更件数',
+         '非掲載化・削除求人数'
+      ]
+      var record = event.record
+
+      items.forEach(function(item) {
+             kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
+          });
+   });
   
  
    // レコードが保存された時のイベント--------------------------------------------------------------------------
