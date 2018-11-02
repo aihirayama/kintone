@@ -2,7 +2,7 @@
    "use strict";
    
          //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
-   function jobOfferTableHiddenPreference {
+   function jobOfferTableHiddenPreference () {
       var record = event.record; 
       if(record.原稿ありなし選択.value === '原稿なし') {
        kintone.app.record.setFieldShown('求人情報テーブル', false);  
