@@ -32,18 +32,11 @@
               kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
             }
       
-         //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
-      var record = event.record; 
-      if(record.原稿ありなし選択.value === '原稿あり') {
-         kintone.app.record.setFieldShown('求人情報テーブル', true);  
-      　} else  {
-         kintone.app.record.setFieldShown('求人情報テーブル', false);        
-      　　}
 
    });
      
    //テスト　レコード更新時？-----------------------------------------------------------------------------------
- kintone.events.on(['app.record.edit.change.原稿ありなし選択','app.record.create.change.原稿ありなし選択'], function(event) {
+ kintone.events.on(['app.record.detail.show','app.record.create.show','app.record.edit.show','app.record.edit.change.原稿ありなし選択','app.record.create.change.原稿ありなし選択'], function(event) {
        //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
       var record = event.record; 
       if(record.原稿ありなし選択.value === '原稿あり') {
@@ -181,15 +174,7 @@
        }         
     }
        
-           //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
-     var record = event.record; 
-      if(record.原稿ありなし選択.value === '原稿あり') {
-         kintone.app.record.setFieldShown('求人情報テーブル', true);  
-      　} else  {
-         kintone.app.record.setFieldShown('求人情報テーブル', false);        
-      　　}
 
-      
 
     return event;
 
