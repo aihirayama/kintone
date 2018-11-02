@@ -36,14 +36,19 @@
    });
      
    //テスト　レコード更新時？-----------------------------------------------------------------------------------
- kintone.events.on(['app.record.detail.show','app.record.create.show','app.record.edit.show','app.record.edit.change.原稿ありなし選択','app.record.create.change.原稿ありなし選択'], function(event) {
-       //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
+  //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
+
+   var events = [
+      'app.record.detail.show',
+      'app.record.create.show',
+      'app.record.edit.show',
+      'app.record.edit.change.原稿ありなし選択',
+      'app.record.create.change.原稿ありなし選択'
+   ]
+   
+   kintone.events.on(events, function(event) {
       var record = event.record; 
-      if(record.原稿ありなし選択.value === '原稿あり') {
-         kintone.app.record.setFieldShown('求人情報テーブル', true);  
-      　} else  {
-         kintone.app.record.setFieldShown('求人情報テーブル', false);        
-      　　}
+         kintone.app.record.setFieldShown('求人情報テーブル', record.原稿ありなし選択.value.indexOF('原稿あり') >= 0);  
 });
   
  
