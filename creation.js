@@ -39,7 +39,9 @@
    //テスト　レコード更新時？-----------------------------------------------------------------------------------
    //原稿ありなし選択で「原稿なし」が選択されたら求人情報テーブルを非表示にする。
  kintone.events.on(['app.record.edit.change.原稿ありなし選択','app.record.create.change.原稿ありなし選択'], function(event) {
-      if(event.record.原稿ありなし選択.value === '原稿なし') {
+     　var record = event.record; 
+
+      if(record.原稿ありなし選択.value === '原稿なし') {
        kintone.app.record.setFieldShown('求人情報テーブル', false);  
       }
 });
@@ -178,4 +180,16 @@
     return event;
 
    });
+   
+   //レコード一覧画面が表示された時のイベント&レコード追加画面が表示された時のイベント------------------------------------- 
+   kintone.events.on('app.record.detail.show', function (event) {
+ 　var record = event.record; 
+      
+    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
+  　if(record.原稿ありなし選択.value === '原稿なし') {
+       kintone.app.record.setFieldShown('求人情報テーブル', false);  
+      }　
+    });
+   
+   
    })();
