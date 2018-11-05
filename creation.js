@@ -83,7 +83,7 @@
             //if(record[deficiencyStatus[item]].value === '解除済') {
             if(record[deficiencyStatus[item]].value.indexOf('解除済') >= 0) {
              record[item].value = date;
-            } eluse {
+            } else {
                return
                }
          }
