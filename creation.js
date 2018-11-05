@@ -78,13 +78,10 @@
       }
       
       Object.keys(deficiencyStatus).forEach(function(item) {
-         console.log('ok1');
          if(!record[item].value) {
-                     console.log('ok2');
             console.log('record[deficiencyStatus[item]].value',record[deficiencyStatus[item]].value)
-            if(record[deficiencyStatus[item]].value === '解除済') {
-             console.log('record[item].value',record[item].value);
-             console.log('date',date);
+            //if(record[deficiencyStatus[item]].value === '解除済') {
+            if(record[deficiencyStatus[item]].value.indexOf('解除済') >= 0) {
              record[item].value = date;
             }
          }
