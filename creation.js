@@ -79,8 +79,8 @@
       Object.keys(deficiencyStatus).forEach(function(item) {
          if(!record[item].value) {
             if(record[deficiencyStatus[item]].value === '解除済') {
-               console.log('dt;',dt);
-               console.log('date':,date);
+               console.log('dt:',dt);
+               console.log('date:',date);
              record[item].value = date;
             } 
          }
