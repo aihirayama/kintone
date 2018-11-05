@@ -69,6 +69,7 @@
       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
       var dt = new Date();
       var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
+      
 
       var deficiencyStatus = {
          '顧客起因待機解除日' : '顧客起因不備',
@@ -78,10 +79,9 @@
       Object.keys(deficiencyStatus).forEach(function(item) {
          if(!record[item].value) {
             if(record[deficiencyStatus[item]].value === '解除済') {
-               console.log('ok1');
+               console.log('dt;',dt);
+               console.log('date':,date);
              record[item].value = date;
-                              console.log('ok2');
-
             } 
          }
       });
