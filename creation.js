@@ -43,7 +43,7 @@
       'app.record.create.show',
       'app.record.edit.show',
       'app.record.edit.change.原稿ありなし選択',
-      'app.record.create.change.原稿ありなし選択'
+      'app.record.create.change.原稿ありなし選択',
       'app.record.edit.change.顧客起因不備',
       'app.record.create.change.顧客起因不備',
       'app.record.edit.change.社内起因不備',
