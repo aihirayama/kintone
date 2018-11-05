@@ -38,7 +38,7 @@
    //テスト　レコード更新時？-----------------------------------------------------------------------------------
   //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
 
-   var manuscriptPresenceEvents = [
+     var manuscriptPresenceEvents = [
       'app.record.detail.show',
       'app.record.create.show',
       'app.record.edit.show',
@@ -51,6 +51,7 @@
    ]
    
    kintone.events.on(manuscriptPresenceEvents, function(event) {
+
       var items = [
          '求人情報テーブル',
          '求人作成件数',
@@ -82,7 +83,8 @@
               record.item.value = date;
             }
          }
-      })
+      });
+   });
 
    // レコードが保存された時のイベント--------------------------------------------------------------------------
    
