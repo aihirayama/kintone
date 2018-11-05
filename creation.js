@@ -78,9 +78,10 @@
       }
       
       Object.keys(deficiencyStatus).forEach(function(item) {
-         console.log('item',item);
-         console.log('record[item].value', record[item].value);
+         console.log('ok1');
          if(!record[item].value) {
+                     console.log('ok2');
+            console.log('record[deficiencyStatus[item]].value',record[deficiencyStatus[item]].value)
             if(record[deficiencyStatus[item]].value === '解除済') {
              record[item].value = date;
             }
@@ -91,8 +92,8 @@
    // レコードが保存された時のイベント--------------------------------------------------------------------------
    
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
- 
-   
+   var record = event.record
+
     //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
       var hearingTtable = record.ヒアリング履歴テーブル.value 
        for (i = 0; i < hearingTtable.length; i++) {
