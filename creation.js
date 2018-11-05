@@ -81,7 +81,7 @@
             if(record[deficiencyStatus[item]].value === '解除済') {
                console.log('dt:',dt);
                console.log('date:',date);
-             record[item].value = date;
+             record[item].value = dt;
             } 
          }
       });
