@@ -38,15 +38,19 @@
    //テスト　レコード更新時？-----------------------------------------------------------------------------------
   //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
 
-   var events = [
+   var manuscriptPresenceEvents = [
       'app.record.detail.show',
       'app.record.create.show',
       'app.record.edit.show',
       'app.record.edit.change.原稿ありなし選択',
       'app.record.create.change.原稿ありなし選択'
+      'app.record.edit.change.顧客起因不備',
+      'app.record.create.change.顧客起因不備',
+      'app.record.edit.change.社内起因不備',
+      'app.record.create.change.社内起因不備'
    ]
    
-   kintone.events.on(events, function(event) {
+   kintone.events.on(manuscriptPresenceEvents, function(event) {
       var items = [
          '求人情報テーブル',
          '求人作成件数',
@@ -56,35 +60,34 @@
       var record = event.record
 
       items.forEach(function(item) {
-             kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
-          });
-   });
-  
- 
+        kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
+      });
+      
+      var record = event.record;
+      var postingdate = record.掲載切替日.value;
+      record.掲載完了日.value = postingdate;
+
+      //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
+      var dt = new Date();
+      var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
+
+      var deficiencyStatus = {
+         '顧客起因待機解除日' : '顧客起因不備',
+         '社内起因待機解除日' : '社内起因不備'
+      }
+      
+      Object.keys(deficiencyStatus).forEach(function(item) {
+         if(!record.item.value) {
+            if(record.deficiencyStatus[item].value === '解除済') {
+              record.item.value = date;
+            }
+         }
+      })
+
    // レコードが保存された時のイベント--------------------------------------------------------------------------
    
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
-       var record = event.record;
-       var postingdate = record.掲載切替日.value;
-       record.掲載完了日.value = postingdate;
-
-       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
-       var dt = new Date();
-       var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
-
-       if(!record.顧客起因待機解除日.value) {
-          if(record.顧客起因不備.value === '解除済') {
-            record.顧客起因待機解除日.value = date;
-          }
-       }
-       
-      //社内起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
-       if(!record.社内起因待機解除日.value) {
-          if(record.社内起因不備.value === '解除済') {
-            record.社内起因待機解除日.value = date;
-          }
-       }
-
+ 
    
     //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
       var hearingTtable = record.ヒアリング履歴テーブル.value 
@@ -98,10 +101,8 @@
              } 
           }
        }
-       
-
-
-     //施設のステータスを数える。    
+ 
+     //「施設作成件数」、「施設変更件数」、「施設削除件数」を数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
        var facilityStatsCounter = [];//それぞれのステータス数をカウント
        for(var i = 0; i < facilityStatsNameList.length; i++) {
@@ -123,7 +124,7 @@
        }
 
 
-    //業態ごとの登録数を数える
+    //「登録のみ_合計」、「掲載のみ_合計」、「登録・掲載_合計」、を集計するために、各業態の作業数を数える。
       var industryStatsNameList = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
       //↑新規作成(掲載なし)=_登録のみ 追加掲載(施設登録なし)=_掲載のみ 新規作成(掲載あり)=_登録・掲載
       var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
