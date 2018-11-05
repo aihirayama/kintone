@@ -64,9 +64,7 @@
         kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
       });
       
-      var record = event.record;
-      var postingdate = record.掲載切替日.value;
-      record.掲載完了日.value = postingdate;
+
 
       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
       var dt = new Date();
@@ -79,13 +77,12 @@
       
       Object.keys(deficiencyStatus).forEach(function(item) {
          if(!record[item].value) {
-            console.log('record[deficiencyStatus[item]].value',record[deficiencyStatus[item]].value)
-            //if(record[deficiencyStatus[item]].value === '解除済') {
-            if(record[deficiencyStatus[item]].value.indexOf('解除済') >= 0) {
+            if(record[deficiencyStatus[item]].value === '解除済') {
+               console.log('ok1');
              record[item].value = date;
-            } else {
-               return
-               }
+                              console.log('ok2');
+
+            } 
          }
       });
    });
@@ -94,7 +91,11 @@
    
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
    var record = event.record
-
+   
+   //掲載完了日に掲載完了日の日付を入れる。
+     var postingdate = record.掲載切替日.value;
+     record.掲載完了日.value = postingdate;
+      
     //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
       var hearingTtable = record.ヒアリング履歴テーブル.value 
        for (i = 0; i < hearingTtable.length; i++) {
