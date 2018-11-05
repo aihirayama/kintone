@@ -83,6 +83,8 @@
                      console.log('ok2');
             console.log('record[deficiencyStatus[item]].value',record[deficiencyStatus[item]].value)
             if(record[deficiencyStatus[item]].value === '解除済') {
+             console.log('record[item].value',record[item].value);
+             console.log('date',date);
              record[item].value = date;
             }
          }
