@@ -134,7 +134,7 @@
        var jobofferTable = record.施設情報テーブル.value
       
       for(var i = 0; i < jobofferTable.length; i++) {   
-         var jobofferTable2 = jobofferTable[i].value.依頼ステータス_施設.value
+         var jobofferTable2 = jobofferTable[i].value.依頼ステータス_求人.value
          jobofferStatsCounter[0] += jobofferTable2.indexOf('新規作成(施設登録あり)') + 1 
          jobofferStatsCounter[0] += jobofferTable2.indexOf('追加掲載(施設登録なし)') + 1
          jobofferStatsCounter[1] += jobofferTable2.indexOf('既存修正') + 1
