@@ -65,7 +65,7 @@
       });
       
    //施設登録ありなし選択で「施設登録なし」が選択されていたら施設情報テーブルを非表示にする。
-   kintone.app.record.setFieldShown(record.施設情報テーブル, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
+   kintone.app.record.setFieldShown('施設情報テーブル', record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
 
 
       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
