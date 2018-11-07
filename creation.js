@@ -111,7 +111,7 @@
           }
        }
  
-     //「施設作成件数」、「施設変更件数」、「施設削除件数」を数える。    
+     //依頼内容の「施設作成件数」、「施設変更件数」、「施設削除件数」を数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
        var facilityStatsCounter = new Array(facilityStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
        var facilityTable = record.施設情報テーブル.value
@@ -126,6 +126,23 @@
                                                                
        for(var i = 0; i < facilityStatsNameList.length; i++) {
          record[facilityStatsNameList[i]].value = facilityStatsCounter[i];
+       }
+      
+     //求人原稿の「求人作成件数」、「求人変更件数」、「非掲載化・削除求人数」を数える。    
+       var jobofferStatsNameList = ['求人作成件数','求人変更件数','非掲載化・削除求人数'];
+       var jobofferStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
+       var jobofferTable = record.施設情報テーブル.value
+      
+      for(var i = 0; i < jobofferTable.length; i++) {   
+         var jobofferTable2 = jobofferTable[i].value.依頼ステータス_施設.value
+         jobofferStatsCounter[0] += jobofferTable2.indexOf('新規作成(施設登録あり)') + 1 
+         jobofferStatsCounter[0] += jobofferTable2.indexOf('追加掲載(施設登録なし)') + 1
+         jobofferStatsCounter[1] += jobofferTable2.indexOf('既存修正') + 1
+         jobofferStatsCounter[2] += jobofferTable2.indexOf('応募受付終了処理・求人削除') + 1
+      };
+                                                               
+       for(var i = 0; i < jobofferStatsNameList.length; i++) {
+         record[jobofferStatsNameList[i]].value = jobofferStatsCounter[i];
        }
 
 
