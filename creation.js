@@ -1,5 +1,7 @@
 (function() {
    "use strict";
+   var record = event.record
+   
   
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
@@ -52,7 +54,6 @@
 
    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
    kintone.events.on(manuscriptPresenceEvents, function(event) {
-      var record = event.record
       var items = [
          '求人情報テーブル',
          '求人作成件数',
@@ -66,8 +67,6 @@
       
    //施設登録ありなし選択で「施設登録なし」が選択されていたら施設情報テーブルを非表示にする。
    kintone.app.record.setFieldShown('施設情報テーブル', record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
-
-
       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
       var dt = new Date();
       var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
@@ -199,11 +198,18 @@
 
     //レコード編集画面が表示された時のイベント&レコード追加画面が表示された時のイベント------------------------------------- 
     kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
-    // 「掲載完了日」「施設作成件数」「施設変更件数」「削除件数」フィールドの入力を制限
+    // フィールドの入力を制限
+    var fieldName = ['掲載完了日','施設作成件数','施設変更件数','削除件数','求人作成件数','求人変更件数','非掲載化・削除求人数']
+    /*
     event.record.掲載完了日.disabled = true;
     event.record.施設作成件数.disabled = true;
     event.record.施設変更件数.disabled = true;
     event.record.削除件数.disabled = true;
+    */
+     for (var i = 0; i < fieldName.length; i++ ) {
+        record.fieldName[i].disabled = true;
+     };
+      
 
     //「業態_登録のみ」「業態_掲載のみ」「業態_登録・掲載」フィールドの入力を制限
     var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
@@ -211,7 +217,7 @@
 
     for (var i = 0; i < trailing_character.length; i++) {
       for (var j = 0; j < industry.length; j++) {
-         event.record[industry[j] + trailing_character[i]].disabled = true;
+         record[industry[j] + trailing_character[i]].disabled = true;
        }         
     }
        
