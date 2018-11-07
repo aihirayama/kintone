@@ -131,7 +131,7 @@
      //求人原稿の「求人作成件数」、「求人変更件数」、「非掲載化・削除求人数」を数える。    
        var jobofferStatsNameList = ['求人作成件数','求人変更件数','非掲載化・削除求人数'];
        var jobofferStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
-       var jobofferTable = record.施設情報テーブル.value
+       var jobofferTable = record.求人情報テーブル.value
       
       for(var i = 0; i < jobofferTable.length; i++) {   
          var jobofferTable2 = jobofferTable[i].value.依頼ステータス_求人.value
