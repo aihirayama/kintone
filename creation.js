@@ -122,7 +122,7 @@
          facilityStatsCounter[0] += facilityTable2.indexOf('新規作成(掲載なし)') + 1
          facilityStatsCounter[1] += facilityTable2.indexOf('変更') + 1
          facilityStatsCounter[2] += facilityTable2.indexOf('施設削除') + 1
-      });
+      };
                                                                
        for(var i = 0; i < facilityStatsNameList.length; i++) {
          record[facilityStatsNameList[i]].value = facilityStatsCounter[i];
