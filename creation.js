@@ -1,15 +1,16 @@
 (function() {
    "use strict";
-   var record = event.record
-   
   
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
       console.log(event);
+      var record = event.record
+      
+      //詳細画面「レコードを再利用する」を非表示
       document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
 
       //fax受信画面のリンク作成   
-      var faxnumber = event.record.申込書FAXID.value;
+      var faxnumber = record.申込書FAXID.value;
       if (!faxnumber) {
           return;
           } else {
@@ -22,7 +23,7 @@
        }
 
        //顧客管理画面のリンク作成
-      var clientId = event.record.顧客ID.value;
+      var clientId = record.顧客ID.value;
       if (!clientId) {
           return;
           } else {
@@ -54,6 +55,7 @@
 
    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
    kintone.events.on(manuscriptPresenceEvents, function(event) {
+     var record = event.record
       var items = [
          '求人情報テーブル',
          '求人作成件数',
@@ -198,6 +200,7 @@
 
     //レコード編集画面が表示された時のイベント&レコード追加画面が表示された時のイベント------------------------------------- 
     kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
+    var record = event.record
     // フィールドの入力を制限
     var fieldName = ['掲載完了日','施設作成件数','施設変更件数','削除件数','求人作成件数','求人変更件数','非掲載化・削除求人数']
     /*
