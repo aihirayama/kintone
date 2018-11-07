@@ -210,7 +210,7 @@
     event.record.削除件数.disabled = true;
     */
      for (var i = 0; i < fieldName.length; i++ ) {
-        record.fieldName[i].disabled = true;
+        record[fieldName[i]].disabled = true;
      };
       
 
