@@ -90,8 +90,7 @@
 
    });
 
-   // レコードが保存された時のイベント--------------------------------------------------------------------------
-   
+   // レコードが保存された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
    var record = event.record
    
@@ -114,21 +113,17 @@
  
      //「施設作成件数」、「施設変更件数」、「施設削除件数」を数える。    
        var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
-       var facilityStatsCounter = [];//それぞれのステータス数をカウント
-       for(var i = 0; i < facilityStatsNameList.length; i++) {
-          facilityStatsCounter.push(0);
-       }
-
-       for(var i = 0; i < record.施設情報テーブル.value.length; i++) {   
-         if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載あり)' || record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '新規作成(掲載なし)') {
-             facilityStatsCounter[0] += 1;//施設作成件数
-         } else if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '変更') {
-             facilityStatsCounter[1] += 1;//施設作成件数
-         } else if( record.施設情報テーブル.value[i].value.依頼ステータス_施設.value === '施設削除') {
-             facilityStatsCounter[2] += 1;//削除件数
-         }
-       }
-
+       var facilityStatsCounter = new Array(facilityStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
+       var facilityTable = record.施設情報テーブル.value
+      
+      for(var i = 0; i < facilityTable.length; i++) {   
+         var facilityTable2 = facilityTable[i].value.依頼ステータス_施設.value
+         facilityStatsCounter[0] += facilityTable2.indexOf('新規作成(掲載あり)') + 1 
+         facilityStatsCounter[0] += facilityTable2.indexOf('新規作成(掲載なし)') + 1
+         facilityStatsCounter[1] += facilityTable2.indexOf('変更') + 1
+         facilityStatsCounter[2] += facilityTable2.indexOf('施設削除') + 1
+      });
+                                                               
        for(var i = 0; i < facilityStatsNameList.length; i++) {
          record[facilityStatsNameList[i]].value = facilityStatsCounter[i];
        }
