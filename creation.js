@@ -35,35 +35,37 @@
 
    });
      
-   //テスト　レコード更新時？-----------------------------------------------------------------------------------
-  //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
-
+   //レコード編集画面でのリアルタイム更新-----------------------------------------------------------------------------------
      var manuscriptPresenceEvents = [
       'app.record.detail.show',
       'app.record.create.show',
       'app.record.edit.show',
       'app.record.edit.change.原稿ありなし選択',
       'app.record.create.change.原稿ありなし選択',
+      'app.record.edit.change.施設登録ありなし選択',
+      'app.record.create.change.施設登ありなし選択',
       'app.record.edit.change.顧客起因不備',
       'app.record.create.change.顧客起因不備',
       'app.record.edit.change.社内起因不備',
       'app.record.create.change.社内起因不備'
    ]
-   
-   kintone.events.on(manuscriptPresenceEvents, function(event) {
 
+   //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
+   kintone.events.on(manuscriptPresenceEvents, function(event) {
+      var record = event.record
       var items = [
          '求人情報テーブル',
          '求人作成件数',
          '求人変更件数',
          '非掲載化・削除求人数'
       ]
-      var record = event.record
 
       items.forEach(function(item) {
         kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
       });
       
+   //施設登録ありなし選択で「施設登録なし」が選択されていたら施設情報テーブルを非表示にする。
+   kintone.app.record.setFieldShown(record.施設情報テーブル, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
 
 
       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
