@@ -150,11 +150,11 @@
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
       function posting_counter (tableName,industryStatsName,facilityStyle){
-          for( var i = 0; i < event.record[tableName].value.length; i++) {
+          for( var i = 0; i < record[tableName].value.length; i++) {
             for( var j = 0; j < industryStatsNameList.length; j++){
-              if(event.record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
+              if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                 for( var k = 0; k < industryList.length; k++) {
-                  if(event.record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
+                  if(record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
                      industryStatsCounter[j][k] += 1;
                   }
                 }
@@ -175,7 +175,11 @@
          for (var j = 0; j < industryList.length; j++) {
             event.record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
          }        
-     }       
+     }
+      
+      
+     //「求人原稿」の求人作成件数　求人変更件数　求人非掲載化・削除件数　を数える。
+      
 
      return event;
 
