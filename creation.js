@@ -67,7 +67,7 @@
      items.push(item + '_登録のみ')
      items.push(item + '_登録・掲載')
    })     
-   
+    
       items.forEach(function(item) {
         kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
       });      
@@ -78,10 +78,11 @@
          '施設変更件数',
          '削除件数'
       ] 
-    var industryList.forEach(function(item) {
+    industryList.forEach(function(item) {
      items2.push(item + '_掲載のみ')
      items2.push(item + '_登録・掲載')
    })  
+     
     items2.forEach(function(item) {
         kintone.app.record.setFieldShown(item, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
     });   
