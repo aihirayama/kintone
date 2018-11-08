@@ -84,7 +84,7 @@
      items2.push(item + '_掲載のみ')
      items2.push(item + '_登録・掲載') 
    })     
-    */
+    
     
    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。(-"-)うぅ
       items.forEach(function(item) {
@@ -94,7 +94,9 @@
    //施設登録ありなし選択で「施設登録なし」が選択されていたら施設情報テーブルを非表示にする。
     items2.forEach(function(item) {
         kintone.app.record.setFieldShown(item, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
-    });   
+    });
+    
+    */
       
       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
       var dt = new Date();
