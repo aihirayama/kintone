@@ -106,10 +106,8 @@
       }
       
       Object.keys(deficiencyStatus).forEach(function(item) {
-         if(!record[item].value) {
-            if(record[deficiencyStatus[item]].value === '解除済') {
-             record[item].value = date;
-            } 
+         if(!record[item].value && record[deficiencyStatus[item]].value === '解除済') {
+            record[item].value = date;
          }
       });
           return event;
@@ -125,7 +123,7 @@
       var errormessage = ""
        for (i = 0; i < hearingTtable.length; i++) {
           if(hearingTtable[i].value.履歴メモ.value) {
-             if(!hearingTtable[i].value.予定日時.value && !hearingTtable[i].value.対応完了日時.value) {
+             if(!hearingTtable[i].value.予定日時.value && !hearingTtable[i].value.完了日時.value) {
                 errormessage += "[ヒアリング予定/履歴] Next予定日時　or　完了日時"
              } 
              if(!hearingTtable[i].value.タスク担当者.value[0]) {
