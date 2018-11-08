@@ -119,11 +119,7 @@
    // レコードが保存された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
    var record = event.record
-   
-   //掲載完了日に掲載完了日の日付を入れる。
-     var postingdate = record.掲載切替日.value;
-     record.掲載完了日.value = postingdate;
-      
+       
     //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
       var hearingTtable = record.ヒアリング履歴テーブル.value 
       var errormessage = ""
