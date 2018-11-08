@@ -57,7 +57,6 @@
      var record = event.record
      
      //依頼内容の依頼件数を数える(=^・ω・^=)(´・ω・｀)はぁ・・・
-     /*
       var items = [
          '求人情報テーブル',
          '求人作成件数',
@@ -96,7 +95,6 @@
         kintone.app.record.setFieldShown(item, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
     });
     
-    */
       
       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
       var dt = new Date();
@@ -224,12 +222,7 @@
       posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
       //フィールドへ反映 
-     
-     if(record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0) {
-         var industryStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
-     }
-
-     
+         
      var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
      for (var i = 0; i < trailing_character.length; i++) {
          for (var j = 0; j < industryList.length; j++) {
