@@ -57,6 +57,7 @@
      var record = event.record
      
      //依頼内容の依頼件数を数える(=^・ω・^=)(´・ω・｀)はぁ・・・
+     /*
       var items = [
          '求人情報テーブル',
          '求人作成件数',
@@ -83,6 +84,7 @@
      items2.push(item + '_掲載のみ')
      items2.push(item + '_登録・掲載') 
    })     
+    */
     
    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。(-"-)うぅ
       items.forEach(function(item) {
