@@ -120,18 +120,16 @@
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
    var record = event.record
        
-    //予定/履歴メモに何か入力されたとき、対応予定日or対応日になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
+    //予定/履歴メモに何か入力されたとき、NextAction　or　対応完了日時になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
       var hearingTtable = record.ヒアリング履歴テーブル.value 
       var errormessage = ""
        for (i = 0; i < hearingTtable.length; i++) {
           if(hearingTtable[i].value.履歴メモ.value) {
-             if(!hearingTtable[i].value.対応予定日.value && !hearingTtable[i].value.対応日.value) {
-                errormessage += "[ヒアリング予定/履歴] 対応予定日or対応日"
-                //event.error = "[ヒアリング予定/履歴]に対応予定日or対応日を入力してください。";
+             if(!record.NextAction.value && !hearingTtable[i].value.対応完了日時.value) {
+                errormessage += "[ヒアリング予定/履歴] NextAction　or　対応完了日時"
              } 
              if(!hearingTtable[i].value.タスク担当者.value[0]) {
                 errormessage += "[ヒアリング予定/履歴] タスク担当者"               
-               // event.error = "[ヒアリング予定/履歴]にタスク担当者を入力してください。";
              } 
           }
        }
@@ -235,12 +233,6 @@
     var record = event.record
     // フィールドの入力を制限
     var fieldName = ['掲載完了日','施設作成件数','施設変更件数','削除件数','求人作成件数','求人変更件数','非掲載化・削除求人数']
-    /*
-    event.record.掲載完了日.disabled = true;
-    event.record.施設作成件数.disabled = true;
-    event.record.施設変更件数.disabled = true;
-    event.record.削除件数.disabled = true;
-    */
      for (var i = 0; i < fieldName.length; i++ ) {
         record[fieldName[i]].disabled = true;
      };
