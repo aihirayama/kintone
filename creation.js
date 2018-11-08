@@ -57,21 +57,34 @@
      var record = event.record
      
    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする
-   var items = [
+      var items = [
          '求人情報テーブル',
          '求人作成件数',
          '求人変更件数',
          '非掲載化・削除求人数'
-      ]
-   var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'].forEach(function(item) {
+      ];
+   
+     var items2 = [
+      '施設情報テーブル',
+      '施設作成件数',
+      '施設変更件数',
+      '削除件数'
+      ];
+      
+   var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他']
+   
+   industryList.forEach(function(item) {
      items.push(item + '_登録のみ')
      items.push(item + '_登録・掲載')
+     items2.push(item + '_掲載のみ')
+     items2.push(item + '_登録・掲載') 
    })     
     
       items.forEach(function(item) {
         kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
       });      
    //施設登録ありなし選択で「施設登録なし」が選択されていたら施設情報テーブルを非表示にする。
+ /*     
      var items2 = [
          '施設情報テーブル',
          '施設作成件数',
@@ -82,7 +95,7 @@
      items2.push(item + '_掲載のみ')
      items2.push(item + '_登録・掲載')
    })  
-     
+   */  
     items2.forEach(function(item) {
         kintone.app.record.setFieldShown(item, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
     });   
