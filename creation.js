@@ -53,22 +53,39 @@
       'app.record.create.change.社内起因不備'
    ]
 
-   //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
    kintone.events.on(manuscriptPresenceEvents, function(event) {
      var record = event.record
-      var items = [
+     
+   //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする
+   var items = [
          '求人情報テーブル',
          '求人作成件数',
          '求人変更件数',
          '非掲載化・削除求人数'
       ]
-
+   var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'].forEach(function(item) {
+     items.push(item + '_登録のみ')
+     items.push(item + '_登録・掲載')
+   })     
+   
       items.forEach(function(item) {
         kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
-      });
-      
+      });      
    //施設登録ありなし選択で「施設登録なし」が選択されていたら施設情報テーブルを非表示にする。
-   kintone.app.record.setFieldShown('施設情報テーブル', record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
+     var items2 = [
+         '施設情報テーブル',
+         '施設作成件数',
+         '施設変更件数',
+         '削除件数'
+      ] 
+    var industryList.forEach(function(item) {
+     items2.push(item + '_掲載のみ')
+     items2.push(item + '_登録・掲載')
+   })  
+    items2.forEach(function(item) {
+        kintone.app.record.setFieldShown(item, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
+    });   
+      
       //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
       var dt = new Date();
       var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
@@ -81,8 +98,6 @@
       Object.keys(deficiencyStatus).forEach(function(item) {
          if(!record[item].value) {
             if(record[deficiencyStatus[item]].value === '解除済') {
-               console.log('dt:',dt);
-               console.log('date:',date);
              record[item].value = date;
             } 
          }
@@ -134,8 +149,7 @@
             facilityStatsCounter[2] += facilityTable2.indexOf('施設削除') + 1
       };
       }
-
-                                                               
+                                                          
        for(var i = 0; i < facilityStatsNameList.length; i++) {
          record[facilityStatsNameList[i]].value = facilityStatsCounter[i];
        }
@@ -176,6 +190,7 @@
        }
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
+      
       function posting_counter (tableName,industryStatsName,facilityStyle){
           for( var i = 0; i < record[tableName].value.length; i++) {
             for( var j = 0; j < industryStatsNameList.length; j++){
@@ -197,6 +212,12 @@
       posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
       //フィールドへ反映 
+     
+     if(record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0) {
+         var industryStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
+     }
+
+     
      var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
      for (var i = 0; i < trailing_character.length; i++) {
          for (var j = 0; j < industryList.length; j++) {
@@ -205,7 +226,6 @@
      }
       
       
-     //「求人原稿」の求人作成件数　求人変更件数　求人非掲載化・削除件数　を数える。
       
 
      return event;
