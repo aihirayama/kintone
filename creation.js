@@ -120,13 +120,13 @@
    kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
    var record = event.record
        
-    //予定/履歴メモに何か入力されたとき、NextAction　or　対応完了日時になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
+    //予定/履歴メモに何か入力されたとき、予定日時　or　完了日時になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
       var hearingTtable = record.ヒアリング履歴テーブル.value 
       var errormessage = ""
        for (i = 0; i < hearingTtable.length; i++) {
           if(hearingTtable[i].value.履歴メモ.value) {
-             if(!record.NextAction.value && !hearingTtable[i].value.対応完了日時.value) {
-                errormessage += "[ヒアリング予定/履歴] NextAction　or　対応完了日時"
+             if(!hearingTtable[i].value.予定日時.value && !hearingTtable[i].value.対応完了日時.value) {
+                errormessage += "[ヒアリング予定/履歴] Next予定日時　or　完了日時"
              } 
              if(!hearingTtable[i].value.タスク担当者.value[0]) {
                 errormessage += "[ヒアリング予定/履歴] タスク担当者"               
