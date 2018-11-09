@@ -1,6 +1,6 @@
 (function() {
    "use strict";
-   //12,345,600円monthly
+   //
   
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
