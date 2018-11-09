@@ -188,7 +188,7 @@
       var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
-         function counter (tableName,industryStatsName,facilityStyle){
+         function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0; i < record[tableName].value.length; i++) { 
              for( var j = 0; j < industryStatsNameList.length; j++){
                if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
