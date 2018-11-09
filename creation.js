@@ -5,6 +5,10 @@
    //unpappa
    //unpappa
    //sha
+   //unpappa
+   //unpappa
+   //unpappa
+   //sha
   
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
@@ -89,8 +93,7 @@
      items2.push(item + '_登録・掲載');
    });
     
-    
-   //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。(-"-)うぅ
+   //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
       items.forEach(function(item) {
         kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
       });    
@@ -163,21 +166,31 @@
       
      //求人原稿の「求人作成件数」、「求人変更件数」、「非掲載化・削除求人数」を数える。
       
-         var jobofferStatsNameList = ['求人作成件数','求人変更件数','非掲載化・削除求人数'];
-         var jobofferStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
-         var jobofferTable = record.求人情報テーブル.value;
+      var jobofferStatsNameList = ['求人作成件数','求人変更件数','非掲載化・削除求人数'];
+      var jobofferStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
+      var jobofferTable = record.求人情報テーブル.value;
+
+      console.log('jobofferStatsCounter(初期値)：',jobofferStatsCounter);
+      
          
       if(record.原稿ありなし選択.value.indexOf('原稿あり') >= 0) {
          for(var i = 0; i < jobofferTable.length; i++) {   
             var jobofferTable2 = jobofferTable[i].value.依頼ステータス_求人.value;
+            
+            console.log('jobofferTable2:',jobofferTable[i].value.依頼ステータス_求人.value);
+            
             jobofferStatsCounter[0] += jobofferTable2.indexOf('新規作成(施設登録あり)') + 1 ;
             jobofferStatsCounter[0] += jobofferTable2.indexOf('追加掲載(施設登録なし)') + 1;
             jobofferStatsCounter[1] += jobofferTable2.indexOf('既存修正') + 1;
             jobofferStatsCounter[2] += jobofferTable2.indexOf('応募受付終了処理・求人削除') + 1;
          }
       }
+      
+      console.log('jobofferStatsCounter(結果)：',jobofferStatsCounter);
                                                                
        for(var i = 0; i < jobofferStatsNameList.length; i++) {
+          console.log('ok1');
+          console.log('jobofferStatsCounter',jobofferStatsCounter[i]);
          record[jobofferStatsNameList[i]].value = jobofferStatsCounter[i];
        }
 
