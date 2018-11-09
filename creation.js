@@ -205,9 +205,11 @@
 
       //施設情報テーブルを集計
       posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
+      console.log('ok1:',industryStatsCounter);
 
       //求人情報テーブルを集計
       posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
+      console.log('ok2:',industryStatsCounter);
 
       //フィールドへ反映 
          
@@ -217,6 +219,7 @@
             record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
          }        
      }
+      console.log('ok3　何が悪いの？？？');
 
      return event;
 
