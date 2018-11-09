@@ -191,7 +191,7 @@
          function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0, test = record[tableName].value.length; i < test; i++) {
               console.log('testの中：',test);
-              console.log('i:'i);
+              console.log('i:',i);
              for( var j = 0; j < industryStatsNameList.length; j++){
                if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                  for( var k = 0; k < industryList.length; k++) {
