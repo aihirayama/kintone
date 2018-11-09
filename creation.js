@@ -189,8 +189,7 @@
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
          function posting_counter (tableName,industryStatsName,facilityStyle){
-           for( var i = 0, test = record[tableName].value.length; i < test; i++) {
-              console.log('testの中：',test);
+           for( var i = 0, i < record[tableName].value.length; i++) {
               console.log('i:',i);
              for( var j = 0; j < industryStatsNameList.length; j++){
                               console.log('i2:',i);
@@ -213,9 +212,10 @@
       
       //施設情報テーブルを集計
      posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
+      console.log('iの最終的な数：',i);
 
       //求人情報テーブルを集計
-      posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
+     //posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
       //フィールドへ反映 
          
