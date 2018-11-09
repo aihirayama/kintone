@@ -188,7 +188,7 @@
       var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
-      
+      console.log('record[施設情報テーブル].value.length:',record['施設情報テーブル'].value.length);
       function posting_counter (tableName,industryStatsName,facilityStyle){
          console.log('レコードの長さ:',record[tableName].value.length);
           for( var i = 0; i < record[tableName].value.length; i++) {
@@ -206,7 +206,6 @@
 
       //施設情報テーブルを集計
       posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
-      console.log('i:',i);
 
       //求人情報テーブルを集計
      // posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
