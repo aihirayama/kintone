@@ -190,16 +190,12 @@
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
       
       function posting_counter (tableName,industryStatsName,facilityStyle){
+         console.log('レコードの長さ:',record[tableName].value.length);
           for( var i = 0; i < record[tableName].value.length; i++) {
             for( var j = 0; j < industryStatsNameList.length; j++){
-              console.log('record[tableName].value[i].value[industryStatsName].value:',record[tableName].value[i].value[industryStatsName].value);
-              console.log('industryStatsNameList[j]:',industryStatsNameList[j])
-               if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
+              if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                 for( var k = 0; k < industryList.length; k++) {
-                  console.log('record[tableName].value[i].value[facilityStyle].value:',record[tableName].value[i].value[facilityStyle].value)
-                  console.log('industryList[k]:',industryList[k])
-                  if(record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
-                     console.log('industryStatsCounter:',industryStatsCounter);
+                 if(record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
                      industryStatsCounter[j][k] += 1;
                   }
                 }
