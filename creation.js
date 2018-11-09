@@ -189,18 +189,18 @@
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
          function posting_counter (tableName,industryStatsName,facilityStyle){
-           for( var i = 0; i <= test.length; i++) { 
+           for( var i = 0; var test = record[tableName].value.length; i < test; i++) {
              for( var j = 0; j < industryStatsNameList.length; j++){
                if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                  for( var k = 0; k < industryList.length; k++) {
                    if(record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
                      industryStatsCounter[j][k] += 1;
-                   }
+                   } 
                  }
                }
              }
            }
-         }  
+         } 
       
       //施設情報テーブルを集計
      posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
