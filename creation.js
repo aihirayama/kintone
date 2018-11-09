@@ -1,14 +1,6 @@
 (function() {
    "use strict";
-   //unpappa~festival
-   //unpappa
-   //unpappa
-   //unpappa
-   //sha
-   //unpappa
-   //unpappa
-   //unpappa
-   //sha
+   //zoufukuiyaburubakudawakattakane
   
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
@@ -239,13 +231,12 @@
     kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
     var record = event.record;
     // フィールドの入力を制限
-    //var fieldName = ['掲載完了日','施設作成件数','施設変更件数','削除件数','求人作成件数','求人変更件数','非掲載化・削除求人数'];
-     //for (var i = 0; i < fieldName.length; i++ ) {
-       // console.log('record[fieldName[i]].disabled:',record[fieldName[i]].disabled)
-       // record[fieldName[i]].disabled = true;
-       record['掲載完了日'].disabled = true;
-     //}
-   /*   
+    var fieldName = ['施設作成件数','施設変更件数','削除件数','求人作成件数','求人変更件数','非掲載化・削除求人数'];
+     for (var i = 0; i < fieldName.length; i++ ) {
+        console.log('record[fieldName[i]].disabled:',record[fieldName[i]].disabled)
+        record[fieldName[i]].disabled = true;
+     }
+      
     //「業態_登録のみ」「業態_掲載のみ」「業態_登録・掲載」フィールドの入力を制限
     var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
     var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];
@@ -255,7 +246,7 @@
         console.log('record[industry[j] + trailing_character[i]].disabled = true:',record[industry[j] + trailing_character[i]].disabled = true)
          record[industry[j] + trailing_character[i]].disabled = true;
        }         
-    }*/
+    }
 
     return event;
 
