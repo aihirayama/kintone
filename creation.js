@@ -1,6 +1,10 @@
 (function() {
    "use strict";
    //unpappa~festival
+   //unpappa
+   //unpappa
+   //unpappa
+   //sha
   
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
@@ -134,7 +138,7 @@
        }
       
       if(errormessage) { 
-         event.error = '以下の項目を入力してください。' + errormessage;
+         event.error = '以下の項目を入力してください。<br />' + errormessage;
       }
  
      //依頼内容の「施設作成件数」、「施設変更件数」、「施設削除件数」を数える。 
