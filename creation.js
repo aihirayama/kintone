@@ -195,6 +195,8 @@
                 for( var k = 0; k < industryList.length; k++) {
                  if(record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
                      industryStatsCounter[j][k] += 1;
+                  } else {
+                  return;
                   }
                 }
               }
