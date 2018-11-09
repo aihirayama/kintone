@@ -245,7 +245,7 @@
        // record[fieldName[i]].disabled = true;
        record['掲載完了日'].disabled = true;
      //}
-      
+   /*   
     //「業態_登録のみ」「業態_掲載のみ」「業態_登録・掲載」フィールドの入力を制限
     var industry = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
     var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];
@@ -255,7 +255,7 @@
         console.log('record[industry[j] + trailing_character[i]].disabled = true:',record[industry[j] + trailing_character[i]].disabled = true)
          record[industry[j] + trailing_character[i]].disabled = true;
        }         
-    }
+    }*/
 
     return event;
 
