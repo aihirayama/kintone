@@ -1,6 +1,6 @@
 (function() {
    "use strict";
-   //zoufukuiyaburubakudawakattakane
+   //12,345,600円monthly
   
    // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
    kintone.events.on('app.record.detail.show',function(event){
@@ -185,12 +185,7 @@
       var industryStatsCounter =[];
 
       //各ステータスの業態別作成数をカウントするための配列
-      for (var i = 0; i < industryStatsNameList.length; i++) {
-         industryStatsCounter.push([]);
-         for (var j = 0; j < industryList.length; j++) {
-            industryStatsCounter[i].push(0);
-         }	
-       }
+      var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
       
