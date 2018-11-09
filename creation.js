@@ -214,7 +214,7 @@
      var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
      for (var i = 0; i < trailing_character.length; i++) {
          for (var j = 0; j < industryList.length; j++) {
-            event.record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
+            record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
          }        
      }
 
@@ -228,7 +228,6 @@
     // フィールドの入力を制限
     var fieldName = ['施設作成件数','施設変更件数','削除件数','求人作成件数','求人変更件数','非掲載化・削除求人数'];
      for (var i = 0; i < fieldName.length; i++ ) {
-        console.log('record[fieldName[i]].disabled:',record[fieldName[i]].disabled)
         record[fieldName[i]].disabled = true;
      }
       
@@ -238,7 +237,6 @@
 
     for (var i = 0; i < trailing_character.length; i++) {
       for (var j = 0; j < industry.length; j++) {
-        console.log('record[industry[j] + trailing_character[i]].disabled = true:',record[industry[j] + trailing_character[i]].disabled = true)
          record[industry[j] + trailing_character[i]].disabled = true;
        }         
     }
