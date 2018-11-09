@@ -119,7 +119,7 @@
    var record = event.record;
        
     //予定/履歴メモに何か入力されたとき、予定日時　or　完了日時になにも入力されていなければエラー。タスク担当者が入力されてなければエラー
-      var hearingTtable = record.ヒアリング履歴テーブル.value ;
+    /*  var hearingTtable = record.ヒアリング履歴テーブル.value ;
       var errormessage = "";
        for (i = 0; i < hearingTtable.length; i++) {
           if(hearingTtable[i].value.履歴メモ.value) {
@@ -134,7 +134,7 @@
       
       if(errormessage) { 
          event.error = '以下の項目を入力してください。<br />' + errormessage;
-      }
+      }*/
  
      //依頼内容の「施設作成件数」、「施設変更件数」、「施設削除件数」を数える。 
     
@@ -191,6 +191,7 @@
          function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0, test = record[tableName].value.length; i < test; i++) {
               console.log('testの中：',test);
+              console.log('i:'i);
              for( var j = 0; j < industryStatsNameList.length; j++){
                if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                  for( var k = 0; k < industryList.length; k++) {
