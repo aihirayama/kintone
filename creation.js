@@ -219,7 +219,7 @@
             record[industryList[j] + trailing_character[i]].value = industryStatsCounter[i][j];
          }        
      }
-      console.log('ok3　何が悪いの？？？');
+      console.log('ok3');
 
      return event;
 
