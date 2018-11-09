@@ -193,9 +193,16 @@
               console.log('testの中：',test);
               console.log('i:',i);
              for( var j = 0; j < industryStatsNameList.length; j++){
+                              console.log('i2:',i);
+                console.log('j:',j;)
                if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                  for( var k = 0; k < industryList.length; k++) {
+                                    console.log('k',k)
+
                    if(record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
+                                                    console.log('i3',i);
+                                    console.log('j2,j)
+
                      industryStatsCounter[j][k] += 1;
                    } 
                  }
