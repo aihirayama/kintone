@@ -190,6 +190,7 @@
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
          function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0, test = record[tableName].value.length; i < test; i++) {
+              console.log('testの中：',test);
              for( var j = 0; j < industryStatsNameList.length; j++){
                if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                  for( var k = 0; k < industryList.length; k++) {
