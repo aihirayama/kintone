@@ -182,13 +182,13 @@
       var industryStatsNameList = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
       //↑新規作成(掲載なし)=_登録のみ 追加掲載(施設登録なし)=_掲載のみ 新規作成(掲載あり)=_登録・掲載
       var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
-      var industryStatsCounter =[];
+      //var industryStatsCounter =[];
 
       //各ステータスの業態別作成数をカウントするための配列
       var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
-      /*function posting_counter (tableName,industryStatsName,facilityStyle){
+      function posting_counter (tableName,industryStatsName,facilityStyle){
           for( var i = 0; i < record[tableName].value.length; i++) {
             for( var j = 0; j < industryStatsNameList.length; j++){
               if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
@@ -200,26 +200,13 @@
               }
             }
           }
-       }*/
-
-      for( var i = 0; i < record['施設情報テーブル'].value.length; i++) {
-        for( var j = 0; j < industryStatsNameList.length; j++){
-          if(record['施設情報テーブル'].value[i].value['依頼ステータス_施設'].value === industryStatsNameList[j]) {
-            for( var k = 0; k < industryList.length; k++) {
-              if(record['施設情報テーブル'].value[i].value['施設形態_施設'].value === industryList[k]) {
-                industryStatsCounter[j][k] += 1;
-              }
-            }
-          }
-        }
-      }
+       }
       
       //施設情報テーブルを集計
-     //posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
+     posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
 
       //求人情報テーブルを集計
-     // posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
-     // console.log('ok2:',industryStatsCounter);
+      posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
       //フィールドへ反映 
          
