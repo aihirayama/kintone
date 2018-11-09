@@ -133,7 +133,7 @@
        }
       
       if(errormessage) { 
-         event.error = "以下の項目を入力してください。/n" + errormessage;
+         event.error = '以下の項目を入力してください。br' + errormessage;
       }
  
      //依頼内容の「施設作成件数」、「施設変更件数」、「施設削除件数」を数える。 
