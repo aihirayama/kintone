@@ -201,7 +201,7 @@
 
                    if(record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
                                                     console.log('i3',i);
-                                    console.log('j2,j);
+                                    console.log('j2',j);
 
                      industryStatsCounter[j][k] += 1;
                    } 
