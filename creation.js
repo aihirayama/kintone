@@ -182,7 +182,6 @@
       var industryStatsNameList = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
       //↑新規作成(掲載なし)=_登録のみ 追加掲載(施設登録なし)=_掲載のみ 新規作成(掲載あり)=_登録・掲載
       var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
-      var test =[1];
 
       //各ステータスの業態別作成数をカウントするための配列
       //var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
@@ -192,7 +191,7 @@
          for (var j = 0; j < industryList.length; j++) {
             industryStatsCounter[i].push(0);
          }	
-       } */
+       } 
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
     
