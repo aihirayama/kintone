@@ -79,10 +79,8 @@
    var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
    
    industryList.forEach(function(item) {
-     items.push(item + '_登録のみ');
-     items.push(item + '_登録・掲載');
-     items2.push(item + '_掲載のみ');
-     items2.push(item + '_登録・掲載');
+     items.push(item + '_登録のみ',item + '_登録・掲載');
+     items2.push(item + '_掲載のみ',item + '_登録・掲載');
    });
     
    //原稿ありなし選択で「原稿なし」が選択されていたら求人情報テーブルを非表示にする。
@@ -208,22 +206,7 @@
              }
            }
          } 
-       /*
-      //------テスト　※修正中
-      var tablevalue = record['施設情報テーブル'].value
-      for( var i = 0; i < tablevalue.length; i++) {
-             for( var j = 0; j < industryStatsNameList.length; j++){
-               if(tablevalue[i].value['依頼ステータス_施設'].value === industryStatsNameList[j]) {
-                 for( var k = 0; k < industryList.length; k++) {
-                   if(tablevalue[i].value['施設形態_施設'].value === industryList[k]) {
-                     industryStatsCounter[j][k] += 1;
-                   } 
-                 }
-               }
-             }
-           }*/
-      
-      
+            
       //施設情報テーブルを集計
      posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
 
