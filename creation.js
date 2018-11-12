@@ -178,13 +178,12 @@
        }
 
 
-    //「登録のみ_合計」、「掲載のみ_合計」、「登録・掲載_合計」、を集計するために、各業態の作業数を数える。
+    //「登録のみ_合計」、「掲載のみ_合計」、「登録・掲載_合計」、を集計するために、各業態の依頼数を数える。
       var industryStatsNameList = ['新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)'];
-      //↑新規作成(掲載なし)=_登録のみ 追加掲載(施設登録なし)=_掲載のみ 新規作成(掲載あり)=_登録・掲載
+      //↑[新規作成(掲載なし)→_登録のみ] [追加掲載(施設登録なし)→_掲載のみ] [新規作成(掲載あり)→_登録・掲載]
       var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
 
       //各ステータスの業態別作成数をカウントするための配列
-      //var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
       var industryStatsCounter =[];
       for (var i = 0; i < industryStatsNameList.length; i++) {
          industryStatsCounter.push([]);
@@ -210,7 +209,7 @@
      posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
 
       //求人情報テーブルを集計
-  /  posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
+  　 posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
       //フィールドへ反映 
          
