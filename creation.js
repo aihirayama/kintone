@@ -188,20 +188,13 @@
       var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
+      /*
          function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0; i < record[tableName].value.length; i++) {
-              console.log('i:',i);
              for( var j = 0; j < industryStatsNameList.length; j++){
-                              console.log('i2:',i);
-                console.log('j:',j);
                if(record[tableName].value[i].value[industryStatsName].value === industryStatsNameList[j]) {
                  for( var k = 0; k < industryList.length; k++) {
-                                    console.log('k',k);
-
                    if(record[tableName].value[i].value[facilityStyle].value === industryList[k]) {
-                                                    console.log('i3',i);
-                                    console.log('j2',j);
-
                      industryStatsCounter[j][k] += 1;
                    } 
                  }
@@ -209,10 +202,24 @@
              }
            }
          } 
+       */
+      //------テスト　※修正中
+      var tablevalue = record['施設情報テーブル'].value
+      for( var i = 0; i < tablevalue.length; i++) {
+             for( var j = 0; j < industryStatsNameList.length; j++){
+               if(tablevalue[i].value['依頼ステータス_施設'].value === industryStatsNameList[j]) {
+                 for( var k = 0; k < industryList.length; k++) {
+                   if(tablevalue.value[i].value['施設形態_施設'].value === industryList[k]) {
+                     industryStatsCounter[j][k] += 1;
+                   } 
+                 }
+               }
+             }
+           }
+      
       
       //施設情報テーブルを集計
-     posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
-      console.log('iの最終的な数：',i);
+     //posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
 
       //求人情報テーブルを集計
      //posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
