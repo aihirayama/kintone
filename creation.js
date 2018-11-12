@@ -185,10 +185,17 @@
       var test =[1];
 
       //各ステータスの業態別作成数をカウントするための配列
-      var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
+      //var industryStatsCounter = new Array(industryStatsNameList.length).fill(new Array(industryList.length).fill(0))
+      var industryStatsCounter =[];
+      for (var i = 0; i < industryStatsNameList.length; i++) {
+         industryStatsCounter.push([]);
+         for (var j = 0; j < industryList.length; j++) {
+            industryStatsCounter[i].push(0);
+         }	
+       } */
 
       //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
-      /*
+    
          function posting_counter (tableName,industryStatsName,facilityStyle){
            for( var i = 0; i < record[tableName].value.length; i++) {
              for( var j = 0; j < industryStatsNameList.length; j++){
@@ -202,27 +209,27 @@
              }
            }
          } 
-       */
+       /*
       //------テスト　※修正中
       var tablevalue = record['施設情報テーブル'].value
       for( var i = 0; i < tablevalue.length; i++) {
              for( var j = 0; j < industryStatsNameList.length; j++){
                if(tablevalue[i].value['依頼ステータス_施設'].value === industryStatsNameList[j]) {
                  for( var k = 0; k < industryList.length; k++) {
-                   if(tablevalue.value[i].value['施設形態_施設'].value === industryList[k]) {
+                   if(tablevalue[i].value['施設形態_施設'].value === industryList[k]) {
                      industryStatsCounter[j][k] += 1;
                    } 
                  }
                }
              }
-           }
+           }*/
       
       
       //施設情報テーブルを集計
-     //posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
+     posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
 
       //求人情報テーブルを集計
-     //posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
+     posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
 
       //フィールドへ反映 
          
