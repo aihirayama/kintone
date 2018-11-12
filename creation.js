@@ -172,7 +172,8 @@
         jobofferStatsCounter[2] += jobofferTable2.indexOf('応募受付終了処理・求人削除') + 1;
       }
     }
-
+    
+    //フィールドへ反映させる。
     for(var i = 0; i < jobofferStatsNameList.length; i++) {
       record[jobofferStatsNameList[i]].value = jobofferStatsCounter[i];
     }
@@ -183,7 +184,7 @@
     //↑[新規作成(掲載なし)→_登録のみ] [追加掲載(施設登録なし)→_掲載のみ] [新規作成(掲載あり)→_登録・掲載]
     var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];//kintoneの並び順と同じ
 
-    //各ステータスの業態別作成数をカウントするための配列
+    //集計するための箱
     var industryStatsCounter =[];
     for (var i = 0; i < industryStatsNameList.length; i++) {
       industryStatsCounter.push([]);
@@ -192,8 +193,7 @@
       }	
     } 
 
-    //依頼情報テーブルの中から業態ごとの「新規作成(掲載なし)','追加掲載(施設登録なし)','新規作成(掲載あり)」ステータスを集計する関数
-
+    //集計する関数
     function posting_counter (tableName,orderStatus,facilityStyle) {
       var t_record = record[tableName].value      
       for( var i = 0; i < t_record.length; i++) {
@@ -204,15 +204,11 @@
         }     
       }
     }
-
-    //施設情報テーブルを集計
-    posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
-
-    //求人情報テーブルを集計
-    posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人');
+  
+    posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設'); //施設情報テーブルを集計
+    posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人'); //求人情報テーブルを集計
 
     //フィールドへ反映 
-
     var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
     for (var i = 0; i < trailing_character.length; i++) {
       for (var j = 0; j < industryList.length; j++) {
