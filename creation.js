@@ -208,18 +208,17 @@
              }
            }
          } */
-      var t_record = record['施設情報テーブル'].value      
-      for( var i = 0; i < t_record.length; i++) {
-         var a = industryStatsNameList.indexOf(t_record[i].value['依頼ステータス_施設'].value)
-         var b = industryList.indexOf(t_record[i].value['施設形態_施設'].value);
-         if(a >= 0) {
-            industryStatsCounter[a][b] += 1
-         } else {
-         
-         }         
+         var t_record = record['施設情報テーブル'].value      
+         for( var i = 0; i < t_record.length; i++) {
+           var a = industryStatsNameList.indexOf(t_record[i].value['依頼ステータス_施設'].value)
+           var b = industryList.indexOf(t_record[i].value['施設形態_施設'].value);
+           if(a >= 0) {
+             industryStatsCounter[a][b] += 1
+           } else {
+
+           }        
          }
-      }
-      
+
       
       //施設情報テーブルを集計
   //   posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設');
