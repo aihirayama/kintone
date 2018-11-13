@@ -21,7 +21,6 @@
          objParam['record'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理']['value'] = loginuser.name;
-        console.log('objParamの中身:',objParam);
 
           // レコードを更新する
          kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
