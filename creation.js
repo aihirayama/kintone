@@ -35,39 +35,15 @@
       clienttmpA.target = '_blank';
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
     }
-    
-   //担当者に自分を選択するボタン(´Д⊂ヽわかめ
-    btnspace.innerHTML = 'なんで表示されないんだよおおおおおお！'
-     /*member = record.仮原稿送付担当者_進捗管理.value;
-      //ボタンを作成
-      var btn = document.createElement('button');
-      btn.id = 'btnAddMine'; 
-      btn.innerHTML = ' 担当者に自分を追加';
-      btn.style.marginTop = '30px';
-      kintone.app.record.getSpaceElement('btnspace').appendChild(btn);*/
-      //btn.addEventListener('click', addMemberMine);
-
-
-    /*
-      function addMemberMine() {
-
-         //ログインユーザの情報を取得
-         var loginuser = kintone.getLoginUser();
-         var objParam = {};
-         objParam['app'] = kintone.app.getId();       // アプリ番号
-         objParam['id'] = kintone.app.record.getId(); // レコード番号
-         objParam['record'] = {};
-         objParam['record']['member'] = {};
-         objParam['record']['member']['value'] = record.仮原稿送付担当者_進捗管理.value;
-        console.log('objParamの中身:',objParam);
-
-          // レコードを更新する
-         kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
-         // 成功時は画面をリロード
-             location.reload(true);
-         });
-       };*/
-
+    //ボタン置けてえええええ
+     var myIndexButton = document.createElement('button');
+        myIndexButton.id = 'my_index_button';
+        myIndexButton.innerHTML = 'メニュー部ボタン';
+        myIndexButton.onclick = function() {
+            window.alert('メニュー部');
+        }
+        kintone.app.record.getSpaceElement('btnspace').appendChild(myIndexButton);
+  
 
   });
 
