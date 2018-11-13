@@ -5,7 +5,7 @@
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
     console.log(event);
-
+//12345600円monthly
      // 任意のスペースフィールドにボタンを設置　(੭ु´･ω･`)੭ु⁾⁾
         var Button = document.createElement('button');
         Button.id = 'my_space_field_button';
@@ -27,7 +27,7 @@
          // すでに担当者になっているメンバーを追加する
              for (var i = 0; i < member.length; i++) {
                  objParam['record']['仮原稿送付担当者_進捗管理']['value'][i] = {};
-                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][i]['code'] = {member[i]['code'];};
+                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][i]['code'] = {member[i]['code']};
              }
 
              //ログインユーザを追加する
