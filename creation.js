@@ -256,5 +256,4 @@
             window.alert('スペースフィールド');
         }
         kintone.app.record.getSpaceElement('my_space_field').appendChild(mySpaceFieldButton);
-    });
 })();
