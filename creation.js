@@ -46,13 +46,7 @@
      });
    }
     Button.addEventListener('click', addMemberMine);
- });
-  
 
-        
-    
-    
-    
     //詳細画面「レコードを再利用する」を非表示
     document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
 
