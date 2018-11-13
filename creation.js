@@ -5,7 +5,6 @@
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
     console.log(event);
-//12345600円monthly
      // 任意のスペースフィールドにボタンを設置　(੭ु´･ω･`)੭ु⁾⁾
         var Button = document.createElement('button');
         Button.id = 'my_space_field_button';
@@ -14,7 +13,7 @@
         kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
 
       　 //ログインユーザの情報を取得
-        function addMemberMine() {
+       function addMemberMine() {
          var loginuser = kintone.getLoginUser();
          var member = event['record']['仮原稿送付担当者_進捗管理']['value'];
          var objParam = {};
@@ -25,14 +24,17 @@
          objParam['record']['仮原稿送付担当者_進捗管理']['value'] = [];
  
          // すでに担当者になっているメンバーを追加する
-             for (var i = 0; i < member.length; i++) {
-                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][i] = {};
-                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][i]['code'] = {member[i]['code']};
-             }
+                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][0] = {};
+                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][0]['code'] = {};
+                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][0]['code'] = member[0]['code'];
 
              //ログインユーザを追加する
              objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length] = {};
-             objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length]['code'] = {loginuser.code};        
+             objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length]['code'] = {};
+             objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length]['code'] = loginuser.code;
+
+          console.log('objParamの中身：',objParam);
+          
           
           // レコードを更新する
          kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
@@ -40,7 +42,6 @@
              location.reload(true);
          });
         }
-       Button.addEventListener('click', addMemberMine);
 
         
     
