@@ -37,13 +37,14 @@
     }
     
    //担当者に自分を選択するボタン(´Д⊂ヽわかめ
-     member = record.仮原稿送付担当者_進捗管理.value;
+    btnspace.innerHTML = 'なんで表示されないんだよおおおおおお！'
+     /*member = record.仮原稿送付担当者_進捗管理.value;
       //ボタンを作成
       var btn = document.createElement('button');
       btn.id = 'btnAddMine'; 
       btn.innerHTML = ' 担当者に自分を追加';
       btn.style.marginTop = '30px';
-      kintone.app.record.getSpaceElement('btnspace').appendChild(btn);
+      kintone.app.record.getSpaceElement('btnspace').appendChild(btn);*/
       //btn.addEventListener('click', addMemberMine);
 
 
