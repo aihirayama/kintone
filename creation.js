@@ -16,7 +16,7 @@
       objParam.app = kintone.app.getId();       // アプリ番号
       objParam.id = kintone.app.record.getId(); // レコード番号
       objParam.record = {};
-      objParam.record.fieldcode = {};
+      objParam.record[fieldcode] = {};
       objParam.record[fieldcode].value = [];
       // すでに担当者になっているメンバーを追加する
       for (var i = 0; i < member.length; i++) {
