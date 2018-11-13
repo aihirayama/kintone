@@ -36,7 +36,7 @@
     Button.innerHTML = '担当者に自分を追加';
     Button.style.marginTop = '30px';
     kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
-    Button.addEventListener('click', addMemberMine('仮原稿送付担当者_進捗管理');
+    Button.addEventListener('click', addMemberMine('仮原稿送付担当者_進捗管理'));
 
     //詳細画面「レコードを再利用する」を非表示
     document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
