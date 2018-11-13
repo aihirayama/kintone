@@ -20,10 +20,10 @@
          objParam['app'] = kintone.app.getId();       // アプリ番号
          objParam['record'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理'] = {};
-         objParam['record']['仮原稿送付担当者_進捗管理']['value'] = [];
-        // objParam['record']['仮原稿送付担当者_進捗管理']['value'] = {};
-         objParam['record']['仮原稿送付担当者_進捗管理']['value']['code'] = loginuser.code;
-
+         objParam['record']['仮原稿送付担当者_進捗管理']['value'] = [{            
+                "code": loginuser.code,
+                "name": loginuser.name        
+              }];
           // レコードを更新する
          kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
          // 成功時は画面をリロード
