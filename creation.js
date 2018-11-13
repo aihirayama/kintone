@@ -1,17 +1,27 @@
 (function() {
   "use strict";
-  //
 
   // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
-  kintone.events.on('app.record.detail.show',function(event){
-    //var record = event.record
+  kintone.events.on('app.record.detail.show', function(event) {
+    var record = event.record
     console.log(event);
 
+     // 任意のスペースフィールドにボタンを設置　(੭ु´･ω･`)੭ु⁾⁾
+        var Button = document.createElement('button');
+        Button.id = 'my_space_field_button';
+        Button.innerHTML = 'スペースボタン';
+        Button.onclick = function () {
+            window.alert('スペースフィールド');
+        }
+        kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
+    
+    
+    
     //詳細画面「レコードを再利用する」を非表示
     document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
 
     //fax受信画面のリンク作成   
-    var faxnumber = event.record.申込書FAXID.value;
+    var faxnumber = record.申込書FAXID.value;
     if (!faxnumber) {
       return;
     } else {
@@ -24,7 +34,7 @@
     }
 
     //顧客管理画面のリンク作成
-    var clientId = event.record.顧客ID.value;
+    var clientId = record.顧客ID.value;
     if (!clientId) {
       return;
     } else {
@@ -36,14 +46,7 @@
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
     }
     
-       // 任意のスペースフィールドにボタンを設置　(੭ु´･ω･`)੭ु⁾⁾
-        var Button = document.createElement('button');
-        Button.id = 'my_space_field_button';
-        Button.innerHTML = 'スペースボタン';
-        Button.onclick = function () {
-            window.alert('スペースフィールド');
-        }
-        kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
+      
 
 
   });
