@@ -27,17 +27,12 @@
          // すでに担当者になっているメンバーを追加する
              for (var i = 0; i < member.length; i++) {
                  objParam['record']['仮原稿送付担当者_進捗管理']['value'][i] = {};
-                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][i]['code'] = {};
-                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][i]['code'] = member[i]['code'];
+                 objParam['record']['仮原稿送付担当者_進捗管理']['value'][i]['code'] = {member[i]['code'];};
              }
 
              //ログインユーザを追加する
              objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length] = {};
-             objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length]['code'] = {};
-             objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length]['code'] = loginuser.code;
-
-          console.log('objParamの中身：',objParam);
-          
+             objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length]['code'] = {loginuser.code};        
           
           // レコードを更新する
          kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
