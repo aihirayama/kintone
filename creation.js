@@ -23,7 +23,8 @@
         objParam.member[i] = {'code': member[i]['code']};
       }
       //ログインユーザを追加する
-      objParam.member[member.length] = {'code': loginuser.code};
+      var a = member.length
+      objParam.member[a] = {'code': loginuser.code};
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
         location.reload(true);// 成功時は画面をリロード
