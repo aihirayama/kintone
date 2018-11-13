@@ -4,6 +4,7 @@
 
   // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show',function(event){
+    /*var record = event.record
     console.log(event);
 
     //詳細画面「レコードを再利用する」を非表示
@@ -33,7 +34,7 @@
       //clienttmpA.style.fontSize = '3px';
       clienttmpA.target = '_blank';
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
-    }
+    }*/
     
        // 任意のスペースフィールドにボタンを設置　(੭ु´･ω･`)੭ु⁾⁾
         var Button = document.createElement('button');
