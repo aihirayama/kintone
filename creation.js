@@ -21,7 +21,7 @@
          objParam['record'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理']['value'] = [];
-         objParam['record']['仮原稿送付担当者_進捗管理']['value'] = {};
+        // objParam['record']['仮原稿送付担当者_進捗管理']['value'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理']['value']['code'] = loginuser.code;
 
           // レコードを更新する
