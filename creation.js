@@ -4,7 +4,7 @@
 
   // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show',function(event){
-    var record = event.record
+    //var record = event.record
     console.log(event);
 
     //詳細画面「レコードを再利用する」を非表示
