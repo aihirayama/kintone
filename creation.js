@@ -19,6 +19,7 @@
          var member = event['record']['仮原稿送付担当者_進捗管理']['value'];
          var objParam = {};
          objParam['app'] = kintone.app.getId();       // アプリ番号
+         objParam['id'] = kintone.app.record.getId(); // レコード番号
          objParam['record'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理']['value'] = [];
