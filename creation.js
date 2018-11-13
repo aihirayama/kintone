@@ -9,11 +9,27 @@
      // 任意のスペースフィールドにボタンを設置　(੭ु´･ω･`)੭ु⁾⁾
         var Button = document.createElement('button');
         Button.id = 'my_space_field_button';
-        Button.innerHTML = 'スペースボタン';
+        Button.innerHTML = '担当者に自分を追加';
+        Button.style.marginTop = '30px';
         Button.onclick = function () {
-            window.alert('スペースフィールド');
+             //ログインユーザの情報を取得
+         var loginuser = kintone.getLoginUser();
+         var objParam = {};
+         objParam['app'] = kintone.app.getId();       // アプリ番号
+         objParam['id'] = kintone.app.record.getId(); // レコード番号
+         objParam['record'] = {};
+         objParam['record']['member'] = {};
+         objParam['record']['member']['value'] = record.仮原稿送付担当者_進捗管理.value;
+        console.log('objParamの中身:',objParam);
+
+          // レコードを更新する
+         kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
+         // 成功時は画面をリロード
+             location.reload(true);
+         });
         }
         kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
+        
     
     
     
