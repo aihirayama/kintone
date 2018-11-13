@@ -4,14 +4,14 @@
 
   // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show',function(event){
-    /*var record = event.record
+    var record = event.record
     console.log(event);
 
     //詳細画面「レコードを再利用する」を非表示
     document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
 
     //fax受信画面のリンク作成   
-    var faxnumber = record.申込書FAXID.value;
+    var faxnumber = event.record.申込書FAXID.value;
     if (!faxnumber) {
       return;
     } else {
@@ -24,7 +24,7 @@
     }
 
     //顧客管理画面のリンク作成
-    var clientId = record.顧客ID.value;
+    var clientId = event.record.顧客ID.value;
     if (!clientId) {
       return;
     } else {
@@ -34,7 +34,7 @@
       //clienttmpA.style.fontSize = '3px';
       clienttmpA.target = '_blank';
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
-    }*/
+    }
     
        // 任意のスペースフィールドにボタンを設置　(੭ु´･ω･`)੭ु⁾⁾
         var Button = document.createElement('button');
