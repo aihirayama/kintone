@@ -5,7 +5,6 @@
   // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show',function(event){
     console.log(event);
-    var record = event.record;
 
     //詳細画面「レコードを再利用する」を非表示
     document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
@@ -36,14 +35,14 @@
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
     }
     
-       // 任意のスペースフィールドにボタンを設置
-        var mySpaceFieldButton = document.createElement('button');
-        mySpaceFieldButton.id = 'my_space_field_button';
-        mySpaceFieldButton.innerHTML = 'スペースボタン';
-        mySpaceFieldButton.onclick = function () {
+       // 任意のスペースフィールドにボタンを設置　(੭ु´･ω･`)੭ु⁾⁾
+        var Button = document.createElement('button');
+        Button.id = 'my_space_field_button';
+        Button.innerHTML = 'スペースボタン';
+        Button.onclick = function () {
             window.alert('スペースフィールド');
         }
-        kintone.app.record.getSpaceElement('my_space_field').appendChild(mySpaceFieldButton);
+        kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
 
 
   });
