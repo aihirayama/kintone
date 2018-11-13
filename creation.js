@@ -35,6 +35,38 @@
       clienttmpA.target = '_blank';
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
     }
+    
+   //担当者に自分を選択するボタン(´Д⊂ヽわかめ
+     member = record.仮原稿送付担当者_進捗管理.value;
+     var se = kintone.app.record.getSpaceElement('btnspace');
+      //ボタンを作成
+      var btn = document.createElement('button');
+      btn.appendChild(document.createTextNode(' 担当者に自分を追加 '));
+      btn.id = 'btnAddMine'; 
+      btn.name = 'btnAddMine';
+      se.appendChild(btn);
+      btn.style.marginTop = '30px';
+      btn.addEventListener('click', addMemberMine);
+    
+      function addMemberMine() {
+
+         //ログインユーザの情報を取得
+         var loginuser = kintone.getLoginUser();
+
+         var objParam = {};
+         objParam['app'] = kintone.app.getId();       // アプリ番号
+         objParam['id'] = kintone.app.record.getId(); // レコード番号
+         objParam['record'] = {};
+         objParam['record']['member'] = {};
+         objParam['record']['member']['value'] = record.仮原稿送付担当者_進捗管理.value;
+        console.log('objParamの中身:',objParam);
+
+          // レコードを更新する
+         kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
+         // 成功時は画面をリロード
+             location.reload(true);
+         });
+       };
 
 
   });
@@ -165,7 +197,6 @@
     if(record.原稿ありなし選択.value.indexOf('原稿あり') >= 0) {
       for(var i = 0; i < jobofferTable.length; i++) {   
         var jobofferTable2 = jobofferTable[i].value.依頼ステータス_求人.value;
-
         jobofferStatsCounter[0] += jobofferTable2.indexOf('新規作成(施設登録あり)') + 1 ;
         jobofferStatsCounter[0] += jobofferTable2.indexOf('追加掲載(施設登録なし)') + 1;
         jobofferStatsCounter[1] += jobofferTable2.indexOf('既存修正') + 1;
