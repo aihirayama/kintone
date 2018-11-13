@@ -10,7 +10,7 @@
     //ログインユーザの情報を取得
     function addMemberMine(fieldcode) {
       var loginuser = kintone.getLoginUser();
-      var  member = record[fieldcode].value;
+      var member = record[fieldcode].value;
       console.log('member:',member);
       //ログインユーザの情報を取得
       var objParam = {};
