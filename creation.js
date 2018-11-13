@@ -11,6 +11,7 @@
     function addMemberMine(fieldcode) {
       var loginuser = kintone.getLoginUser();
       var  member = record[fieldcode].value;
+      console.log('member:',member);
       //ログインユーザの情報を取得
       var objParam = {};
       objParam.app = kintone.app.getId();       // アプリ番号
@@ -23,8 +24,9 @@
         objParam.member[i] = {'code': member[i]['code']};
       }
       //ログインユーザを追加する
-      var a = member.length
-      objParam.member[a] = {'code': loginuser.code};
+      console.log('memberのレングス',member.length);
+      console.log('code: loginuser.code','code': loginuser.code)
+      objParam.member[member.length] = {'code': loginuser.code};
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
         location.reload(true);// 成功時は画面をリロード
