@@ -38,21 +38,19 @@
     
    //担当者に自分を選択するボタン(´Д⊂ヽわかめ
      member = record.仮原稿送付担当者_進捗管理.value;
-     var se = kintone.app.record.getSpaceElement('btnspace');
       //ボタンを作成
       var btn = document.createElement('button');
-      btn.appendChild(document.createTextNode(' 担当者に自分を追加 '));
-      btn.id = 'btnAddMine'; 
-      btn.name = 'btnAddMine';
-      se.appendChild(btn);
+      btn.innerHTML = ' 担当者に自分を追加';
       btn.style.marginTop = '30px';
+      //kintone.app.record.getSpaceElement('btnspace').appendChild(btn);
       btn.addEventListener('click', addMemberMine);
-    
+
+
+    /*
       function addMemberMine() {
 
          //ログインユーザの情報を取得
          var loginuser = kintone.getLoginUser();
-
          var objParam = {};
          objParam['app'] = kintone.app.getId();       // アプリ番号
          objParam['id'] = kintone.app.record.getId(); // レコード番号
@@ -66,7 +64,7 @@
          // 成功時は画面をリロード
              location.reload(true);
          });
-       };
+       };*/
 
 
   });
