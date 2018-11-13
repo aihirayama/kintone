@@ -15,12 +15,13 @@
 
       　 //ログインユーザの情報を取得
         function addMemberMine() {
-         //var loginuser = kintone.getLoginUser();
+         var loginuser = kintone.getLoginUser();
          var objParam = {};
          objParam['app'] = kintone.app.getId();       // アプリ番号
          objParam['record'] = {};
          objParam['record']['仮原稿送付担当者_進捗管理'] = {};
-         objParam['record']['仮原稿送付担当者_進捗管理']['value'] = [kintone.getLoginUser().code];
+         objParam['record']['member']['value'] = [];
+         objParam['record']['仮原稿送付担当者_進捗管理']['value'] = loginuser.code;
 
           // レコードを更新する
          kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
