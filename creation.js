@@ -17,7 +17,7 @@
 
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
-      var  member = ['record']['仮原稿送付担当者_進捗管理']['value'];
+      var  member = record.仮原稿送付担当者_進捗管理.value;
 
       var objParam = {};
       objParam['app'] = kintone.app.getId();       // アプリ番号
