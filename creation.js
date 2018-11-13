@@ -25,7 +25,7 @@
       }
       //ログインユーザを追加する
       console.log('memberのレングス',member.length);
-      console.log('code: loginuser.code','code': loginuser.code)
+      console.log('loginuser.code',loginuser.code)
       objParam.member[member.length] = {'code': loginuser.code};
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
