@@ -12,7 +12,7 @@
 
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
-      var  member = event['record'][fieldcode]['value'];
+      var  member = event['record']['仮原稿送付担当者_進捗管理']['value'];
 
 
       var objParam = {};
