@@ -12,14 +12,13 @@
     Button.style.marginTop = '30px';
     kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
 
-  function addMemberMine(fieldcode) {
+  　function addMemberMine(fieldcode) {
 
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
       var  member = record[fieldcode].value;
 
-
-      var objParam = {};
+     var objParam = {};
       objParam['app'] = kintone.app.getId();       // アプリ番号
       objParam['id'] = kintone.app.record.getId(); // レコード番号
       objParam['record'] = {};
@@ -39,6 +38,8 @@
         location.reload(true);// 成功時は画面をリロード
       });
     }
+    Button.addEventListener('click', addMemberMine);
+
 
     //詳細画面「レコードを再利用する」を非表示
     document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
