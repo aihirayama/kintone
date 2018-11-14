@@ -37,7 +37,8 @@
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
         // 成功時は画面をリロード
-        location.reload(true);
+        alert('更新が完了しました!');
+        //location.reload(true);
       });
     }
     Button.onclick = addMemberMine('仮原稿送付担当者_進捗管理');
