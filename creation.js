@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //ねこさんにゃーにゃー🐈
+  //無限ループつらい
 
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -14,7 +14,7 @@
     kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
 
     //ログインユーザの情報を取得
-    function addMemberMine(fieldcodename) {
+   /* function addMemberMine(fieldcodename) {
 
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
@@ -46,7 +46,7 @@
         location.reload(true);
       });
     }
-    Button.addEventListener('click', addMemberMine('仮原稿送付担当者_進捗管理'));
+    Button.addEventListener('click', addMemberMine('仮原稿送付担当者_進捗管理'));*/
 
 
     //詳細画面「レコードを再利用する」を非表示
