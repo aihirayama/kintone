@@ -110,7 +110,7 @@
 
     //テーブルのありなし選択で「なし」が選択されていたらテーブルを非表示にする。
     var items = [
-      '求人情報テーブル',
+      '施設情報テーブル',
       '求人作成件数',
       '求人変更件数',
       '非掲載化・削除求人数',
@@ -143,8 +143,11 @@
 
     //施設情報テーブル
     items2.forEach(function(item) {
-      kintone.app.record.setFieldShown(item, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
+      kintone.app.record.setFieldShown('その他依頼内容', record.他依頼内容ありなし選択.value.indexOf('施設登録あり') >= 0); 
     });
+    
+    //その他依頼内容
+    kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('他依頼内容あり') >= 0);  
 
 
     //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
