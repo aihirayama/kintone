@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //happy~happy~
+  //let's happy hour
   
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -143,11 +143,11 @@
 
     //施設情報テーブル
     items2.forEach(function(item) {
-      kintone.app.record.setFieldShown('その他依頼内容', record.他依頼内容ありなし選択.value.indexOf('施設登録あり') >= 0); 
+      kintone.app.record.setFieldShown(item, record.他依頼内容ありなし選択.value.indexOf('施設登録あり') >= 0); 
     });
     
     //その他依頼内容
-    kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('他依頼内容あり') >= 0);  
+    kintone.app.record.setFieldShown('その他依頼内容', record.原稿ありなし選択.value.indexOf('他依頼内容あり') >= 0);  
 
 
     //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
