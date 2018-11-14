@@ -1,19 +1,13 @@
 (function() {
   "use strict";
-  //itaionakaitaitsurai
+  //
   
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
     console.log(event);
-    // 任意のスペースフィールドにボタンを設置　(??´･ω･`)????
-    var Button = document.createElement('button');
-    Button.id = 'my_space_field_button';
-    Button.innerHTML = '担当者に自分を追加';
-    Button.style.marginTop = '30px';
-    kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
     
-    //ログインユーザの情報を取得
+    //担当者名
     function addMemberMine(x) {
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
@@ -40,10 +34,16 @@
         location.reload(true);
       });
     }
-   Button.onclick = function() {
+   
+    // '仮原稿送付担当者_進捗管理'を更新するボタンを設置　
+    var Button = document.createElement('button');
+    Button.id = 'my_space_field_button';
+    Button.innerHTML = '担当者に自分を追加';
+    Button.style.marginTop = '30px';
+    kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
+    Button.onclick = function() {
         addMemberMine('仮原稿送付担当者_進捗管理');
    }
-
 
     //詳細画面「レコードを再利用する」を非表示
     document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
