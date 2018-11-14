@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //let's happy hour
+  //
   
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -111,15 +111,6 @@
     //テーブルのありなし選択で「なし」が選択されていたらテーブルを非表示にする。
     var items = [
       '施設情報テーブル',
-      '求人作成件数',
-      '求人変更件数',
-      '非掲載化・削除求人数',
-      '登録のみ_合計',
-      '登録・掲載_合計'
-    ];
-
-    var items2 = [
-      '施設情報テーブル',
       '施設作成件数',
       '施設変更件数',
       '削除件数',
@@ -127,8 +118,16 @@
       '登録・掲載_合計'
     ];
 
+    var items2 = [
+      '求人情報テーブル',
+      '求人作成件数',
+      '求人変更件数',
+      '非掲載化・削除求人数',
+      '登録のみ_合計',
+      '登録・掲載_合計'
+    ];
+    
     var industryList = ['病院','診療所','歯科','代替','介護福祉','薬局','訪問看護','保育','その他'];
-
     industryList.forEach(function(item) {
       items.push(item + '_登録のみ',
                  item + '_登録・掲載');
@@ -136,18 +135,19 @@
                   item + '_登録・掲載');
     });
 
-    //原稿情報テーブル
+    
+    //施設情報テーブル
     items.forEach(function(item) {
+      kintone.app.record.setFieldShown(item, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
+    });    
+    
+    //原稿情報テーブル
+    items2.forEach(function(item) {
       kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
     });    
-
-    //施設情報テーブル
-    items2.forEach(function(item) {
-      kintone.app.record.setFieldShown(item, record.他依頼内容ありなし選択.value.indexOf('施設登録あり') >= 0); 
-    });
-    
+ 
     //その他依頼内容
-    kintone.app.record.setFieldShown('その他依頼内容', record.原稿ありなし選択.value.indexOf('他依頼内容あり') >= 0);  
+    kintone.app.record.setFieldShown('その他依頼内容', record.他依頼内容ありなし選択.value.indexOf('他依頼内容あり') >= 0);  
 
 
     //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
@@ -211,7 +211,6 @@
     }
 
     //求人原稿の「求人作成件数」、「求人変更件数」、「非掲載化・削除求人数」を数える。
-
     var jobofferStatsNameList = ['求人作成件数','求人変更件数','非掲載化・削除求人数'];
     var jobofferStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
     var jobofferTable = record.求人情報テーブル.value;
