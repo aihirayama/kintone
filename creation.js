@@ -7,8 +7,13 @@
     var record = event.record
     console.log(event);
     
-    //担当者名
-    function addMemberMine(x) {
+    //担当者名を更新する関数
+    function addMemberMine(x,xx) {
+      
+      //今日の日付を取得
+      var dt = new Date();
+      var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
+      
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
       var  member = record[x].value;
@@ -17,6 +22,10 @@
       objParam.app = kintone.app.getId();       // アプリ番号
       objParam.id = kintone.app.record.getId(); // レコード番号
       objParam.record = {};
+      //仮原稿送付日の更新
+      objParam.record[xx] = {'value': date};
+      
+      //担当者を更新
       objParam.record[x] = {};
       objParam.record[x].value = [];
 
@@ -24,14 +33,11 @@
       for (var i = 0; i < member.length; i++) {
        objParam.record[x].value[i] = {'code': member[i].code};
       }
-
       //ログインユーザを追加する
       objParam.record[x].value[member.length] = {'code': loginuser.code};
-
-      // レコードを更新する
-      kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
-        // 成功時は画面をリロード
-        location.reload(true);
+      // レコードを更新する  
+      kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {     
+        location.reload(true);// 成功時は画面をリロード
       });
     }
    
@@ -42,7 +48,7 @@
     Button.style.marginTop = '30px';
     kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
     Button.onclick = function() {
-        addMemberMine('仮原稿送付担当者_進捗管理');
+        addMemberMine('仮原稿送付担当者_進捗管理','仮原稿送付日_進捗管理');
    }
 
     //詳細画面「レコードを再利用する」を非表示
@@ -73,10 +79,6 @@
       clienttmpA.target = '_blank';
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
     }
-    
-      
-
-
   });
 
   //レコード編集画面でのリアルタイム更新-----------------------------------------------------------------------------------
