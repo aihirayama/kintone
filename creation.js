@@ -38,7 +38,7 @@
         location.reload(true);// 成功時は画面をリロード
       });
     }
-    Button.addEventListener('click', addMemberMine);
+    Button.addEventListener('click', addMemberMine('仮原稿送付担当者_進捗管理'));
 
 
     //詳細画面「レコードを再利用する」を非表示
