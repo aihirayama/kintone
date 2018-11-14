@@ -1,7 +1,17 @@
 (function() {
   "use strict";
 
-  // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
+// レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
+  kintone.events.on('app.record.detail.show', function(event) {
+    var record = event.record
+    console.log(event);
+    // 任意のスペースフィールドにボタンを設置　(??´･ω･`)????
+    var Button = document.createElement('button');
+    Button.id = 'my_space_field_button';
+    Button.innerHTML = '担当者に自分を追加';
+    Button.style.marginTop = '30px';
+    kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
+
   function addMemberMine(fieldcode) {
 
       //ログインユーザの情報を取得
