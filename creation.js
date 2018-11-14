@@ -32,6 +32,8 @@
 
       //ログインユーザを追加する
       objParam.member[member.length] = {'code':loginuser.code};
+     
+     console.log('objParamの中',objParam);
       
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
