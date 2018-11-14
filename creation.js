@@ -99,6 +99,8 @@
     'app.record.create.change.原稿ありなし選択',
     'app.record.edit.change.施設登録ありなし選択',
     'app.record.create.change.施設登ありなし選択',
+    'app.record.edit.change.他依頼内容ありなし選択',
+    'app.record.create.change.他依頼内容ありなし選択',
     'app.record.edit.change.顧客起因不備',
     'app.record.create.change.顧客起因不備',
     'app.record.edit.change.社内起因不備',
@@ -147,8 +149,6 @@
  
     //その他依頼内容
     kintone.app.record.setFieldShown('その他依頼内容', record.他依頼内容ありなし選択.value.indexOf('他依頼内容あり') >= 0); 
-    console.log('他依頼内容ありなし判定：',record.他依頼内容ありなし選択.value.indexOf('他依頼内容あり') >= 0)
-
 
     //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
     var dt = new Date();
