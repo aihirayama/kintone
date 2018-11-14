@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //itaiitaiitai
+  //wakannai
   
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -41,7 +41,9 @@
         //location.reload(true);
       });
     }
-   // Button.onclick = addMemberMine('仮原稿送付担当者_進捗管理');
+   Button.onclick = function() {
+        addMemberMine('仮原稿送付担当者_進捗管理');
+   }
 
 
     //詳細画面「レコードを再利用する」を非表示
