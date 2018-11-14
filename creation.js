@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //fukutsuutsurai
+  //itaiitaiitai
   
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -12,7 +12,7 @@
     Button.innerHTML = '担当者に自分を追加';
     Button.style.marginTop = '30px';
     kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
-
+    
     //ログインユーザの情報を取得
     function addMemberMine(x) {
       //ログインユーザの情報を取得
@@ -41,7 +41,7 @@
         //location.reload(true);
       });
     }
-    Button.onclick = addMemberMine('仮原稿送付担当者_進捗管理');
+   // Button.onclick = addMemberMine('仮原稿送付担当者_進捗管理');
 
 
     //詳細画面「レコードを再利用する」を非表示
