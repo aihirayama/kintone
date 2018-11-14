@@ -134,7 +134,6 @@
       items2.push(item + '_掲載のみ',
                   item + '_登録・掲載');
     });
-
     
     //施設情報テーブル
     items.forEach(function(item) {
@@ -147,7 +146,8 @@
     });    
  
     //その他依頼内容
-    kintone.app.record.setFieldShown('その他依頼内容', record.他依頼内容ありなし選択.value.indexOf('他依頼内容あり') >= 0);  
+    kintone.app.record.setFieldShown('その他依頼内容', record.他依頼内容ありなし選択.value.indexOf('他依頼内容あり') >= 0); 
+    console.log('他依頼内容ありなし判定：',record.他依頼内容ありなし選択.value.indexOf('他依頼内容あり') >= 0)
 
 
     //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
