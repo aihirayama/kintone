@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //うさぎさんぴょんぴょん🐇🌙
+  //ねこさんにゃーにゃー🐈
 
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -14,31 +14,31 @@
     kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
 
     //ログインユーザの情報を取得
-    function addMemberMine() {
+    function addMemberMine(fieldcode) {
 
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
-      var  member = event['record']['仮原稿送付担当者_進捗管理']['value'];
+      var  member = event['record'][fieldcode]['value'];
 
 
       var objParam = {};
       objParam['app'] = kintone.app.getId();       // アプリ番号
       objParam['id'] = kintone.app.record.getId(); // レコード番号
       objParam['record'] = {};
-      objParam['record']['仮原稿送付担当者_進捗管理'] = {};
-      objParam['record']['仮原稿送付担当者_進捗管理']['value'] = [];
+      objParam['record'][fieldcode] = {};
+      objParam['record'][fieldcode]['value'] = [];
 
       // すでに担当者になっているメンバーを追加する
       for (var i = 0; i < member.length; i++) {
-        objParam['record']['仮原稿送付担当者_進捗管理']['value'][i] = {};
-        objParam['record']['仮原稿送付担当者_進捗管理']['value'][i]['code'] = {};
-        objParam['record']['仮原稿送付担当者_進捗管理']['value'][i]['code'] = member[i]['code'];
+        objParam['record'][fieldcode]['value'][i] = {};
+        objParam['record'][fieldcode]['value'][i]['code'] = {};
+        objParam['record'][fieldcode]['value'][i]['code'] = member[i]['code'];
       }
 
       //ログインユーザを追加する
-      objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length] = {};
-      objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length]['code'] = {};
-      objParam['record']['仮原稿送付担当者_進捗管理']['value'][member.length]['code'] = loginuser.code;
+      objParam['record'][fieldcode]['value'][member.length] = {};
+      objParam['record'][fieldcode]['value'][member.length]['code'] = {};
+      objParam['record'][fieldcode]['value'][member.length]['code'] = loginuser.code;
 
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
@@ -46,7 +46,7 @@
         location.reload(true);
       });
     }
-    Button.addEventListener('click', addMemberMine);
+    Button.addEventListener('click', addMemberMine('仮原稿送付担当者_進捗管理'));
 
 
     //詳細画面「レコードを再利用する」を非表示
