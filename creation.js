@@ -37,8 +37,7 @@
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
         // 成功時は画面をリロード
-        alert('更新が完了しました!');
-        //location.reload(true);
+        location.reload(true);
       });
     }
    Button.onclick = function() {
