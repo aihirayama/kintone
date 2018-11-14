@@ -14,31 +14,31 @@
     kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
 
     //ログインユーザの情報を取得
-    function addMemberMine(fieldcode) {
+    function addMemberMine(fieldcodename) {
 
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
-      var  member = event['record'][fieldcode]['value'];
+      var  member = event['record'][fieldcodename]['value'];
 
 
       var objParam = {};
       objParam['app'] = kintone.app.getId();       // アプリ番号
       objParam['id'] = kintone.app.record.getId(); // レコード番号
       objParam['record'] = {};
-      objParam['record'][fieldcode] = {};
-      objParam['record'][fieldcode]['value'] = [];
+      objParam['record'][fieldcodename] = {};
+      objParam['record'][fieldcodename]['value'] = [];
 
       // すでに担当者になっているメンバーを追加する
       for (var i = 0; i < member.length; i++) {
-        objParam['record'][fieldcode]['value'][i] = {};
-        objParam['record'][fieldcode]['value'][i]['code'] = {};
-        objParam['record'][fieldcode]['value'][i]['code'] = member[i]['code'];
+        objParam['record'][fieldcodename]['value'][i] = {};
+        objParam['record'][fieldcodename]['value'][i]['code'] = {};
+        objParam['record'][fieldcodename]['value'][i]['code'] = member[i]['code'];
       }
 
       //ログインユーザを追加する
-      objParam['record'][fieldcode]['value'][member.length] = {};
-      objParam['record'][fieldcode]['value'][member.length]['code'] = {};
-      objParam['record'][fieldcode]['value'][member.length]['code'] = loginuser.code;
+      objParam['record'][fieldcodename]['value'][member.length] = {};
+      objParam['record'][fieldcodename]['value'][member.length]['code'] = {};
+      objParam['record'][fieldcodename]['value'][member.length]['code'] = loginuser.code;
 
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
