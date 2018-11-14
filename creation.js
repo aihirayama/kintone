@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //tsuraishindoi
+  //onakaitai
   
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -15,11 +15,9 @@
 
     //ログインユーザの情報を取得
     function addMemberMine() {
-
       //ログインユーザの情報を取得
       var loginuser = kintone.getLoginUser();
-      var  member = event['record']['仮原稿送付担当者_進捗管理']['value'];
-
+      var  member = record.仮原稿送付担当者_進捗管理.value;
 
       var objParam = {};
       objParam.app = kintone.app.getId();       // アプリ番号
@@ -31,14 +29,10 @@
       // すでに担当者になっているメンバーを追加する
       for (var i = 0; i < member.length; i++) {
         objParam.record.仮原稿送付担当者_進捗管理.value[i] = {'code': member[i].code};
-      //  objParam.record.仮原稿送付担当者_進捗管理.value[i].code = {};
-      //  objParam.record.仮原稿送付担当者_進捗管理.value[i].code = member[i].code;
       }
 
       //ログインユーザを追加する
       objParam.record.仮原稿送付担当者_進捗管理.value[member.length] = {'code': loginuser.code};
-     // objParam.record.仮原稿送付担当者_進捗管理.value[member.length].code = {};
-     // objParam.record.仮原稿送付担当者_進捗管理.value[member.length].code = loginuser.code;
 
       // レコードを更新する
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {
