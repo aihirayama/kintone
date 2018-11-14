@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //tsuraishindoi
+  //happyhappyhappyhappy
   
 // レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -22,19 +22,19 @@
       objParam.app = kintone.app.getId();       // アプリ番号
       objParam.id = kintone.app.record.getId(); // レコード番号
       objParam.record = {};
+      
       //仮原稿送付日の更新
       objParam.record[xx] = {'value': date};
       
       //担当者を更新
       objParam.record[x] = {};
       objParam.record[x].value = [];
-
       // すでに担当者になっているメンバーを追加する
       for (var i = 0; i < member.length; i++) {
        objParam.record[x].value[i] = {'code': member[i].code};
       }
       //ログインユーザを追加する
-      objParam.record[x].value[member.length] = {'code': loginuser.code};
+      objParam.record[x].value[member.length] = {'code': loginuser.code};     
       // レコードを更新する  
       kintone.api('/k/v1/record', 'PUT', objParam, function(resp) {     
         location.reload(true);// 成功時は画面をリロード
@@ -43,13 +43,22 @@
    
     // '仮原稿送付担当者_進捗管理'を更新するボタンを設置　
     var Button = document.createElement('button');
-    Button.id = 'my_space_field_button';
     Button.innerHTML = '担当者に自分を追加';
     Button.style.marginTop = '30px';
-    kintone.app.record.getSpaceElement('my_space_field').appendChild(Button);
+    kintone.app.record.getSpaceElement('spacefield_soufu').appendChild(Button);
     Button.onclick = function() {
         addMemberMine('仮原稿送付担当者_進捗管理','仮原稿送付日_進捗管理');
    }
+    
+    // '仮原稿送付担当者_進捗管理'を更新するボタンを設置　
+    var Button2 = document.createElement('button');
+    Button2.innerHTML = '担当者に自分を追加';
+    Button2.style.marginTop = '30px';
+    kintone.app.record.getSpaceElement('spacefield_keisai').appendChild(Button2);
+    Button2.onclick = function() {
+        addMemberMine('掲載切替担当者','掲載切替日');
+   }
+    
 
     //詳細画面「レコードを再利用する」を非表示
     document.getElementsByClassName('gaia-argoui-app-menu-copy')[0].style.display = 'none';
