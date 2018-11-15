@@ -303,9 +303,7 @@
     }
     
     //検索用にレコードIDを取得する
-    var recordid = event.recordId;
-    console.log('recordid',recordid);
-    record.依頼番号_検索用.value = recordid;
+    record.依頼番号_検索用.value = event.recordId;
 
     return event;
 
