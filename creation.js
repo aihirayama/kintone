@@ -303,6 +303,7 @@
     }
     
 
+    record.依頼番号_検索用.value = event.recordId;
 
     return event;
 
@@ -330,13 +331,7 @@
     return event;
 
   });
-  
-  kintone.events.on('app.record.create.show', function (event) {
-    //検索用にレコードIDを取得する
-    record.依頼番号_検索用.value = event.recordId;
-        return event;   
-  });
-  
+ 
 })();
 
 
