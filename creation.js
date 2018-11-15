@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //333333333
+  //77777
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -172,9 +172,7 @@
   // レコードが保存された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
     var record = event.record; 
-    
-    //依頼番号検索用
-    record.依頼番号_検索用.value = event.recordId;
+
 
     //「ありなし選択」で「あり」の場合、必須入力箇所に何も入っていなければエラーを表示する。
     var tbr_f = record.施設情報テーブル.value
@@ -335,6 +333,11 @@
 
   });
  
+   kintone.events.on('app.record.create.submit.success', function (event){
+    //依頼番号検索用
+    record.依頼番号_検索用.value = event.recordId;
+   });
+
 })();
 
 
