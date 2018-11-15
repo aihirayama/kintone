@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //ururururururururu
+  //neko
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -193,7 +193,7 @@
 
     for(var i = 0; i < tbr_f.length; i++) {
       if(record.施設登録ありなし選択.value === '施設登録あり') {
-        for(var j = 0; j < errorlist_f.length: j++) {
+        for(var j = 0; j < errorlist_f.length j++) {
           if(tbr_f[i].value[errorlist_f[j]].value){
               tbr_f[i].value[errorlist_f[j]].error = 'なんで入力しないの？やる気あんのかよ！！！！'
              }
