@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //222
+  //33
   
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
@@ -336,12 +336,13 @@
   });
   
      kintone.events.on('app.record.create.submit.success', function (event) {
-       var a = kintone.app.record.getId();
-      console.log('保存後：',a);
-       event.record.依頼番号_検索用.value = a;
+       console.log('保存後の動作');
+     //  var a = kintone.app.record.getId();
+     // console.log('保存後：',a);
+     //  event.record.依頼番号_検索用.value = a;
        
       
-        return event;
+       // return event;
     });
 
 })();
