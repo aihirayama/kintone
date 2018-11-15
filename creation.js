@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //88888888888888888888888888888
+  //3333333333333333333
   
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
@@ -334,18 +334,10 @@
 
   });
   
-     kintone.events.on([
-        'app.record.index.edit.submit',
-        'app.record.create.submit',
-        'app.record.edit.submit',
-        'mobile.app.record.create.submit',
-        'mobile.app.record.edit.submit'
-    ], function (event) {
+     kintone.events.on('app.record.edit.show', function (event) {
       
-       event.record.依頼番号_検索用.value = 'test';
-       console.log('event.record.依頼番号_検索用.value',event.record.依頼番号_検索用.value);
-       console.log('event.record.レコード番号.value',event.record.レコード番号.value)
-       
+       event.record.依頼番号_検索用.value = event.record.レコード番号.value;
+      
         return event;
     });
 
