@@ -303,7 +303,8 @@
     }
     
     //検索用にレコードIDを取得する
-    record.依頼番号_検索用.value = event.recordId;
+    //record.依頼番号_検索用.value = event.recordId;
+    record.依頼番号_検索用.value = 'test';
 
     return event;
 
