@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //ｑｑｑｑｑｑ
+  //88888888888888888888888888888
   
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
@@ -342,7 +342,10 @@
         'mobile.app.record.edit.submit'
     ], function (event) {
       
-       event.record.依頼番号_検索用.value = event.record.レコード番号.value;
+       event.record.依頼番号_検索用.value = 'test';
+       console.log('event.record.依頼番号_検索用.value',event.record.依頼番号_検索用.value);
+       console.log('event.record.レコード番号.value',event.record.レコード番号.value)
+       
         return event;
     });
 
