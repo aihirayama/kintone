@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //88899999
+  //333333333
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -172,6 +172,9 @@
   // レコードが保存された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event){
     var record = event.record; 
+    
+    //依頼番号検索用
+    record.依頼番号_検索用.value = event.recordId;
 
     //「ありなし選択」で「あり」の場合、必須入力箇所に何も入っていなければエラーを表示する。
     var tbr_f = record.施設情報テーブル.value
@@ -311,8 +314,6 @@
   kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
     var record = event.record;
     
-    //依頼番号検索用
-    record.依頼番号_検索用.value = event.recordId;
 
     // フィールドの入力を制限
     var fieldName = ['施設作成件数','施設変更件数','削除件数','求人作成件数','求人変更件数','非掲載化・削除求人数','依頼番号_検索用'];
