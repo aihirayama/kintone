@@ -1,11 +1,13 @@
 (function() {
   "use strict";
-  //555555
+  //9999999
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
-    console.log(event);    
+    console.log(event);
+    record.依頼番号_検索用.value = event.recordId;
+
     
     //担当者名を更新する関数
     function addMemberMine(x,xx) {
@@ -87,10 +89,7 @@
       //clienttmpA.style.fontSize = '3px';
       clienttmpA.target = '_blank';
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
-    }
-    
-       record.依頼番号_検索用.value = event.recordId;
- 
+    } 
    
   });
 
