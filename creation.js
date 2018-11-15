@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //testtest
+  //oh no
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -303,7 +303,7 @@
     }
     
     //検索用にレコードIDを取得する
-    record.依頼番号_検索用.value = kintone.app.record.getId();
+    record.依頼番号_検索用.value = event.recordId;
     
 
     return event;
