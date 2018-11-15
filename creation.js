@@ -1,6 +1,7 @@
 (function() {
   "use strict";
-  //77777
+  //33333
+  
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -335,6 +336,7 @@
  
    kintone.events.on('app.record.create.submit.success', function (event){
     //依頼番号検索用
+    var record = event.record;
     record.依頼番号_検索用.value = event.recordId;
    });
 
