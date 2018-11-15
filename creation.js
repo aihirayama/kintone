@@ -1,15 +1,17 @@
 (function() {
   "use strict";
-  //hirunemohappy;
+  //drrr;
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
     console.log(event);
         //↓↓----------🐇テスト　テスト　テスト🐇---------------↓↓
-    
-    for(var i = 0; i < record.施設情報テーブル.value.length; i++) {
-        record.施設情報テーブル.value[i].value.依頼ステータス_施設.error= "ガシャーンDrrrr";
+    var tbr = record.施設情報テーブル.value
+    for(var i = 0; i < tbr.length; i++) {
+      if(tbr){
+        tbr[i].value.依頼ステータス_施設.error= "テスト　エラー";
+         }
     }
     
 
