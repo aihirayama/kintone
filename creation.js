@@ -7,6 +7,7 @@
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
     console.log(event);
+    console.log(kintone.app.record.getId());
     
     //担当者名を更新する関数
     function addMemberMine(x,xx) {
@@ -336,8 +337,9 @@
   
      kintone.events.on('app.record.create.submit.success', function (event) {
        var a = kintone.app.record.getId();
-      
+      console.log(a);
        event.record.依頼番号_検索用.value = a;
+       
       
         return event;
     });
