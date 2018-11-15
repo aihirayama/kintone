@@ -1,13 +1,11 @@
 (function() {
   "use strict";
-  //9999999
+  //88899999
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
     console.log(event);
-    record.依頼番号_検索用.value = event.recordId;
-
     
     //担当者名を更新する関数
     function addMemberMine(x,xx) {
@@ -312,6 +310,10 @@
   //レコード編集画面が表示された時のイベント&レコード追加画面が表示された時のイベント------------------------------------- 
   kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
     var record = event.record;
+    
+    //依頼番号検索用
+    record.依頼番号_検索用.value = event.recordId;
+
     // フィールドの入力を制限
     var fieldName = ['施設作成件数','施設変更件数','削除件数','求人作成件数','求人変更件数','非掲載化・削除求人数','依頼番号_検索用'];
     for (var i = 0; i < fieldName.length; i++ ) {
