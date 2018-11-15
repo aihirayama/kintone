@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //11111111111111111
+  //222
   
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
@@ -337,7 +337,7 @@
   
      kintone.events.on('app.record.create.submit.success', function (event) {
        var a = kintone.app.record.getId();
-      console.log(a);
+      console.log('保存後：',a);
        event.record.依頼番号_検索用.value = a;
        
       
