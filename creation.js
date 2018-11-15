@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //test4
+  //test5
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -206,7 +206,7 @@
     }
     
     if(ct){
-          event.error = 'エラーです！';
+          event.error = '未入力の必須項目があります。';
     }
     
     
@@ -239,10 +239,12 @@
     if(record.原稿ありなし選択.value.indexOf('原稿あり') >= 0) {
       for(var i = 0; i < jobofferTable.length; i++) {   
         var jobofferTable2 = jobofferTable[i].value.依頼ステータス_求人.value;
+        if(jobofferTable2) {
         jobofferStatsCounter[0] += jobofferTable2.indexOf('新規作成(施設登録あり)') + 1 ;
         jobofferStatsCounter[0] += jobofferTable2.indexOf('追加掲載(施設登録なし)') + 1;
         jobofferStatsCounter[1] += jobofferTable2.indexOf('既存修正') + 1;
         jobofferStatsCounter[2] += jobofferTable2.indexOf('応募受付終了処理・求人削除') + 1;
+        }
       }
     }
     
