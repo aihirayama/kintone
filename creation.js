@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //tes
+  //ttss
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
