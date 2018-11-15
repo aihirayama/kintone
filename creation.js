@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //vvvvv
+  //555555
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -88,6 +88,10 @@
       clienttmpA.target = '_blank';
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
     }
+    
+       record.依頼番号_検索用.value = event.recordId;
+ 
+   
   });
 
   //レコード編集画面でのリアルタイム更新-----------------------------------------------------------------------------------
@@ -302,9 +306,6 @@
       }        
     }
     
-
-    record.依頼番号_検索用.value = event.recordId;
-
     return event;
 
   });
