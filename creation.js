@@ -98,7 +98,7 @@
     'app.record.edit.change.原稿ありなし選択',
     'app.record.create.change.原稿ありなし選択',
     'app.record.edit.change.施設登録ありなし選択',
-    'app.record.create.change.施設登ありなし選択',
+    'app.record.create.change.施設登録ありなし選択',
     'app.record.edit.change.他依頼内容ありなし選択',
     'app.record.create.change.他依頼内容ありなし選択',
     'app.record.edit.change.顧客起因不備',
@@ -197,7 +197,7 @@
     for(var i = 0; i < tbr_f.length; i++) {
       if(record.施設登録ありなし選択.value === '施設登録あり') {
         for(var j = 0; j < errorlist_f.length; j++) {
-          if(!tbr_f[i].value[errorlist_f[j]].value){
+          if(!tbr_f[i].value[errorlist_f[j]].value) {
             tbr_f[i].value[errorlist_f[j]].error = '入力して下さい。';
             ct += 1
           }
@@ -208,7 +208,7 @@
     for(var i = 0; i < tbr_j.length; i++) {
       if(record.原稿ありなし選択.value === '原稿あり') {
         for(var j = 0; j < errorlist_j.length; j++) {
-          if(!tbr_j[i].value[errorlist_j[j]].value){
+          if(!tbr_j[i].value[errorlist_j[j]].value) {
             tbr_j[i].value[errorlist_j[j]].error = '入力して下さい。';
             ct += 1
           }
