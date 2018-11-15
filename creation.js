@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //sakusakuhakawaii
+  //test2
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -210,10 +210,12 @@
     if(record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0) {
       for(var i = 0; i < facilityTable.length; i++) {   
         var facilityTable2 = facilityTable[i].value.依頼ステータス_施設.value;
+        if(facilityTable2){
         facilityStatsCounter[0] += facilityTable2.indexOf('新規作成(掲載あり)') + 1; 
         facilityStatsCounter[0] += facilityTable2.indexOf('新規作成(掲載なし)') + 1;
         facilityStatsCounter[1] += facilityTable2.indexOf('変更') + 1;
-        facilityStatsCounter[2] += facilityTable2.indexOf('施設削除') + 1;
+        facilityStatsCounter[2] += facilityTable2.indexOf('施設削除') + 1;        
+        }
       }
     }
 
