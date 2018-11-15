@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //test3
+  //test4
   
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -191,17 +191,24 @@
       '裁量労働制',
       '試用期間'
     ]
+    
+    var ct = ""
 
     for(var i = 0; i < tbr_f.length; i++) {
       if(record.施設登録ありなし選択.value === '施設登録あり') {
         for(var j = 0; j < errorlist_f.length; j++) {
           if(!tbr_f[i].value[errorlist_f[j]].value){
             tbr_f[i].value[errorlist_f[j]].error = '入力して下さい。';
-            event.error('入力されていない項目があります。')
+            ct += 1
           }
         }
       }   
     }
+    
+    if(ct){
+          event.error = 'エラーです！';
+    }
+    
     
     //依頼内容の「施設作成件数」、「施設変更件数」、「施設削除件数」を数える。 
     var facilityStatsNameList = ['施設作成件数','施設変更件数','削除件数'];
