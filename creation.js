@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //gogo!
+  //low
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -17,7 +17,7 @@
         'app': kintone.app.getId,
         'id': kintone.app.record.getId() 
       }, function(resp) { 
-        location.reload(true);// 成功時は画面をリロード
+          record.依頼番号_検索用.value = kintone.app.record.getId() ;
       });
     //}    
     
