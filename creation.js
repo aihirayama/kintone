@@ -1,13 +1,22 @@
 (function() {
   "use strict";
-  //33
-  
-  
+  //sleep
+
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
     console.log(event);
-    console.log(kintone.app.record.getId());
+    record.依頼番号_検索用.value = kintone.app.record.getId();
+
+    if(!record.依頼番号_検索用.value) {
+      kintone.api('/k/v1/record', 
+                  'PUT', {
+        'app': kintone.app.getId,
+        'id': kintone.app.record.getId() 
+      }, function(resp) {     
+        location.reload(true);// 成功時は画面をリロード
+      });
+    }    
     
     //担当者名を更新する関数
     function addMemberMine(x,xx) {
@@ -334,13 +343,14 @@
     return event;
 
   });
-  
+  /*
      kintone.events.on('app.record.create.submit.success', function (event) {
        console.log('保存後の動作');
      //  var a = kintone.app.record.getId();
      // console.log('保存後：',a);
-     //  event.record.依頼番号_検索用.value = a;
-       
+     //  event.record.依頼番号_検索用.value = kintone.app.record.getId();
+       */
+  
       
        // return event;
     });
