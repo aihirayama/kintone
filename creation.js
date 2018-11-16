@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //cat
+  //値挿入てすとー
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -8,8 +8,8 @@
     console.log(event);
     console.log('getid:',kintone.app.record.getId())
     console.log('event.recordId:',event.recordId);
-    record.依頼番号_検索用.value = event.recordId;
-
+    record.依頼番号_検索用.value = record.レコード番号.value;
+/*
     //if(!record.依頼番号_検索用.value) {
       //console.log('true判定されました。');
       kintone.api('/k/v1/record', 
@@ -17,10 +17,10 @@
         'app': event.appId,
         'id': event.recordId 
       }, function(resp) { 
-          record.依頼番号_検索用.value = record.レコード番号.value ;
+          location.reload(true);
       });
     //}    
-    
+ */   
     //担当者名を更新する関数
     function addMemberMine(x,xx) {
       
