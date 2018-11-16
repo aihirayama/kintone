@@ -17,10 +17,9 @@
                     "value": record.レコード番号.value     
                       }     
                     }
-                  }
-                , function(resp) {     
-                    location.reload(true);// 成功時は画面をリロード
-                  }
+                  },　function(resp) {     
+                    　　location.reload(true);// 成功時は画面をリロード
+                    	}
       );
     }
       
@@ -347,9 +346,7 @@
     return event;
 
   });
-      
-       // return event;
-    });
+
 
 })();
 
