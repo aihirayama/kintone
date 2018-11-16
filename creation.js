@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //🐏💛
+  //🐏💛💑
   
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
@@ -328,7 +328,26 @@
     return event;
 
   });
+  
+///-------------test🐰↓↓↓↓↓↓
+//レコード一覧画面を保存する時のイベント
+  kintone.events.on('app.record.index.edit.submit', function (event){
+  
+  })
+  
+  //🐰🐰+++++++
+  (function() {
+    "use strict";
 
+    kintone.events.on('app.record.index.show', function(event) {
+            console.log(event);
+    
+    });
+})();
+  
+  
+ ///-------------test🐰↑↑↑↑↑↑
+    
 //レコード編集画面が表示された時のイベント&レコード追加画面が表示された時のイベント------------------------------------- 
   kintone.events.on(['app.record.edit.show', 'app.record.create.show'], function (event) {
     var record = event.record;
