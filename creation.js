@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //🐰ｘｘｘｘｘｘｘｘｘｘｘｘ------------------/
+  //🐰ｘ🐰ｘ🐰ｘ🐰ｘ🐰ｘｘｘｘｘｘｘｘ------------------/
   
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
@@ -14,7 +14,7 @@
     console.log('依頼番号',record.レコード番号.value);*/
    //if(!record.依頼番号_検索用.value){
          var record_n = document.createTextNode(record.レコード番号.value);
-         kintone.app.record.getFieldElement('sptest').appendChild(record_n);    
+         kintone.app.record.getSpaceElement('sptest').appendChild(record_n);    
    //   }
    
    //record.依頼番号_検索用.value = record.レコード番号.value;
