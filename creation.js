@@ -1,12 +1,14 @@
 (function() {
   "use strict";
-  //restart
+  //restart2
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
     var record = event.record
     console.log(event);
-    record.依頼番号_検索用.value = kintone.app.record.getId();
+    console.log('getid:',kintone.app.record.getId())
+    console.log('event.recordId:',event.recordId);
+    record.依頼番号_検索用.value = event.recordId;
 
     if(!record.依頼番号_検索用.value) {
       kintone.api('/k/v1/record', 
