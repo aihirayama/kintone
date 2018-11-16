@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //restart2
+  //gogo!
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -11,12 +11,15 @@
     record.依頼番号_検索用.value = event.recordId;
 
     if(!record.依頼番号_検索用.value) {
+      console.log('true判定されました。');
       kintone.api('/k/v1/record', 
                   'PUT', {
         'app': kintone.app.getId,
         'id': kintone.app.record.getId() 
-      }, function(resp) {     
+      }, function(resp) { 
+        console.log('取得はOK');
         location.reload(true);// 成功時は画面をリロード
+        console.log('リロードOK');
       });
     }    
     
