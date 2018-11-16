@@ -1,14 +1,13 @@
 (function() {
   "use strict";
-  //🐰-test---test------test-------/
+  //🐰!!!!
   
-
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
     var record = event.record
     console.log(event);
-    
-///-------------test🐰↓↓↓↓↓↓  ///-------------test🐰↓↓↓↓↓↓///-------------test🐰↓↓↓↓↓↓///-------------test🐰↓↓↓↓↓↓
+  
+  //依頼番号検索用
   if(!record.依頼番号_検索用.value){
     kintone.api('/k/v1/record','PUT',{
                 "app": kintone.app.getId(),
@@ -22,14 +21,9 @@
                 , function(resp) {     
                     location.reload(true);// 成功時は画面をリロード
                   }
-    );
-  }
-  
-   //record.依頼番号_検索用.value = record.レコード番号.value;
-
-   
-///-------------test🐰↑↑↑↑↑↑  ///-------------test🐰↑↑↑↑↑↑  ///-------------test🐰↑↑↑↑↑↑  ///-------------test🐰↑↑↑↑↑↑  
-    
+      );
+    }
+      
     //担当者名を更新する関数
     function addMemberMine(x,xx) {
       
@@ -231,7 +225,7 @@
     for(var i = 0; i < tbr_j.length; i++) {
       if(record.原稿ありなし選択.value === '原稿あり') {
         for(var j = 0; j < errorlist_j.length; j++) {
-          if(!tbr_j[i].value[errorlist_j[j]].value) {
+          if(!tbr_j[i].value[errorlist_j[j]].value || tbr_j[i].value[errorlist_j[j]].value === []) {
             tbr_j[i].value[errorlist_j[j]].error = '入力して下さい。';
             ct += 1
           }
