@@ -1,35 +1,27 @@
 (function() {
   "use strict";
-  //🐰------------------/
+  //🐰🐰🐰🐰🐰🐰🐰------------------/
   
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
-  kintone.events.on('app.record.detail.show', function(event) {
+  kintone.events.on('app.record.detail.show', function(event) {   
     var record = event.record
     console.log(event);
-    console.log('getid:',kintone.app.record.getId())
+    
+///-------------test🐰↓↓↓↓↓↓  ///-------------test🐰↓↓↓↓↓↓///-------------test🐰↓↓↓↓↓↓///-------------test🐰↓↓↓↓↓↓
+    /*console.log('getid:',kintone.app.record.getId())
     console.log('event.recordId:',event.recordId);
-    console.log('依頼番号',record.レコード番号.value);
+    console.log('依頼番号',record.レコード番号.value);*/
    if(!record.依頼番号_検索用.value){
-     console.log('true');      
-      } else {
-        console.log('false');
+         var record_n = Node.textContent(record.レコード番号.value);
+         kintone.app.record.getFieldElement('依頼番号_検索用').appendChild(record_n);    
       }
    
-    record.依頼番号_検索用.value = record.レコード番号.value;
-/*
-    //if(!record.依頼番号_検索用.value) {
-      //console.log('true判定されました。');
-      kintone.api('/k/v1/record', 
-                  'PUT', {
-        'app': event.appId,
-        'id': event.recordId 
-      }, function(resp) { 
-          location.reload(true);
-      });
-    //}    
- */
- /*///-------------test🐰↓↓↓↓↓↓   
+   //record.依頼番号_検索用.value = record.レコード番号.value;
+
+   
+///-------------test🐰↑↑↑↑↑↑  ///-------------test🐰↑↑↑↑↑↑  ///-------------test🐰↑↑↑↑↑↑  ///-------------test🐰↑↑↑↑↑↑  
+    
     //担当者名を更新する関数
     function addMemberMine(x,xx) {
       
@@ -111,7 +103,6 @@
       clienttmpA.target = '_blank';
       kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
     } 
-*/ ///-------------test🐰↑↑↑↑↑↑   
   });
 
   //レコード編集画面でのリアルタイム更新-----------------------------------------------------------------------------------
