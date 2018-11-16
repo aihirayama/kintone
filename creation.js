@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //🐰💛
+  //🐏💛
   
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
@@ -242,7 +242,7 @@
     var facilityStatsCounter = new Array(facilityStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
     var facilityTable = record.施設情報テーブル.value;
 
-    if(record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0) {
+    if(record.施設登録ありなし選択.value === '施設登録あり') {
       for(var i = 0; i < facilityTable.length; i++) {   
         var facilityTable2 = facilityTable[i].value.依頼ステータス_施設.value;
         if(facilityTable2){
@@ -263,7 +263,7 @@
     var jobofferStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
     var jobofferTable = record.求人情報テーブル.value;
 
-    if(record.原稿ありなし選択.value.indexOf('原稿あり') >= 0) {
+    if(record.原稿ありなし選択.value === '原稿あり') {
       for(var i = 0; i < jobofferTable.length; i++) {   
         var jobofferTable2 = jobofferTable[i].value.依頼ステータス_求人.value;
         if(jobofferTable2) {
@@ -295,7 +295,7 @@
       }	
     } 
 
-    //集計する関数
+    //集計する関数　(引数「テーブル」「依頼ステータス」「施設形態」の各フィールド名)
     function posting_counter (tableName,orderStatus,facilityStyle) {
       var t_record = record[tableName].value      
       for( var i = 0; i < t_record.length; i++) {
@@ -306,9 +306,16 @@
         }     
       }
     }
-  
-    posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設'); //施設情報テーブルを集計
+ 
+    //「施設登録あり」の場合のみ集計
+    if(record.施設登録ありなし選択.value === '施設登録あり') {
+      posting_counter('施設情報テーブル','依頼ステータス_施設','施設形態_施設'); //施設情報テーブルを集計
+    }
+    
+    //「原稿あり」の場合のみ集計
+    if(record.原稿ありなし選択.value === '原稿あり') {
     posting_counter('求人情報テーブル','依頼ステータス_求人','施設形態_求人'); //求人情報テーブルを集計
+    }
 
     //フィールドへ反映 
     var trailing_character = ['_登録のみ','_掲載のみ','_登録・掲載'];//industryStatsNameの並び順と同じ
