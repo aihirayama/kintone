@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //low
+  //cat
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {
@@ -14,10 +14,10 @@
       //console.log('true判定されました。');
       kintone.api('/k/v1/record', 
                   'PUT', {
-        'app': kintone.app.getId,
-        'id': kintone.app.record.getId() 
+        'app': event.appId,
+        'id': event.recordId 
       }, function(resp) { 
-          record.依頼番号_検索用.value = kintone.app.record.getId() ;
+          record.依頼番号_検索用.value = record.レコード番号.value ;
       });
     //}    
     
