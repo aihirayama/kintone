@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //tttttttttttttttttttttttttttttttttttttttttt
+  //ttttttttttttttttttttttttttttttttttttttttttおおおお
   
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
