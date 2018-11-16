@@ -225,7 +225,7 @@
     for(var i = 0; i < tbr_j.length; i++) {
       if(record.原稿ありなし選択.value === '原稿あり') {
         for(var j = 0; j < errorlist_j.length; j++) {
-          if(!tbr_j[i].value[errorlist_j[j]].value || tbr_j[i].value[errorlist_j[j]].value === []) {
+          if(!tbr_j[i].value[errorlist_j[j]].value) {
             tbr_j[i].value[errorlist_j[j]].error = '入力して下さい。';
             ct += 1
           }
