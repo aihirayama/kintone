@@ -8,7 +8,12 @@
     console.log(event);
     console.log('getid:',kintone.app.record.getId())
     console.log('event.recordId:',event.recordId);
-    record.依頼番号_検索用.value = record.レコード番号.value;
+    console.log('依頼番号',record.レコード番号.value);
+    
+    record.依頼番号_検索用.value = 'まじか👐アーイ👏'
+    
+    
+    //record.依頼番号_検索用.value = record.レコード番号.value;
 /*
     //if(!record.依頼番号_検索用.value) {
       //console.log('true判定されました。');
