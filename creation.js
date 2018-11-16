@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //🐰ｘ🐰ｘ🐰ｘ🐰ｘ🐰ｘｘｘｘｘｘｘｘ------------------/
+  //🐰------------------/
   
 
 　//レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
@@ -9,13 +9,28 @@
     console.log(event);
     
 ///-------------test🐰↓↓↓↓↓↓  ///-------------test🐰↓↓↓↓↓↓///-------------test🐰↓↓↓↓↓↓///-------------test🐰↓↓↓↓↓↓
-    /*console.log('getid:',kintone.app.record.getId())
-    console.log('event.recordId:',event.recordId);
-    console.log('依頼番号',record.レコード番号.value);*/
-   //if(!record.依頼番号_検索用.value){
-         var record_n = document.createTextNode(record.レコード番号.value);
-         kintone.app.record.getSpaceElement('sptest').appendChild(record_n);    
-   //   }
+  if(!record.依頼番号_検索用.value){
+
+    kintone.api('/k/v1/record','PUT'
+                ,{
+      "app": kintone.app.getId(),
+      "id": kintone.app.record.getId(),
+      "record": {
+        "依頼番号_検索用": {
+          "value": record.レコード番号.value     
+        }     
+      }
+
+    }
+                , function(resp) {     
+      location.reload(true);// 成功時は画面をリロード
+    });
+
+  }
+
+    
+    
+
    
    //record.依頼番号_検索用.value = record.レコード番号.value;
 
