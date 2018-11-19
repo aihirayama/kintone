@@ -347,20 +347,8 @@
         record[item].value = date;
       }
     });
+    
     return event;
-    
- /*   
-  //顧客起因不備「解除済み」が入力されたら、顧客起因待機解除日に今日のひづけを入れる
-   if(record.顧客起因不備.value === '解除済'){
-    record.顧客起因待機解除日.value　= date
-    }
-    
-  //社内起因不備に「解除済み」が入力されたら、社内起因待機解除日に今日のひづけを入れる
-   if(record.社内起因不備.value === '解除済'){
-    record.社内起因待機解除日.value　= date
-    }*/
-    
-  //  return event;
   
   });
   
