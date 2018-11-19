@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //🐏💛💑++++++
+  //tamanoripierrot niha wa ka ra n sa!🐶
   
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
@@ -332,13 +332,23 @@
 ///-------------test🐏↓↓↓↓↓↓
 //レコード一覧画面を保存する時のイベント
   kintone.events.on('app.record.index.edit.submit', function (event){
+    var records = event.records;
+    var dt = new Date();
+    var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
+
+    for(var i = 0; i < records.length; i++){
+    } if(records[i].社内起因不備.value === '解除済'){
+       records[i].社内起因待機解除日　= date
+       }
+    
   
-  })
+  });
   
   //🐏🐏+++++++
 
     kintone.events.on('app.record.index.show', function(event) {
             console.log(event);
+     
     
     });
   
