@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //🐺🐺🐺--------------🏥👐
+  //🐺🐺🐺-----
   
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
@@ -331,7 +331,7 @@
   
 ///-------------test🐏↓↓↓↓↓↓
 //レコード一覧画面を保存する時のイベント
-  kintone.events.on(['app.record.index.edit.submit','app.record.index.show'], function (event){
+  kintone.events.on('app.record.index.edit.submit', function (event){
     var records = event.records;
     var dt = new Date();
     var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
@@ -341,7 +341,7 @@
         records[i].社内起因待機解除日　= date
        }
     } 
-    
+    return event;
   
   });
   
