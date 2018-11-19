@@ -338,9 +338,12 @@
     
     var dt = new Date();
     var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
+   
+    console.log('dateに名に入ってんの？→',date);
     
        if(record.社内起因不備.value === '解除済'){
-        record.社内起因待機解除日　= date
+         console.log('ifはOKだよ～👌');
+        record.社内起因待機解除日.value　= date
         }
     
     
