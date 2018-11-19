@@ -332,24 +332,23 @@
 ///-------------test🐏↓↓↓↓↓↓
 //レコード一覧画面を保存する時のイベント
   kintone.events.on('app.record.index.edit.submit', function (event){
-    var records = event.records;
+    var record = event.record;
     
     var dt = new Date();
     var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
-    console.log('records:',records);
-    /*
+    
     for(var i = 0; i < 12; i++){
-       if(records[11].社内起因不備.value === '解除済'){
-        records[11].社内起因待機解除日　= date
+       if(record[11].社内起因不備.value === '解除済'){
+        record[11].社内起因待機解除日　= date
        }
     } 
-    */
+    
     
     return event;
   
   });
   
-  //🐺🐺+++++++🐣🐣
+  //🐺🐺+++++++🐣🐣++++++
 
     kintone.events.on('app.record.index.show', function(event) {
             console.log(event);
