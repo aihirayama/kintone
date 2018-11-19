@@ -339,8 +339,8 @@
     console.log('testes nya-')
 
     for(var i = 0; i < 12; i++){
-       if(records[i].社内起因不備.value === '解除済'){
-        records[i].社内起因待機解除日　= date
+       if(records[11].社内起因不備.value === '解除済'){
+        records[11].社内起因待機解除日　= date
        }
     } 
     return event;
