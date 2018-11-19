@@ -4,7 +4,7 @@
   
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
-    var record = event.record
+    var record = event.record;
     console.log(event);
   
   //依頼番号検索用
@@ -64,7 +64,7 @@
     kintone.app.record.getSpaceElement('spacefield_soufu').appendChild(Button);
     Button.onclick = function() {
         addMemberMine('仮原稿送付担当者_進捗管理','仮原稿送付日_進捗管理');
-   }
+   };
     
     // '仮原稿送付担当者_進捗管理'を更新するボタンを設置　
     var Button2 = document.createElement('button');
@@ -73,7 +73,7 @@
     kintone.app.record.getSpaceElement('spacefield_keisai').appendChild(Button2);
     Button2.onclick = function() {
         addMemberMine('掲載切替担当者','掲載切替日');
-    }
+    };
     
 
     //詳細画面「レコードを再利用する」を非表示
@@ -121,10 +121,10 @@
     'app.record.create.change.顧客起因不備',
     'app.record.edit.change.社内起因不備',
     'app.record.create.change.社内起因不備'
-  ]
+  ];
 
   kintone.events.on(manuscriptPresenceEvents, function(event) {
-    var record = event.record
+    var record = event.record;
 
     //テーブルのありなし選択で「なし」が選択されていたらテーブルを非表示にする。
     var items = [
@@ -189,8 +189,8 @@
     var record = event.record; 
     
     //「ありなし選択」で「あり」の場合、必須入力箇所に何も入っていなければエラーを表示する。
-    var tbr_f = record.施設情報テーブル.value
-    var tbr_j = record.求人情報テーブル.value
+    var tbr_f = record.施設情報テーブル.value;
+    var tbr_j = record.求人情報テーブル.value;
     var errorlist_f = [
       '依頼ステータス_施設',
       '施設形態_施設',
@@ -206,16 +206,16 @@
       '固定残業代',
       '裁量労働制',
       '試用期間'
-    ]
+    ];
     
-    var ct = ""
+    var ct = "";
 
     for(var i = 0; i < tbr_f.length; i++) {
       if(record.施設登録ありなし選択.value === '施設登録あり') {
         for(var j = 0; j < errorlist_f.length; j++) {
           if(!tbr_f[i].value[errorlist_f[j]].value) {
             tbr_f[i].value[errorlist_f[j]].error = '入力して下さい。';
-            ct += 1
+            ct += 1;
           }
         }
       }   
@@ -226,7 +226,7 @@
         for(var j = 0; j < errorlist_j.length; j++) {
           if(!tbr_j[i].value[errorlist_j[j]].value) {
             tbr_j[i].value[errorlist_j[j]].error = '入力して下さい。';
-            ct += 1
+            ct += 1;
           }
         }
       }   
@@ -297,12 +297,12 @@
 
     //集計する関数　(引数「テーブル」「依頼ステータス」「施設形態」の各フィールド名)
     function posting_counter (tableName,orderStatus,facilityStyle) {
-      var t_record = record[tableName].value      
+      var t_record = record[tableName].value;      
       for( var i = 0; i < t_record.length; i++) {
-        var a = industryStatsNameList.indexOf(t_record[i].value[orderStatus].value)
+        var a = industryStatsNameList.indexOf(t_record[i].value[orderStatus].value);
         var b = industryList.indexOf(t_record[i].value[facilityStyle].value);
         if(a >= 0) {
-          industryStatsCounter[a][b] += 1
+          industryStatsCounter[a][b] += 1;
         }     
       }
     }
