@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  //🐺🐺🐺-----
+  //🐺🐺🐺-----🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-🐺-
   
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
@@ -334,14 +334,14 @@
   kintone.events.on('app.record.index.edit.submit', function (event){
     var record = event.record;
     
+    console.log('一覧画面保存時イベント',event)
+    
     var dt = new Date();
     var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
     
-    for(var i = 0; i < 12; i++){
-       if(record[11].社内起因不備.value === '解除済'){
-        record[11].社内起因待機解除日　= date
-       }
-    } 
+       if(record.社内起因不備.value === '解除済'){
+        record.社内起因待機解除日　= date
+        }
     
     
     return event;
