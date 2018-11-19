@@ -336,13 +336,15 @@
     
     var dt = new Date();
     var date = dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate();
-    console.log('testes nya-')
-
+    console.log('records:',records);
+    /*
     for(var i = 0; i < 12; i++){
        if(records[11].社内起因不備.value === '解除済'){
         records[11].社内起因待機解除日　= date
        }
     } 
+    */
+    
     return event;
   
   });
