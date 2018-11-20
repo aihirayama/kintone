@@ -193,11 +193,15 @@
     //「ありなし選択」で「あり」の場合、必須入力箇所に何も入っていなければエラーを表示する。
     var tbr_f = record.施設情報テーブル.value;
     var tbr_j = record.求人情報テーブル.value;
+    
+    //施設情報テーブルの必須入力項目
     var errorlist_f = [
       '依頼ステータス_施設',
       '施設形態_施設',
       '施設名'
     ];
+    
+    //求人情報テーブルの必須入力項目
     var errorlist_j = [
       '依頼ステータス_求人',
       '掲載施設',
@@ -211,6 +215,8 @@
     ];
     
     var ct = "";
+    
+    //施設情報テーブルのエラー設定
     if(record.施設登録ありなし選択.value === '施設登録あり') {
        for(var i = 0; i < tbr_f.length; i++) {
         for(var j = 0; j < errorlist_f.length; j++) {
@@ -222,6 +228,7 @@
       }   
     }
     
+    //求人情報テーブルのエラー設定
     if(record.原稿ありなし選択.value === '原稿あり') {
     　for(var i = 0; i < tbr_j.length; i++) {
         for(var j = 0; j < errorlist_j.length; j++) {
@@ -233,6 +240,7 @@
       }   
     }
     
+    //エラーアラートの設定
     if(ct){
           event.error = '未入力の必須項目があります。';
     }
@@ -243,6 +251,7 @@
     var facilityStatsCounter = new Array(facilityStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
     var facilityTable = record.施設情報テーブル.value;
 
+    //件数をカウント
     if(record.施設登録ありなし選択.value === '施設登録あり') {
       for(var i = 0; i < facilityTable.length; i++) {   
         var facilityTable2 = facilityTable[i].value.依頼ステータス_施設.value;
@@ -255,6 +264,7 @@
       }
     }
 
+    //フィールドへ反映させる。
     for(var i = 0; i < facilityStatsNameList.length; i++) {
       record[facilityStatsNameList[i]].value = facilityStatsCounter[i];
     }
@@ -264,6 +274,7 @@
     var jobofferStatsCounter = new Array(jobofferStatsNameList.length).fill(0);//facilityStatsNameList分の0の配列
     var jobofferTable = record.求人情報テーブル.value;
 
+    //件数をカウント
     if(record.原稿ありなし選択.value === '原稿あり') {
       for(var i = 0; i < jobofferTable.length; i++) {   
         var jobofferTable2 = jobofferTable[i].value.依頼ステータス_求人.value;
@@ -330,7 +341,7 @@
 
   });
   
-//レコード一覧画面を保存する時のイベント
+//レコード一覧画面での編集を保存する時のイベント
   kintone.events.on('app.record.index.edit.submit', function (event){
     var record = event.record;
     //今日の日付   
