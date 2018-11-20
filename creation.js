@@ -1,6 +1,5 @@
 (function() {
   "use strict";
-  //🐺♬
   
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
@@ -214,7 +213,7 @@
       if(record.施設登録ありなし選択.value === '施設登録あり') {
         for(var j = 0; j < errorlist_f.length; j++) {
           if(!tbr_f[i].value[errorlist_f[j]].value) {
-            tbr_f[i].value[errorlist_f[j]].error = '入力して下さい。';
+            tbr_f[i].value[errorlist_f[j]].error = '未入力です。';
             ct += 1;
           }
         }
@@ -225,7 +224,7 @@
       if(record.原稿ありなし選択.value === '原稿あり') {
         for(var j = 0; j < errorlist_j.length; j++) {
           if(!tbr_j[i].value[errorlist_j[j]].value) {
-            tbr_j[i].value[errorlist_j[j]].error = '入力して下さい。';
+            tbr_j[i].value[errorlist_j[j]].error = '未入力です。';
             ct += 1;
           }
         }
