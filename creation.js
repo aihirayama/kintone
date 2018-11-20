@@ -8,18 +8,19 @@
   
   //依頼番号検索用
   if(!record.依頼番号_検索用.value){
-    kintone.api('/k/v1/record','PUT',{
+    kintone.api('/k/v1/record',
+                'PUT',{
                 "app": kintone.app.getId(),
                 "id": kintone.app.record.getId(),
                 "record": {
                   "依頼番号_検索用": {
                     "value": record.レコード番号.value     
-                      }     
-                    }
-                  },　function(resp) {     
+                    }     
+                　}
+                }, function(resp) {     
                     　　location.reload(true);// 成功時は画面をリロード
-                    	}
-      );
+                   }
+            );
     }
       
     //担当者名を更新する関数
@@ -65,7 +66,7 @@
         addMemberMine('仮原稿送付担当者_進捗管理','仮原稿送付日_進捗管理');
    };
     
-    // '仮原稿送付担当者_進捗管理'を更新するボタンを設置　
+    // '掲載切替担当者_進捗管理'を更新するボタンを設置　
     var Button2 = document.createElement('button');
     Button2.innerHTML = '担当者に自分を追加';
     Button2.style.marginTop = '30px';
