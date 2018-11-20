@@ -106,6 +106,7 @@
   });
 
 //レコード編集画面でのリアルタイム更新イベント-----------------------------------------------------------------------------------
+  //対象のフィールドコードを設定
   var manuscriptPresenceEvents = [
     'app.record.detail.show',
     'app.record.create.show',
@@ -126,6 +127,8 @@
     var record = event.record;
 
     //テーブルのありなし選択で「なし」が選択されていたらテーブルを非表示にする。
+    
+   //非表示にするフィールドコード
     var items = [
       '施設情報テーブル',
       //'施設作成件数',
@@ -152,17 +155,17 @@
                   item + '_登録・掲載');
     });*/
     
-    //施設情報テーブル
+    //施設情報テーブルの非表示設定
     items.forEach(function(item) {
       kintone.app.record.setFieldShown(item, record.施設登録ありなし選択.value.indexOf('施設登録あり') >= 0); 
     });    
     
-    //原稿情報テーブル
+    //原稿情報テーブルの非表示設定
     items2.forEach(function(item) {
       kintone.app.record.setFieldShown(item, record.原稿ありなし選択.value.indexOf('原稿あり') >= 0);  
     });    
  
-    //その他依頼内容
+    //その他依頼内容の非表示設定
     kintone.app.record.setFieldShown('その他依頼内容', record.他依頼内容ありなし選択.value.indexOf('他依頼内容あり') >= 0); 
 
     //顧客起因不備のステータスが解除済に変更されたとき、顧客起因待機解除日になにも入力されていなければ今日の日付を入力。
@@ -208,9 +211,8 @@
     ];
     
     var ct = "";
-
-    for(var i = 0; i < tbr_f.length; i++) {
-      if(record.施設登録ありなし選択.value === '施設登録あり') {
+    if(record.施設登録ありなし選択.value === '施設登録あり') {
+       for(var i = 0; i < tbr_f.length; i++) {
         for(var j = 0; j < errorlist_f.length; j++) {
           if(!tbr_f[i].value[errorlist_f[j]].value) {
             tbr_f[i].value[errorlist_f[j]].error = '未入力です。';
@@ -220,8 +222,8 @@
       }   
     }
     
-    for(var i = 0; i < tbr_j.length; i++) {
-      if(record.原稿ありなし選択.value === '原稿あり') {
+    if(record.原稿ありなし選択.value === '原稿あり') {
+    　for(var i = 0; i < tbr_j.length; i++) {
         for(var j = 0; j < errorlist_j.length; j++) {
           if(!tbr_j[i].value[errorlist_j[j]].value) {
             tbr_j[i].value[errorlist_j[j]].error = '未入力です。';
