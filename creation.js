@@ -1,4 +1,4 @@
-(function() {
+(function() {　
   "use strict";
   
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
@@ -57,7 +57,7 @@
       });
     }
    
-    // '仮原稿送付担当者_進捗管理'を更新するボタンを設置　
+    //「仮原稿送付担当者_進捗管理」を更新するボタンを設置　
     var Button = document.createElement('button');
     Button.innerHTML = '担当者に自分を追加';
     Button.style.marginTop = '30px';
@@ -66,7 +66,7 @@
         addMemberMine('仮原稿送付担当者_進捗管理','仮原稿送付日_進捗管理');
    };
     
-    // '掲載切替担当者_進捗管理'を更新するボタンを設置　
+    //「掲載切替担当者_進捗管理」を更新するボタンを設置　
     var Button2 = document.createElement('button');
     Button2.innerHTML = '担当者に自分を追加';
     Button2.style.marginTop = '30px';
