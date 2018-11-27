@@ -1,6 +1,8 @@
 (function() {　
   "use strict";
   
+  //🔫 x 🐺
+  
 //レコード詳細画面が表示された時のイベント-------------------------------------------------------------------------- 
   kintone.events.on('app.record.detail.show', function(event) {   
     var record = event.record;
@@ -81,28 +83,28 @@
 
     //fax受信画面のリンク作成   
     var faxnumber = record.申込書FAXID.value;
-    if (!faxnumber) {
-      return;
-    } else {
+    if (faxnumber) {
       var tmpA = document.createElement('a');
       tmpA.href = 'https://operators.job-medley.com/received_faxes/?utf8=&idxcnt=' +  faxnumber;
       tmpA.innerHTML = ' 🐰';
       //tmpA.style.fontSize = '3px';
       tmpA.target = '_blank';
-      kintone.app.record.getFieldElement('申込書FAXID').appendChild(tmpA);
+      kintone.app.record.getFieldElement('申込書FAXID').appendChild(tmpA);      
+    } else {
+      return;
     }
 
     //顧客管理画面のリンク作成
     var clientId = record.顧客ID.value;
     if (!clientId) {
-      return;
-    } else {
       var clienttmpA = document.createElement('a');
       clienttmpA.href = 'https://operators.job-medley.com/facilities?customerId=' +  clientId;
       clienttmpA.innerHTML = ' 🐰';
       //clienttmpA.style.fontSize = '3px';
       clienttmpA.target = '_blank';
-      kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);
+      kintone.app.record.getFieldElement('顧客ID').appendChild(clienttmpA);      
+    } else {
+      return;
     } 
   });
 
