@@ -1,0 +1,216 @@
+var sheet = SpreadsheetApp.getActiveSpreadsheet();
+//var Sheet1 = sheet.getSheetByName('入力欄');
+var Sheet1 = sheet.getActiveSheet();//アクティブシートを取得
+var Sheet1_name = Sheet1.getSheetName()
+
+//A列最終行
+var lastrow = Sheet1.getLastRow();
+var A_last = Sheet1.getRange(4,1,lastrow,1).getValues().filter(String).length;
+
+//項目作成シート名の取得
+var sheet_name = Sheet1.getRange('C1').getValues()
+var get_sheet= sheet.getSheetByName(sheet_name)
+
+
+//起動時の動作
+function onOpen() {
+  
+  if(Sheet1_name === '使い方'){
+    return;
+  }
+  
+  //「入力欄」シートの設定
+  Sheet1.getRange('A4:D').clear();//入力欄リセット
+  Sheet1.getRange('C1').clear();//件名選択リセット
+  Sheet1.getRange('C:C').setNumberFormat('@');//入力欄を文字列にする
+  
+  //件名一覧設置
+  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheetnamelist = sheet.getSheetByName('シート名');
+  sheetnamelist.getRange('A:A').clear();//「シート名」リセット
+  sheetnamelist.getRange('A:A').setNumberFormat('@');//入力欄を文字列にする
+  
+  var sheetlist = [];
+  var pull_list = ['入力欄','使い方','シート名','平山','成田','織田','小室'];
+  
+  for(var i = 0; i < sheets.length; i++){
+    if(pull_list.indexOf(sheets[i].getSheetName()) < 0){
+      sheetlist.push([sheets[i].getSheetName()]);
+    } 
+  } 
+    sheetnamelist.getRange(1,1,sheetlist.length,1).setValues(sheetlist);    
+}
+
+
+//入力テンプレ作成
+function onEdit(e){
+  
+  var myCell = sheet.getActiveCell(); //アクティブセルを取得
+  
+  if(myCell.getColumn()==3 && myCell.getRow()===1){ //アクティブセルがC1列かを判定
+    Sheet1.getRange('A4:D').clear();//入力欄リセット
+    
+    var mail = get_sheet.getRange('A:A').getValues().filter(String); 
+    var ren_item = [];
+    
+    //入力項目抽出
+    for(i in mail) {
+      if(mail[i][0].match(/\*\*.*?\*\*/)){
+        ren_item.push(mail[i][0].match(/\*\*.*?\*\*/g))
+      }
+    }
+    //一次元配列に変換
+    var ren = Array.prototype.concat.apply([],ren_item).filter(function (x, i, self) { 
+      return self.indexOf(x) === i;
+    });
+    
+    //デフォルト入力値の設定
+    var lastrow = Sheet1.getLastRow();
+    var F_last = Sheet1.getRange(4,6,lastrow,1).getValues().filter(String).length;
+    var defaultitem = Sheet1.getRange(4,6,F_last,3).getValues();
+    
+    var items = [];  
+    for(i in ren){
+      items.push([ren[i],'←','']) 
+      for(x in defaultitem){
+        if(items[i][0] == defaultitem[x][0]){
+          items[i][2] = defaultitem[x][2]           
+        }        
+      }
+    }
+    Sheet1.getRange(4,1,items.length,3).setValues(items);  
+  }
+}
+
+
+//メール本文作成
+function create(get_values,Break) { //Breakは改行指示
+  //テンプレシートの情報を取得 
+  var get_sheet = sheet.getSheetByName(sheet_name);
+  var mail_length = get_sheet.getDataRange().getValues().length; 
+  var mail = get_sheet.getRange('A6:A' + mail_length).getValues();
+ 
+  //テンプレの内容を書き換える
+  var mail_text = ''
+  for(a in mail){
+    mail[a][0] + Break 
+    for(i in get_values){
+      if(mail[a][0].indexOf(get_values[i][0])>-1){       
+        mail[a][0] =  mail[a][0].replace(get_values[i][0],get_values[i][2]);
+      } 
+    }
+    mail_text += mail[a][0] + Break 
+  }
+  
+  return mail_text 
+
+}
+
+
+//宛先作成
+function mailto(get_values) {
+  //  var get_values = Sheet1.getRange(4,1,A_last,4).getValues();
+  
+  var get_mailto = get_sheet.getRange('A2').getValues()
+  var mailto = get_mailto;
+  
+  for(i in get_values){
+    if(get_values[i][0] === get_mailto[0][0]){
+      mailto =  get_values[i][2];
+      if(get_mailto[0][0] === '**FAX番号(ハイフン有)**'){
+        mailto = conversion(mailto).replace( /-/g , "" ) + '@cl1.faximo.jp';
+      }
+    }
+  }
+  return mailto
+}
+
+
+//Gmail上に下書きを作る
+function soshin() {
+  //C1が選択されてなければエラー
+  if(A_last < 1){
+    return Browser.msgBox('メールタイトルを選んでね🐰');
+  }
+  
+  //入力欄取得
+  var get_values = Sheet1.getRange(4,1,A_last,4).getValues();
+  
+  //背景色の配列  
+  var h_Backgrounds = Sheet1.getRange(4,1,A_last,4).getBackgrounds();
+  
+  //エラーカウント
+  var count = 0
+  
+  //入力項目のチェック
+  for(i in get_values){ 
+    h_Backgrounds[i][2] = '#ffffff';   
+    if(get_values[i][2]){
+      get_values[i][3] = ''    
+    } else {
+      count += 1
+      get_values[i][3] = '←入力してね🐰';
+      h_Backgrounds[i][2] = '#fffacd';
+      continue
+    }       
+    if(get_values[i][0] === '**FAX番号(ハイフン有)**'){
+      if(get_values[i][2].split('-').length === 3 || get_values[i][2].split('－').length === 3){}
+      else{
+        count += 1
+        h_Backgrounds[i][2] = '#fffacd'
+        get_values[i][3] = '←ハイフンを2つ入れてね🐰';           
+      }
+    }
+    if(get_values[i][0] === '**メールアドレス(先方)**'){
+      get_values[i][2] = conversion(get_values[i][2])
+      if(get_values[i][2].split('@').length !== 2){
+        count += 1
+        h_Backgrounds[i][2] = '#fffacd';
+        get_values[i][3] = '←@がないよ🐰';
+      }
+    }   
+  }
+  
+  Sheet1.getRange(4,1,A_last,4).setValues(get_values); 
+  Sheet1.getRange(4,1,A_last,4).setBackgrounds(h_Backgrounds);  
+  
+  if(count === 0){
+//    var get_from = get_sheet.getRange('A4').getValues();
+    
+    //G-mail作成
+    var mailTo = mailto(get_values)
+    var mailTitle = sheet_name[0][0]
+    var mailBody = create(get_values,'\n').replace(/送付先： \n/,'').replace(/送付先：　\n/,'').replace(/ \n/,'').replace(/　\n/,'');//送付先が空白だったら「FAX送付案内」から送付先を消すして、事業所名分の空白改行を詰める
+    var mailfrom = get_sheet.getRange('A4').getValues()[0][0]  
+    
+    if(mailTitle.indexOf('**送信者**')){
+      mailTitle = mailTitle.replace('**送信者**',Sheet1_name)
+      
+    }
+
+//チェックボックス作成(キャンセルボタンをクリックした場合は"cancel")
+    var check_mail = '(返信メールの場合は必要なところをコピーして使ってね🐰) \\n\\n from: \\n' + mailfrom + '\\n to: \\n' + mailTo 
+    + '\\n BCC: \\n jm-sales@medley.jp\\n\\n 件名： \\n' + mailTitle + '\\n\\n\\n' + create(get_values,"\\n").replace(/送付先： \\n/,'').replace(/送付先：　\\n/,'').replace(/ \\n/,'').replace(/　\\n/,'');
+    var yourSelections = Browser.msgBox('下書きをGmailに反映させようかな？🐰',check_mail,Browser.Buttons.YES_NO);
+    
+
+    
+    
+    if(yourSelections === 'yes'){
+      
+      if(mailto(get_values)[0][0] === '' && mailfrom === ''){
+        return Browser.msgBox('テンプレのシートにTo:とFrom:がないよ🐰');
+      } else if(mailto(get_values)[0][0] === ''){
+        return Browser.msgBox('テンプレのシートにTo:がないよ🐰');
+      } else if(mailfrom === ''){
+        return Browser.msgBox('テンプレのシートにFrom:がないよ🐰');
+      }
+      
+      createDraft (mailTo,mailTitle,mailBody,mailfrom)      
+      Browser.msgBox('G-mailに下書きを反映したよ🐰');      
+    }
+  } 
+}
+
+
+
