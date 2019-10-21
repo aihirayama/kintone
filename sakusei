@@ -212,5 +212,38 @@ function soshin() {
   } 
 }
 
+//Gmail反映
+function createDraft (mailTo,mailTitle,mailBody,mailfrom) {
+  
+  var mailTo = mailTo;
+  var mailBCc = "jm-sales@medley.jp"
+  var mailTitle = mailTitle
+  var mailBody = mailBody
+  var mailArgs = {
+    from: mailfrom,
+    bcc: mailBCc
+  }
+  GmailApp.createDraft(mailTo, mailTitle, mailBody, mailArgs)
+}
 
+
+//「発信日：」作成
+function createdate() {
+  var date = new Date(); 
+  var year = date.getFullYear();
+  var month = date.getMonth()+1;
+  var day = date.getDate();
+  return year + '年' + month + '月' + day + '日'; 
+}
+
+
+function conversion(value) {
+  var regex = /[Ａ-Ｚａ-ｚ０-９！＂＃＄％＆＇（）＊＋，－．／：；＜＝＞？＠［＼］＾＿｀｛｜｝]/g
+  
+ return value.replace(regex, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) - 65248);
+  });
+  
+  
+}
 
