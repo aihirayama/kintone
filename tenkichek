@@ -1,0 +1,168 @@
+var countStart_FaxNo= Sheet_1.getRange('D1').getValue()
+
+function transcription () {
+    
+    if(last < 2){
+    Browser.msgBox('範囲がありません😿') 
+    return
+  }
+
+  //表示形式を「書式なしテキスト」に設定
+  Sheet_1.getRange('A:L').setNumberFormat('@'); 
+  
+  //値を1レコードずつ分割していく
+  var records = [];
+  var array = Array.prototype.concat.apply([],values);//シートの値を一次元配列にする
+  
+  for(var i = 0; 0 < array.length; i++){
+    if(array.indexOf('転記済み') === 36){
+      records.push(array.splice(0,48)) 
+    }else {
+      records.push(array.splice(0,36)) 
+    }
+  }
+  
+  //内容をチェックする関数
+  //'Id': 0,'顧客名': 1,'郵便番号': 2,'住所': 3,'Tel': 4,'担当者': 5,'登録者': 6,'担当オペ': 7,'内容': 8,'CS対応状況': 9,'備考': 10,'トラッキングコード': 11,'FAXNo': 12,'Fax’：16,'受信日時': 24,'Email': 28,'転記済': 36
+  function tag(i,item) {
+    var st = {
+      //項目：インデックス番号
+      'Id': records[i][0],
+      'FAXNo': records[i][12],
+      '受信日時': records[i][24],
+      '顧客名': records[i][1],
+      '郵便番号': records[i][2],
+      '住所': records[i][3],
+      'Tel': records[i][4],
+      'Fax' : records[i][16],
+      'Email':records[i][28],
+      '担当者': records[i][5],
+      '登録者': records[i][6],
+      '担当オペ': records[i][7],
+      '内容': records[i][8],
+      'CS対応状況': records[i][9],
+      '備考': records[i][10],
+      'トラッキングコード': records[i][11],
+      '転記済み': records[i][36],
+    }
+    return st[item]
+  }
+  
+  //転記抜けと不要な転記のチェック
+  var messagebox = '';
+  var message_n = '';
+  var message_f = '';
+  
+  for(a in records){
+    
+    //転記抜けcheck  
+    if(records[a].length < 39 && tag(a,'備考').search(/.*【転記なし】*/) < 0){  
+      message_n += '・' + tag(a,'受信日時') + '\\n　' + tag(a,'FAXNo') + tag(a,'顧客名') + '\\n';
+    } 
+    
+    //不要な転記check
+    if(records[a].length > 39 && tag(a,'備考').search(/.*【転記なし】*/) > -1){  
+      message_f += '・' + tag(a,'受信日時') + '\\n　' + ' ' + tag(a,'FAXNo') + tag(a,'顧客名') + '\\n';
+    }  
+  }
+  
+  if(message_n.length > 0){messagebox += '------【転記抜け】かもしれません-------\\n' + message_n + '\\n\\n\\n';}
+  if(message_f.length > 0){messagebox += '------【不要な転記】かもしれません------\\n ' + message_f;}
+  
+  if(messagebox.length > 0){
+    Browser.msgBox(messagebox) 
+    return
+  }
+  
+  var count_date = [];
+  //転記数を数える  
+  for(j in records){
+    if(tag(j,'転記済み') === '転記済み'){  
+      count_date.push(new Date(tag(j,'受信日時')))
+    }    
+    if(tag(j,'FAXNo') === countStart_FaxNo){
+      break;
+    }  
+  }  
+  
+  //転記したFAXの中に土曜日があるか確認する。
+  var sat_count = 0;
+  for(var i = 0; i < count_date.length; i++){
+    if(count_date[i].getDay() === 6){      
+      sat_count++;
+      break;
+    }
+  }
+  
+  //転記したFAXの中に今日の日付で受信時間が10時より前のFAXがあるか確認する。
+  var h_count = 0;
+  for(var i = 0; i < count_date.length; i++){
+    if(count_date[i].getFullYear() === new Date().getFullYear() && count_date[i].getMonth() === new Date().getMonth() && count_date[i].getDate() === new Date().getDate() && count_date[i].getHours() < 10){
+      h_count++;
+      break;
+    }
+  }
+  
+  
+  //🌻🐰 ↓表示メッセージ表示を変えたい場合はこちらを編集 🐮🌻
+  var postingSheet_Mg1 = '案内：転記抜けは見当たりませんでした。\\n\\n' + '※※NGFAXに未転記FAXが混ざっていないか確認する※※\\n※※ピンクのレコードに「既存?」が入っているか確認する※※\\n\\n'
+  
+  //受信日時(時間判定に使う)
+  var Upper_date = count_date[0];//一番上の転記
+  var Lower_date = count_date[count_date.length-1];//一番下の転記
+  //転記範囲の日付  
+  var period = count_date[count_date.length-1].toLocaleString().slice(0,19) + ' ～ ' + count_date[0].toLocaleString().slice(0,19);
+  
+  //メンション先
+  //通常時転記メンバー
+  var tenkimember = '@hiroshi.shimoyamada @chikoto.mizushima @rie.endo @shiori.tsuchiya @sara.oda'.replace(channel_name, "" );//自分のアカウントは宛名から削除
+  //朝だけのメンバー
+  var asa_tenkimember =　tenkimember + '@yumi.sakai @yuka.yamaguchi'.replace(channel_name, "" );//自分のアカウントは宛名から削除
+  //CCメンバー
+  var ccmember =　'cc @ai.hirayama @sayaka.komuro @rino.narita'.replace(channel_name, "" );//自分のアカウントは宛名から削除
+  
+  //表示メッセージ-----------------
+  //転記が無かった時(このプラグラムを走らせた時間帯を表示)
+  if(countStart_FaxNo === ''){
+    postingSheet_Mg1 += '--------🙅転記しなかったとき🙅--------\\n\\n'
+    + tenkimember + '\\n'
+    + ccmember + '\\n'
+    + new Date().getHours() + '時受信分までのFAX管理が完了致しましたが、見込転記0件でしたので念のためご連絡です。\\n よろしくお願いします。'
+    
+    //転記したFAXの中で一番下のFAXの受信日時が金曜日の16:30以降 or 転記したFAXの中に土曜日受信分が入っている。
+  } else if(Lower_date.getDay() === 5 && Lower_date.getDay() >= 16 && Lower_date.getMinutes() >= 30 || Lower_date.getDay() === 5 && Lower_date.getDay() >= 17 || sat_count){
+    var date = new Date(Lower_date.setDate(Lower_date.getDate() + (6 - Lower_date.getDay())));  
+    postingSheet_Mg1 += '--------🌅土曜日までの転記(つω｀)--------\\n\\n'
+    + asa_tenkimember + '\\n'
+    + ccmember  + '\\n'
+    + (date.getMonth()+1) + '/' + date.getDate() + '(土) までのFAX管理完了しました。' + count_date.length + '件見込み転記しましたので振り分けをお願いします。 \\n（' 
+    + period + ' )';
+    
+    //転記したFAXの中に今日の日付で受信時間が10:00より前のFAXがある or 転記したFAXの中で一番下のFAXの受信曜日が今日より前。
+  } else if( h_count || Lower_date.getDay() < new Date().getDay()){ 
+    postingSheet_Mg1 += '--------🌄10時の転記(つД｀)--------\\n\\n'
+    + asa_tenkimember + '\\n'
+    + ccmember + '\\n'
+    + (Upper_date.getMonth()+1) + '/' + Upper_date.getDate() + ' 10:00までのFAX管理完了しました。' + count_date.length + '件見込み転記しましたので振り分けをお願いします。 \\n（' 
+    + period + ' )';
+    
+    //このプログラムを走らせた時間が16:30以降
+  } else if(new Date().getHours() >= 16 && new Date().getMinutes() >= 30 || new Date().getHours() >= 17){ 
+    postingSheet_Mg1 += '--------🌛最後の転記(˘ω˘)--------\\n\\n'
+    + tenkimember + '\\n'
+    + ccmember + '\\n'
+    + count_date.length + '件見込転記いたしました。振り分けをお願いします。\\n これで16:30までの管理終了です。よろしくお願いいたします。 \\n（' 
+    + period + ' )';
+    
+    //上記の条件に1つも当てはまらない
+  } else {
+    postingSheet_Mg1 += '--------🌞日中の転記(つ∀-)--------\\n\\n'
+    + tenkimember  + '\\n'
+    + ccmember  + '\\n'  
+    + count_date.length + '件見込転記いたしました。振り分けをお願いします。 \\n（' 
+    + period + ' )';
+  }
+  
+  Browser.msgBox(postingSheet_Mg1);
+  return false;
+}
